@@ -1,0 +1,55 @@
+
+<html>
+  <div>
+      <div fxLayout="column" fxLayoutAlign="space-around center" >
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+            <!-- material card  -->
+<mat-card class="example-card">
+    <!-- card header -->
+        <mat-card-header class="example-header">
+        <!-- card title -->
+            <mat-card-title class="example-name-main">FUNDOO APP</mat-card-title>
+             <!--card subtitle  -->
+            <mat-card-subtitle class="example-name">Register</mat-card-subtitle>
+             
+           <!-- end of subtitle -->
+    </mat-card-header>
+   <!-- firstname -->
+
+
+<div class="example-container">
+    <mat-form-field appearance="outline">
+        <mat-label class="example-label">Username</mat-label>
+      <input type="text" formControlName="username" matInput placeholder="Input">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+      <mat-label class="example-label">Password</mat-label>
+    <input type="text" formControlName="password" matInput placeholder="Input">
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label class="example-label">Email</mat-label>
+<input type="text" formControlName="email" matInput placeholder="Input">
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label class="example-label">Mobile Number</mat-label>
+<input type="text" formControlName="mobilenumber" matInput placeholder="Input">
+</mat-form-field>
+
+<mat-card-actions class="example-button">
+  <!-- <button mat-button class="name-link" routerLink="/login">Forgot Password ?</button> -->
+  <button mat-button class="name-link" routerLink="/login">Login instead</button>
+  <!-- <button mat-button class="name-link">Register</button> -->
+  <button [disabled]="!registerForm.valid" mat-button aria-label="Show an example snack-bar" mat-raised-button class="button-colour">Sign Up</button>
+</mat-card-actions>
+
+</div>
+
+
+</mat-card>
+      </form>
+    </div>
+  </div>
+</html>
