@@ -10,7 +10,6 @@ import { UserService } from './service/user.service';
 import { AlertmessageService } from './service/alertmessage.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
-import { LoginComponent } from './login/login.component';
 
 import { MaterialModule } from './material';
 import { ReactiveFormsModule }    from '@angular/forms';
@@ -18,13 +17,23 @@ import {MatCardModule} from '@angular/material/card';
 import { RegisterComponent } from './component/register/register.component';
 import { Register1Component } from './component/register1/register1.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
+import { LoginComponent } from './component/login/login.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
   RegisterComponent,
-    LoginComponent,
-  Register1Component
+   
+  Register1Component,
+  LoginComponent,
+  DashboardComponent,
+  ForgotpasswordComponent,
+   
+
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
-import { FormBuilder, FormGroup, Validators, EmailValidator } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, EmailValidator,FormControl } from '@angular/forms';
 import { AlertmessageService } from 'src/app/service/alertmessage.service';
 import { first } from 'rxjs/operators';
 import { User } from 'src/app/model/user';
@@ -39,29 +39,40 @@ export class Register1Component implements OnInit {
      // convenience getter for easy access to form fields
      get f() { return this.registerForm.controls; }
 
+    username = new FormControl('', [Validators.required]);
+    password = new FormControl('', [Validators.required,Validators.minLength(6)]);
+    email=new FormControl('', [Validators.required]);
+    mobilenumber=new FormControl('', [Validators.required]);
+    
+
+
   onRegister()
   {
-        this.submitted = true;
+         this.submitted = true;
 
-        // stop here if form is invalid
-        if (this.registerForm.invalid) {
+         // stop here if form is invalid
+       if (this.registerForm.invalid) {
             return;
         }
 
+        console.log(this.registerForm.value);
         this.loading = true;
         this.userService.registerUser1(this.registerForm.value)
-       // this.userService.registerUser(this.registerForm.value)
           .pipe(first())
-            .subscribe(
-                data => {
+             .subscribe(
+            data => {
                     this.alertService.success('Registration successful', true);
+                   alert("data registered")
                     this.router.navigate(['/login']);
-                },
+               },
                 error => {
-                    this.alertService.error(error);
-                    this.loading = false;
+                     this.alertService.error(error);
+                     this.loading = false;
               }); 
-    }
-    
+     }
+   
+
+   
+  
 
 }

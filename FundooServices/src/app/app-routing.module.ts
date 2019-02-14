@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 
-import { LoginComponent } from './login/login.component';
+
 
 import { RegisterComponent } from './component/register/register.component';
 import { Register1Component } from './component/register1/register1.component';
+import { LoginComponent } from './component/login/login.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
 
 
 
@@ -15,13 +17,19 @@ const routes: Routes = [
      path: 'register', 
      component:RegisterComponent
   },
-  {
-    path: 'login', 
-    component:LoginComponent
- },
+
  {
   path: 'register1', 
   component:Register1Component
+},
+
+{
+  path: 'login', 
+  component:LoginComponent
+},
+{
+  path: 'dashboard', 
+  component:DashboardComponent
 }
 ];
 

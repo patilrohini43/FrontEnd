@@ -2,7 +2,7 @@
 <html>
   <div>
       <div fxLayout="column" fxLayoutAlign="space-around center" >
-        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <form [formGroup]="registerForm" >
             <!-- material card  -->
 <mat-card class="example-card">
     <!-- card header -->
@@ -20,34 +20,37 @@
 <div class="example-container">
     <mat-form-field appearance="outline">
         <mat-label class="example-label">Username</mat-label>
-      <input type="text" formControlName="username" matInput placeholder="Input">
+      <input type="text" formControlName="username" matInput placeholder="Input" required>
+      <mat-error *ngIf="username.invalid">UserName is required</mat-error>
+      
   </mat-form-field>
 
   <mat-form-field appearance="outline">
       <mat-label class="example-label">Password</mat-label>
-    <input type="text" formControlName="password" matInput placeholder="Input">
+    <input type="text" formControlName="password" matInput placeholder="Input" required>
+    <mat-error *ngIf="password.invalid">Password is required</mat-error>
 </mat-form-field>
 
 <mat-form-field appearance="outline">
   <mat-label class="example-label">Email</mat-label>
-<input type="text" formControlName="email" matInput placeholder="Input">
+<input type="text" formControlName="email" matInput placeholder="Input" required>
+<mat-error *ngIf="email.invalid">Email Id is required</mat-error>
 </mat-form-field>
 
 <mat-form-field appearance="outline">
   <mat-label class="example-label">Mobile Number</mat-label>
-<input type="text" formControlName="mobilenumber" matInput placeholder="Input">
+<input type="text" formControlName="mobilenumber" matInput placeholder="Input" required>
+<mat-error *ngIf="password.invalid">Mobile Number is required</mat-error>
 </mat-form-field>
 
 <mat-card-actions class="example-button">
   <!-- <button mat-button class="name-link" routerLink="/login">Forgot Password ?</button> -->
   <button mat-button class="name-link" routerLink="/login">Login instead</button>
   <!-- <button mat-button class="name-link">Register</button> -->
-  <button [disabled]="!registerForm.valid" mat-button aria-label="Show an example snack-bar" mat-raised-button class="button-colour">Sign Up</button>
+  <button [disabled]="!registerForm.valid" mat-button aria-label="Show an example snack-bar" (click)="onRegister()" mat-raised-button class="button-colour">Sign Up</button>
+  <button mat-button class="name-link" (click)="onRegister()">Register</button>
 </mat-card-actions>
-
 </div>
-
-
 </mat-card>
       </form>
     </div>
