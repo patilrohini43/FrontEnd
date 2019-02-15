@@ -9,6 +9,7 @@ import { RegisterComponent } from './component/register/register.component';
 import { Register1Component } from './component/register1/register1.component';
 import { LoginComponent } from './component/login/login.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { ForgotpasswordComponent } from 'src/app/component/forgotpassword/forgotpassword.component';
 
 
 
@@ -30,6 +31,10 @@ const routes: Routes = [
 {
   path: 'dashboard', 
   component:DashboardComponent
+},
+{
+  path: 'forgot', 
+  component:ForgotpasswordComponent
 }
 ];
 

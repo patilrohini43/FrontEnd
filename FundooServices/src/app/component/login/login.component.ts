@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, EmailValidator,FormControl } from '
 import { AlertmessageService } from 'src/app/service/alertmessage.service';
 import { User } from 'src/app/model/user';
 import { first } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -22,47 +23,56 @@ export class LoginComponent implements OnInit {
     private router:Router,
     private userService:UserService, 
     private formBuilder: FormBuilder,
-    private alertService:AlertmessageService
+    private alertService:AlertmessageService,
+    private snackbar:MatSnackBar
   ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: [],
+      password: []
   });
 
   }
-
+// onLogin()
+// {
+//   this.userService.loginUser(this.loginForm.value)
+//   .subscribe(data=> this.router.navigateByUrl['/dashboard']);
+// }
   email=new FormControl('', [Validators.required]);
   password = new FormControl('', [Validators.required,Validators.minLength(6)]);
 
 
   
 
-  onLogin()
-  {
-   console.log(this.loginForm.value);
-   this.submitted = true;
-
-   // stop here if form is invalid
-   if (this.loginForm.invalid) {
+   onLogin()
+ {
+    console.log(this.loginForm.value);
+    this.submitted = true;
+    // stop here if form is invalid
+ if (this.loginForm.invalid) {
        return;
    }
 
    this.loading = true;
   
-   this.userService.loginUser(this.loginForm.value)
-       .pipe(first())
-       .subscribe(
-           data => {
-               this.router.navigate(['/dashboard']);
-               alert("login data successfully");
-           },
-           error => {
-               this.alertService.error(error);
-               this.loading = false;
-           });
-}
+    this.userService.loginUser(this.loginForm.value)
+        .subscribe(
+            data => {
+              this.snackbar.open('Login Successful!!', 'End now', {
+                duration: 1000,
+          });
+                this.router.navigate(['/dashboard']);
+                //alert("login data successfully");
+            },
+            error => {
+              this.snackbar.open('Invalid User And Password!!', 'End now', {
+                duration: 1000,
+          });
+              
+                this.loading = false;
+            });
+ }
 
   }
   

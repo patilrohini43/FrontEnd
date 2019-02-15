@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, EmailValidator,FormControl } from '
 import { AlertmessageService } from 'src/app/service/alertmessage.service';
 import { first } from 'rxjs/operators';
 import { User } from 'src/app/model/user';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-register1',
@@ -23,16 +24,17 @@ export class Register1Component implements OnInit {
     private router:Router,
     private userService:UserService, 
     private formBuilder: FormBuilder,
-    private alertService:AlertmessageService
+    private alertService:AlertmessageService,
+    private snakbar:MatSnackBar
   ) { }
 
   ngOnInit() {
 
     this.registerForm = this.formBuilder.group({
-      username: [this.user.username, Validators.required],
-      password: [this.user.password, [Validators.required, Validators.minLength(6)]],
-      email: [this.user.email, Validators.required],
-      mobilenumber: [this.user.mobilenumber, Validators.required],
+      username: [this.user.username],
+      password: [this.user.password],
+      email: [this.user.email],
+      mobilenumber: [this.user.mobilenumber],
   });
   }
 
@@ -58,16 +60,19 @@ export class Register1Component implements OnInit {
         console.log(this.registerForm.value);
         this.loading = true;
         this.userService.registerUser1(this.registerForm.value)
-          .pipe(first())
+          //pipe(first())
              .subscribe(
             data => {
-                    this.alertService.success('Registration successful', true);
-                   alert("data registered")
+              this.snakbar.open('Registration successful!!', 'End now', {
+                duration: 1000,
+          });
+          
                     this.router.navigate(['/login']);
                },
                 error => {
-                     this.alertService.error(error);
-                     this.loading = false;
+                  this.snakbar.open('Not registered!!', 'End now', {
+                    duration: 1000,
+              });
               }); 
      }
    

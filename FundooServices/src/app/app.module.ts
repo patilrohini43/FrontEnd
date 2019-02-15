@@ -19,7 +19,8 @@ import { Register1Component } from './component/register1/register1.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { LoginComponent } from './component/login/login.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
-import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ForgotpasswordComponent } from 'src/app/component/forgotpassword/forgotpassword.component';
+import { RestPasswordComponent } from './component/rest-password/rest-password.component';
 
 
 
@@ -32,6 +33,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
   LoginComponent,
   DashboardComponent,
   ForgotpasswordComponent,
+  RestPasswordComponent,
    
 
   ],
