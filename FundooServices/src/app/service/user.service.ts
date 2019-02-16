@@ -35,5 +35,12 @@ loginUser(user): Observable <any> {
    return this.http.get(this.userUrl+'forgot?email='+email,{responseType:'text'});
 }
 
+public verifyEmail(token:string):any{
+  return this.http.get(this.userUrl+'verify/'+token,{responseType:'text'});
+}
+
+public resetPassWord(token:string,password:string,password1:string):any{
+  return this.http.get(this.userUrl+'reset/'+token+"/?password="+password,{responseType:'text'});
+}
 
 }
