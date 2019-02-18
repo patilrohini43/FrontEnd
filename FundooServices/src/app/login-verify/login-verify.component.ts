@@ -5,11 +5,11 @@ import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
-  selector: 'app-verify-email',
-  templateUrl: './verify-email.component.html',
-  styleUrls: ['./verify-email.component.scss']
+  selector: 'app-login-verify',
+  templateUrl: './login-verify.component.html',
+  styleUrls: ['./login-verify.component.scss']
 })
-export class VerifyEmailComponent implements OnInit {
+export class LoginVerifyComponent implements OnInit {
 
   token:string;
   usergroup:FormGroup;
@@ -21,9 +21,11 @@ export class VerifyEmailComponent implements OnInit {
     private router:Router
   ) {}
  
+
   ngOnInit() {
   }
-  emailVerify()
+
+  loginVerify()
   {
     this.token=this.route.snapshot.params['token'];
     console.log(this.token);
@@ -33,12 +35,9 @@ export class VerifyEmailComponent implements OnInit {
     {
       duration: 1000,
     })
-    this.router.navigateByUrl("/resetPassword/"+this.token);
+    this.router.navigateByUrl("/login");
     });
   }
 
-
-
- 
 
 }

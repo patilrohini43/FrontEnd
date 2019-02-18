@@ -44,11 +44,12 @@ export class Register1Component implements OnInit {
     username = new FormControl('', [Validators.required]);
     password = new FormControl('', [Validators.required,Validators.minLength(6)]);
     email=new FormControl('', [Validators.required]);
-    mobilenumber=new FormControl('', [Validators.required]);
+    mobilenumber=new FormControl('', [Validators.required,Validators.minLength(10)]);
     
 
 
   onRegister()
+  
   {
          this.submitted = true;
 

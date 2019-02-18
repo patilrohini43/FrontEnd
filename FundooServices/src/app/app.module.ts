@@ -22,6 +22,8 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { ForgotpasswordComponent } from 'src/app/component/forgotpassword/forgotpassword.component';
 import { RestPasswordComponent } from './component/rest-password/rest-password.component';
 import { VerifyEmailComponent } from './component/verify-email/verify-email.component';
+import { LoginVerifyComponent } from './login-verify/login-verify.component';
+import { RestdataComponent } from './restdata/restdata.component';
 
 
 
@@ -36,6 +38,8 @@ import { VerifyEmailComponent } from './component/verify-email/verify-email.comp
   ForgotpasswordComponent,
   RestPasswordComponent,
   VerifyEmailComponent,
+  LoginVerifyComponent,
+  RestdataComponent,
    
 
   ],

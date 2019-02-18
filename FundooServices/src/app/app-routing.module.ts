@@ -12,6 +12,8 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { ForgotpasswordComponent } from 'src/app/component/forgotpassword/forgotpassword.component';
 import { VerifyEmailComponent } from './component/verify-email/verify-email.component';
 import { RestPasswordComponent } from './component/rest-password/rest-password.component';
+import { LoginVerifyComponent } from './login-verify/login-verify.component';
+
 
 
 
@@ -41,6 +43,11 @@ const routes: Routes = [
 {
   path: 'forgetVerify/:token',
   component:VerifyEmailComponent
+},
+
+{
+  path: 'loginVerify/:token',
+  component:LoginVerifyComponent
 },
 {
    path: 'resetPassword/:token',

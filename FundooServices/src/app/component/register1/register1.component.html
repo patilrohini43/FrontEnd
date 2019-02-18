@@ -32,9 +32,13 @@
 
 <mat-form-field appearance="outline">
   <mat-label class="example-label">Email</mat-label>
-<input type="text" formControlName="email" matInput placeholder="Input" required>
-<mat-error *ngIf="email.invalid">Email Id is required</mat-error>
+<input type="text" formControlName="email" pattern="^\S*[@]\S*[.]\S*$" matInput placeholder="Input" required>
+<mat-error *ngIf="email.invalid && (email.touched || email.dirty)"> Email Id is required</mat-error>
+<mat-error *ngIf="email.invalid "> Email Id is required</mat-error>
+
 </mat-form-field>
+
+<!-- "!emailField.valid && (emailField.touched || emailField.dirty)" -->
 
 <mat-form-field appearance="outline">
   <mat-label class="example-label">Mobile Number</mat-label>
@@ -47,7 +51,7 @@
   <button mat-button class="name-link" routerLink="/login">Login instead</button>
   <!-- <button mat-button class="name-link">Register</button> -->
   <button [disabled]="!registerForm.valid" mat-button aria-label="Show an example snack-bar" (click)="onRegister()" mat-raised-button class="button-colour">Sign Up</button>
-  <button mat-button class="name-link" (click)="onRegister()">Register</button>
+  <!-- <button mat-button class="name-link" (click)="onRegister()">Register</button> -->
 </mat-card-actions>
 </div>
 </mat-card>

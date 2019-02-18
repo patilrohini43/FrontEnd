@@ -36,12 +36,27 @@ export class RestPasswordComponent implements OnInit {
 
   password=new FormControl('',[Validators.required]);
   confirmpassword =new FormControl('',[Validators.required]);
+  
+ 
+  pwdMatchValidator(frm: FormGroup) {
+    return frm.get('password').value === frm.get('confirmedPassword').value
+       ? null : {'mismatch': true};
+ } 
 
   onResetPassword()
   {
     console.log(this.resetForm.value);
     this.userService.resetPassWord(this.token,this.resetForm.value.password,this.resetForm.value.confirmpassword)
+    
     .subscribe(data => {
+     
+      // if(data.password !== data.confirmpassword)
+      // {
+      //   this.confirmpassword.setErrors({mismatch:true});
+      // }
+      // else{
+      //   this.confirmpassword.setErrors(null);
+      // }
       this.snackbar.open("Reset password SuccessFully" ," end now!!!!" ,
       {
         duration:1000,
@@ -54,3 +69,6 @@ export class RestPasswordComponent implements OnInit {
 
 
 }
+
+
+
