@@ -29,21 +29,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: [],
-      password: []
+     email: [],
+      password: [],
+  
   });
 
   }
-// onLogin()
-// {
-//   this.userService.loginUser(this.loginForm.value)
-//   .subscribe(data=> this.router.navigateByUrl['/dashboard']);
-// }
   email=new FormControl('', [Validators.required]);
   password = new FormControl('', [Validators.required,Validators.minLength(6)]);
-
-
-  
 
    onLogin()
  {

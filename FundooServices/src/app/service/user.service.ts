@@ -15,11 +15,6 @@ export class UserService {
 
   private userUrl = 'http://localhost:8081/';
 
-  //public registerUser(user: User) :any {
-    
-   // return this.http.post<User>(this.userUrl+'register',user);
-   
-//}
 
   registerUser1(user): Observable <any> {
   return this.http.post(this.userUrl+'register', user,{responseType:'text'});

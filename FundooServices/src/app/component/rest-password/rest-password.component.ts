@@ -28,8 +28,10 @@ export class RestPasswordComponent implements OnInit {
     ngOnInit() {
     this.resetForm = this.formBuilder.group({
       password:[],
-      confirmpassword:[],
+      confirmpassword:['', Validators.required, PasswordValidation.MatchPassword]
+      
     });
+    
     this.route.params.subscribe(param => {
       this.token = param.token});
   }
@@ -37,11 +39,6 @@ export class RestPasswordComponent implements OnInit {
   password=new FormControl('',[Validators.required]);
   confirmpassword =new FormControl('',[Validators.required]);
   
- 
-  pwdMatchValidator(frm: FormGroup) {
-    return frm.get('password').value === frm.get('confirmedPassword').value
-       ? null : {'mismatch': true};
- } 
 
   onResetPassword()
   {
@@ -49,14 +46,8 @@ export class RestPasswordComponent implements OnInit {
     this.userService.resetPassWord(this.token,this.resetForm.value.password,this.resetForm.value.confirmpassword)
     
     .subscribe(data => {
-     
-      // if(data.password !== data.confirmpassword)
-      // {
-      //   this.confirmpassword.setErrors({mismatch:true});
-      // }
-      // else{
-      //   this.confirmpassword.setErrors(null);
-      // }
+    
+      
       this.snackbar.open("Reset password SuccessFully" ," end now!!!!" ,
       {
         duration:1000,
@@ -65,10 +56,28 @@ export class RestPasswordComponent implements OnInit {
       this.router.navigate(['/login']);
 
     })
+    error => {
+      this.snackbar.open('Password Not Intrested!!', 'End now', {
+        duration: 1000,
+  });
   }
 
-
+  }
 }
 
+export class PasswordValidation {
 
+  static MatchPassword(AC: FormControl) {
+     return new Promise( resolve => {
+       let password = AC.parent.controls['password'].value; // to get value in input tag
+       let confirmpassword = AC.value; // to get value in input tag
+       if(password === confirmpassword) {
+         return resolve(null); // All ok, passwords match!!!
+       } else {
+          return resolve({"not_match": true})
+       }
+    });
+
+  }
+}
 

@@ -20,6 +20,7 @@ export class Register1Component implements OnInit {
   loading = false;
   submitted = false;
   user: User = new User();
+  confirmpassword:string;
   constructor(
     private router:Router,
     private userService:UserService, 
@@ -33,6 +34,7 @@ export class Register1Component implements OnInit {
     this.registerForm = this.formBuilder.group({
       username: [this.user.username],
       password: [this.user.password],
+      confirmpassword:['', Validators.required, PasswordValidation.MatchPassword],
       email: [this.user.email],
       mobilenumber: [this.user.mobilenumber],
   });
@@ -43,6 +45,7 @@ export class Register1Component implements OnInit {
 
     username = new FormControl('', [Validators.required]);
     password = new FormControl('', [Validators.required,Validators.minLength(6)]);
+    confirmpasssword = new FormControl('', [Validators.required,Validators.minLength(6)]);
     email=new FormControl('', [Validators.required]);
     mobilenumber=new FormControl('', [Validators.required,Validators.minLength(10)]);
     
@@ -81,4 +84,19 @@ export class Register1Component implements OnInit {
    
   
 
+}
+export class PasswordValidation {
+
+  static MatchPassword(AC: FormControl) {
+     return new Promise( resolve => {
+       let password = AC.parent.controls['password'].value; // to get value in input tag
+       let confirmpassword = AC.value; // to get value in input tag
+       if(password === confirmpassword) {
+         return resolve(null); // All ok, passwords match!!!
+       } else {
+          return resolve({"not_match": true})
+       }
+    });
+
+  }
 }

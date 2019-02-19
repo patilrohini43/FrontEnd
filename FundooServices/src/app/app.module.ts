@@ -14,7 +14,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from './material';
 import { ReactiveFormsModule }    from '@angular/forms';
 import {MatCardModule} from '@angular/material/card'; 
-import { RegisterComponent } from './component/register/register.component';
+
 import { Register1Component } from './component/register1/register1.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { LoginComponent } from './component/login/login.component';
@@ -23,14 +23,14 @@ import { ForgotpasswordComponent } from 'src/app/component/forgotpassword/forgot
 import { RestPasswordComponent } from './component/rest-password/rest-password.component';
 import { VerifyEmailComponent } from './component/verify-email/verify-email.component';
 import { LoginVerifyComponent } from './login-verify/login-verify.component';
-import { RestdataComponent } from './restdata/restdata.component';
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-  RegisterComponent,
+
    
   Register1Component,
   LoginComponent,
@@ -38,8 +38,8 @@ import { RestdataComponent } from './restdata/restdata.component';
   ForgotpasswordComponent,
   RestPasswordComponent,
   VerifyEmailComponent,
-  LoginVerifyComponent,
-  RestdataComponent,
+  LoginVerifyComponent
+
    
 
   ],

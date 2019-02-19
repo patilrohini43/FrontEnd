@@ -48,8 +48,14 @@ export class ForgotpasswordComponent implements OnInit {
       duration: 1000,
 });
           this.router.navigate(['/login']);
+
+          error => {
+            this.snackbar.open('Email Not Send!!', 'End now', {
+              duration: 1000,
+        });
      }
-      
+
+    }
  
  
 
