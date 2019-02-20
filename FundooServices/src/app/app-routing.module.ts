@@ -8,6 +8,7 @@ import { ForgotpasswordComponent } from 'src/app/component/forgotpassword/forgot
 import { VerifyEmailComponent } from './component/verify-email/verify-email.component';
 import { RestPasswordComponent } from './component/rest-password/rest-password.component';
 import { LoginVerifyComponent } from './login-verify/login-verify.component';
+import { DemoComponent } from './demo/demo.component';
 
 
 
@@ -45,6 +46,10 @@ const routes: Routes = [
    path: 'resetPassword/:token',
   //path: 'resetPassword',
   component:RestPasswordComponent
+},
+{
+  path: 'demo',
+  component:DemoComponent
 },
 
 ];

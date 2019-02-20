@@ -1,0 +1,72 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+.example-card {
+  max-width: 400px;
+}
+.example-card {
+  max-width: 300px;
+  padding-left: 100px;
+
+}
+.button-setting {
+  padding-left: 30px;
+}
+// .orko-button-primary, input.orko-button-primary {
+//   background: #188fff;
+//   color: #fff;
+// }
+.cardList {
+  display: flex;
+  flex-direction: column;
+}
+/* Row Gap */
+.cardList > *:not(:last-child) {
+  margin-bottom: 32px;
+}
+.cardInner {
+  display: grid;
+
+  grid-row-gap: 16px;
+ 
+}
+// input.ng-invalid {
+//   background-color:pink;
+// }
+// input.ng-valid {
+//   background-color:lightgreen;
+// }
+// form.ng-pristine {
+//   background-color:lightblue;
+// }
+// form.ng-dirty {
+//   background-color:pink;
+// }
+
+button {
+  padding: 5px 15px;
+  margin: 5px;
+  min-width: 100px
+}
+.btnReg{
+           
+  width:210px;
+  margin: 10px;
+  text-align: center;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("https://images.alphacoders.com/705/thumb-1920-705037.jpg");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

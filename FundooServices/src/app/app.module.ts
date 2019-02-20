@@ -23,6 +23,7 @@ import { ForgotpasswordComponent } from 'src/app/component/forgotpassword/forgot
 import { RestPasswordComponent } from './component/rest-password/rest-password.component';
 import { VerifyEmailComponent } from './component/verify-email/verify-email.component';
 import { LoginVerifyComponent } from './login-verify/login-verify.component';
+import { DemoComponent } from './demo/demo.component';
 
 
 
@@ -38,7 +39,8 @@ import { LoginVerifyComponent } from './login-verify/login-verify.component';
   ForgotpasswordComponent,
   RestPasswordComponent,
   VerifyEmailComponent,
-  LoginVerifyComponent
+  LoginVerifyComponent,
+  DemoComponent
 
    
 
