@@ -6,6 +6,7 @@ import { AlertmessageService } from 'src/app/service/alertmessage.service';
 import { User } from 'src/app/model/user';
 import { first } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
+import { HttpService } from 'src/app/service/http.service';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
     private router:Router,
     private userService:UserService, 
     private formBuilder: FormBuilder,
+    private httpService:HttpService,
     private alertService:AlertmessageService,
     private snackbar:MatSnackBar
   ) { }
@@ -49,7 +51,8 @@ export class LoginComponent implements OnInit {
 
    this.loading = true;
   
-    this.userService.loginUser(this.loginForm.value)
+  //  this.userService.loginUser(this.loginForm.value)
+    this.httpService.postRequest('/Login',this.loginForm.value)
         .subscribe(
             data => {
               this.snackbar.open('Login Successful!!', 'End now', {

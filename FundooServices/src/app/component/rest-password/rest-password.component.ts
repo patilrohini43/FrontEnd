@@ -4,6 +4,7 @@ import { UserService } from 'src/app/service/user.service';
 import { MatSnackBar } from '@angular/material';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpService } from 'src/app/service/http.service';
 
 @Component({
   selector: 'app-rest-password',
@@ -20,6 +21,7 @@ export class RestPasswordComponent implements OnInit {
     private userService:UserService,
     private snackbar:MatSnackBar,
     private formBuilder: FormBuilder,
+    private httpService:HttpService,
     private route:ActivatedRoute,
     private router:Router
 
@@ -43,8 +45,8 @@ export class RestPasswordComponent implements OnInit {
   onResetPassword()
   {
     console.log(this.resetForm.value);
-    this.userService.resetPassWord(this.token,this.resetForm.value.password,this.resetForm.value.confirmpassword)
-    
+   // this.userService.resetPassWord(this.token,this.resetForm.value.password,this.resetForm.value.confirmpassword)
+   this.httpService.getRequest('/reset/'+this.token+'/?password='+this.resetForm.value.password)
     .subscribe(data => {
     
       

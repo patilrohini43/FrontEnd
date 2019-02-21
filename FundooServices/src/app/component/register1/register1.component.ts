@@ -6,6 +6,8 @@ import { AlertmessageService } from 'src/app/service/alertmessage.service';
 import { first } from 'rxjs/operators';
 import { User } from 'src/app/model/user';
 import { MatSnackBar } from '@angular/material';
+import { HttpService } from 'src/app/service/http.service';
+
 
 @Component({
   selector: 'app-register1',
@@ -24,6 +26,7 @@ export class Register1Component implements OnInit {
   constructor(
     private router:Router,
     private userService:UserService, 
+    private httpService:HttpService,
     private formBuilder: FormBuilder,
     private alertService:AlertmessageService,
     private snakbar:MatSnackBar
@@ -63,8 +66,8 @@ export class Register1Component implements OnInit {
 
         console.log(this.registerForm.value);
         this.loading = true;
-        this.userService.registerUser1(this.registerForm.value)
-          //pipe(first())
+       //this.userService.registerUser1(this.registerForm.value)
+         this.httpService.postRequest('/register',this.registerForm.value)
              .subscribe(
             data => {
               this.snakbar.open('Registration successful!!', 'End now', {
@@ -80,10 +83,6 @@ export class Register1Component implements OnInit {
               }); 
      }
    
-
-   
-  
-
 }
 export class PasswordValidation {
 

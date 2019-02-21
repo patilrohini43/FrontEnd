@@ -24,6 +24,8 @@ import { RestPasswordComponent } from './component/rest-password/rest-password.c
 import { VerifyEmailComponent } from './component/verify-email/verify-email.component';
 import { LoginVerifyComponent } from './login-verify/login-verify.component';
 import { DemoComponent } from './demo/demo.component';
+import { HttpService } from './service/http.service';
+
 
 
 
@@ -40,7 +42,8 @@ import { DemoComponent } from './demo/demo.component';
   RestPasswordComponent,
   VerifyEmailComponent,
   LoginVerifyComponent,
-  DemoComponent
+  DemoComponent,
+ 
 
    
 
@@ -61,7 +64,7 @@ import { DemoComponent } from './demo/demo.component';
 
     
   ], 
-  providers: [UserService,AlertmessageService],
+  providers: [UserService,AlertmessageService,HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

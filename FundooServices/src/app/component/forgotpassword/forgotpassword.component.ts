@@ -5,6 +5,7 @@ import { UserService } from 'src/app/service/user.service';
 import { FormBuilder, FormGroup, Validators, EmailValidator,FormControl } from '@angular/forms';
 import { AlertmessageService } from 'src/app/service/alertmessage.service';
 import { MatSnackBar } from '@angular/material';
+import { HttpService } from 'src/app/service/http.service';
 @Component({
   selector: 'app-forgotpassword',
   templateUrl: './forgotpassword.component.html',
@@ -22,6 +23,7 @@ export class ForgotpasswordComponent implements OnInit {
     private router:Router,
     private userService:UserService, 
     private formBuilder: FormBuilder,
+    private httpService:HttpService,
     private alertService:AlertmessageService,
     private snackbar:MatSnackBar
   ) {}
@@ -42,7 +44,8 @@ export class ForgotpasswordComponent implements OnInit {
   onForgot()
   {
     console.log(this.forgotForm.value.email);
-    this.userService.forgotPassword(this.forgotForm.value.email)
+   // this.userService.forgotPassword(this.forgotForm.value.email)
+    this.httpService.getRequest('/forgot?email='+this.forgotForm.value.email)
     .subscribe(data=>  this.forgotForm.value)
     this.snackbar.open('Email Send SuccessFully For reset!!', 'End now', {
       duration: 1000,

@@ -3,6 +3,7 @@ import { UserService } from 'src/app/service/user.service';
 import { Router  , ActivatedRoute } from '@angular/router'
 import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { HttpService } from 'src/app/service/http.service';
 
 @Component({
   selector: 'app-verify-email',
@@ -18,6 +19,7 @@ export class VerifyEmailComponent implements OnInit {
     private userService:UserService,
     private route: ActivatedRoute,
     private snackbar:MatSnackBar,
+    private httpService:HttpService,
     private router:Router
   ) {}
  
@@ -27,7 +29,8 @@ export class VerifyEmailComponent implements OnInit {
   {
     this.token=this.route.snapshot.params['token'];
     console.log(this.token);
-    this.userService.verifyEmail(this.token)
+  // this.userService.verifyEmail(this.token)
+ this.httpService.getRequest('/verify/'+this.token)
     .subscribe(data=> {
        this.snackbar.open("Email Verify SuccessFully",'End Now',
     {
