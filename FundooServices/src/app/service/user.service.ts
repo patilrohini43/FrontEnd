@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import{User} from 'src/app/model/user';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -21,8 +21,11 @@ export class UserService {
 }
 
 
-loginUser(user): Observable <any> {
-  return this.http.post(this.userUrl+'Login', user,{responseType:'text'});
+loginUser(user):  any {
+  return this.http.post(this.userUrl+'Login', user,{
+    headers:new HttpHeaders().set("jwt_token",""), 
+  
+  observe:'response'});
 }
 
 

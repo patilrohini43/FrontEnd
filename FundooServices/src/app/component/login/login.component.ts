@@ -7,6 +7,7 @@ import { User } from 'src/app/model/user';
 import { first } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 import { HttpService } from 'src/app/service/http.service';
+import { tokenKey } from '@angular/core/src/view';
 
 @Component({
   selector: 'app-login',
@@ -51,16 +52,24 @@ export class LoginComponent implements OnInit {
 
    this.loading = true;
   
-  //  this.userService.loginUser(this.loginForm.value)
-    this.httpService.postRequest('/Login',this.loginForm.value)
+    this.userService.loginUser(this.loginForm.value)
+    //this.httpService.postRequest('/Login',this.loginForm.value)
         .subscribe(
-            data => {
-              this.snackbar.open('Login Successful!!', 'End now', {
-                duration: 1000,
+            response  => {
+              console.log(response.body);
+              console.log(response.body.statusMessage);
+            
+               if(response.body.statusCode == 200){
+               this.snackbar.open('Login Successful!!', 'End now', {
+                 duration: 1000,
           });
-                this.router.navigate(['/dashboard']);
-                //alert("login data successfully");
-            },
+                 this.router.navigate(['/dashboard']);
+                 
+                 localStorage.setItem("token", response.headers.get("jwt_token"));
+             }
+             
+             
+          },
             error => {
               this.snackbar.open('Invalid User And Password!!', 'End now', {
                 duration: 1000,
