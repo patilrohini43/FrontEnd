@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -19,6 +19,14 @@ export class HttpService {
 getRequest(email:string):any{
   return this.http.get(this.userUrl+email,{responseType:'text'});
 }
+
+putRequest(url,user): Observable <any> {
+  return this.http.post(this.userUrl +url, user,{responseType:'json',
+    headers:new HttpHeaders().set("jwt_token",""), 
+  observe:'response'});
+}
+
+
 
 
 }

@@ -52,31 +52,41 @@ export class LoginComponent implements OnInit {
 
    this.loading = true;
   
-    this.userService.loginUser(this.loginForm.value)
-    //this.httpService.postRequest('/Login',this.loginForm.value)
+   // this.userService.loginUser(this.loginForm.value)
+    this.httpService.putRequest('/Login',this.loginForm.value)
         .subscribe(
             response  => {
+        
               console.log(response.body);
               console.log(response.body.statusMessage);
             
                if(response.body.statusCode == 200){
-               this.snackbar.open('Login Successful!!', 'End now', {
+               this.snackbar.open(response.body.statusMessage +'Login Successful!!', 'End now', {
                  duration: 1000,
           });
                  this.router.navigate(['/dashboard']);
                  
                  localStorage.setItem("token", response.headers.get("jwt_token"));
-             }
+              }
+            else 
+    
+
+              {
+                console.log(response.body.statusMessage)
+                this.snackbar.open(response.body.statusMessage +'Invalid !!', 'End now', {
+                  duration: 1000,
+           });
+              }
              
              
           },
             error => {
-              this.snackbar.open('Invalid User And Password!!', 'End now', {
-                duration: 1000,
-          });
-              
+          //    
+          console.log(error);
+         
                 this.loading = false;
             });
+            
  }
 
   }

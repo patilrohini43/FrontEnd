@@ -24,7 +24,6 @@ export class UserService {
 loginUser(user):  any {
   return this.http.post(this.userUrl+'Login', user,{
     headers:new HttpHeaders().set("jwt_token",""), 
-  
   observe:'response'});
 }
 
