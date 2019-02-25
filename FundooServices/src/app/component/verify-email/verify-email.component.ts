@@ -31,13 +31,32 @@ export class VerifyEmailComponent implements OnInit {
     console.log(this.token);
   // this.userService.verifyEmail(this.token)
  this.httpService.getRequest('/verify/'+this.token)
-    .subscribe(data=> {
-       this.snackbar.open("Email Verify SuccessFully",'End Now',
+    .subscribe(response=> {
+
+
+      console.log(response.body);
+      if(response.body.statusCode===103)
+      {
+       this.snackbar.open(response.body.statusMessage +" Success",'End Now',
     {
       duration: 1000,
     })
     this.router.navigateByUrl("/resetPassword/"+this.token);
-    });
+  }else{
+
+    this.snackbar.open(response.body.statusMessage +"Not Verify",'End Now',
+    {
+      duration: 1000,
+    })
+
+  }
+ 
+  error => {
+    this.snackbar.open('Reset Password Failed!!', 'End now', {
+      duration: 1000,
+});
+  }
+  });
   }
 
 

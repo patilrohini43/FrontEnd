@@ -13,16 +13,15 @@ export class HttpService {
 
 
   postRequest(url,user): Observable <any> {
-  return this.http.post(this.userUrl +url, user,{responseType:'text'});
+  return this.http.post(this.userUrl +url, user,{observe:'response'});
 }
 
 getRequest(email:string):any{
-  return this.http.get(this.userUrl+email,{responseType:'text'});
+  return this.http.get(this.userUrl+email,{observe:'response'});
 }
 
-putRequest(url,user): Observable <any> {
-  return this.http.post(this.userUrl +url, user,{responseType:'json',
-    headers:new HttpHeaders().set("jwt_token",""), 
+putRequest(url,user): any {
+  return this.http.post(this.userUrl +url, user,{ 
   observe:'response'});
 }
 

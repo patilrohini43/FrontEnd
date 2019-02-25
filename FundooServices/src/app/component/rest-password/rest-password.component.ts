@@ -47,19 +47,31 @@ export class RestPasswordComponent implements OnInit {
     console.log(this.resetForm.value);
    // this.userService.resetPassWord(this.token,this.resetForm.value.password,this.resetForm.value.confirmpassword)
    this.httpService.getRequest('/reset/'+this.token+'/?password='+this.resetForm.value.password)
-    .subscribe(data => {
+    .subscribe(response  => {
+
+      console.log(response.body);
+      if(response.body.statusCode===102)
+      {
     
       
-      this.snackbar.open("Reset password SuccessFully" ," end now!!!!" ,
+      this.snackbar.open(response.body.statusMessage +"Reset password SuccessFully" ," end now!!!!" ,
       {
         duration:1000,
       });
 
       this.router.navigate(['/login']);
+    }
+    else{
+      this.snackbar.open(response.body.statusMessage +" Invalid" ," end now!!!!" ,
+      {
+        duration:1000,
+      });
+
+    }
 
     })
     error => {
-      this.snackbar.open('Password Not Intrested!!', 'End now', {
+      this.snackbar.open('Reset Password Failed!!', 'End now', {
         duration: 1000,
   });
   }

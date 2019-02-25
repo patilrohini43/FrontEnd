@@ -46,17 +46,34 @@ export class ForgotpasswordComponent implements OnInit {
     console.log(this.forgotForm.value.email);
    // this.userService.forgotPassword(this.forgotForm.value.email)
     this.httpService.getRequest('/forgot?email='+this.forgotForm.value.email)
-    .subscribe(data=>  this.forgotForm.value)
-    this.snackbar.open('Email Send SuccessFully For reset!!', 'End now', {
+    .subscribe(
+       response=>  {
+      console.log(response.body);
+
+      if(response.body.statusCode ===101)
+      {
+                
+    this.snackbar.open(response.body.statusMessage +' For reset!!', 'End now', {
       duration: 1000,
 });
           this.router.navigate(['/login']);
+}else{
+  this.snackbar.open(response.body.statusMessage +' Email Not Send  !!', 'End now', {
+    duration: 1000,
+});
+
+}
+
+},
+
 
           error => {
-            this.snackbar.open('Email Not Send!!', 'End now', {
+            this.snackbar.open(' Sending Email Failed!!', 'End now', {
               duration: 1000,
         });
-     }
+    }
+    );
+  
 
     }
  

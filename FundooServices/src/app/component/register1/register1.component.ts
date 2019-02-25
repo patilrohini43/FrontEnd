@@ -69,17 +69,36 @@ export class Register1Component implements OnInit {
        //this.userService.registerUser1(this.registerForm.value)
          this.httpService.postRequest('/register',this.registerForm.value)
              .subscribe(
-            data => {
-              this.snakbar.open('Registration successful!!', 'End now', {
+            response => {
+
+            console.log(response.body);
+            console.log(response.body.statusCode);
+            console.log(response.body.statusMessage);
+
+
+              if(response.body.statusCode === 200)
+              {
+              this.snakbar.open(response.body.statusMessage +'  Ok !!', 'End now', {
                 duration: 1000,
           });
           
                     this.router.navigate(['/login']);
+        }
+        else
+        {
+      
+              this.snakbar.open(response.body.statusMessage  +'Not registered!!', 'End now', {
+                duration: 1000,
+          });
+
+        }
+        
                },
                 error => {
-                  this.snakbar.open('Not registered!!', 'End now', {
+                  this.snakbar.open(' Registration Failed!!', 'End now', {
                     duration: 1000,
               });
+                 
               }); 
      }
    
