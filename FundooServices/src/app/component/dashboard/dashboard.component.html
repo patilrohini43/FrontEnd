@@ -1,3 +1,52 @@
-<p>
-  dashboard works!
-</p>
+<div> 
+<mat-toolbar color="primary">
+    
+  <mat-toolbar-row>
+  
+       <div  fxLayoutAlign="start center" fxFlex="1 1 15%" >
+      <button matTooltip="MainMenu" mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <img src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png" width="40" height="40" alt="" style="margin-inline-end: 5%">
+    </div>
+  
+    <span class="example-spacer"></span>
+
+   
+   <div  fxLayoutAlign="start center" fxFlex="1 1 88%">
+      <mat-form-field class="example-full-width" appearance="outline">
+           <input matInput type="text" placeholder="Search">
+  <button mat-button matPrefix mat-icon-button>
+    <mat-icon>search</mat-icon>
+  </button>
+         </mat-form-field> 
+   </div> 
+     
+      <button mat-icon-button matTooltip="Refresh"><mat-icon>refresh</mat-icon></button>
+       <button mat-icon-button matTooltip="settings"><mat-icon>settings</mat-icon></button>
+        <button mat-icon-button matTooltip="apps"><mat-icon>apps</mat-icon></button>
+         <button mat-icon-button matTooltip="notification_important"><mat-icon>notification_important</mat-icon></button>
+           <button mat-icon-button matTooltip="account_circle"><mat-icon>account_circle</mat-icon></button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+        <a href="#" mat-list-item>Menu Item 1</a>
+        <a href="#" mat-list-item>Menu Item 2</a>
+        <a href="#" mat-list-item>Menu Item 3</a>
+        <a href="#" mat-list-item>Menu Item 4</a>
+        <a href="#" mat-list-item>Menu Item 5</a>
+        <a href="#"mat-list-item>Menu Item 6</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>Main content</mat-sidenav-content>
+  </mat-sidenav-container>>
+
+</div>
+
+<!-- Copyright 2018 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

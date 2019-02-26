@@ -70,7 +70,6 @@ export class LoginComponent implements OnInit {
                  localStorage.setItem("token",response.body.token);
               }
             else 
-    
 
               {
                  console.log(response.body.statusMessage)
