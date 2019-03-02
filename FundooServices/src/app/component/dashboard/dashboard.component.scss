@@ -4,11 +4,13 @@
 
 .mat-toolbar{
 height: 12vh;
+background-color: white;
 
 }
 
 div {
   overflow: inherit;
+
  
 }
 
@@ -27,7 +29,19 @@ mat-form-field.mat-form-field {
 }
 .mat-sidenav-container{
 background-color:white;
-min-height: 93vh !important;
+}
+
+.hoverhighlight:hover{
+  background-color:lightgoldenrodyellow;
+  border-top-right-radius: 15%;
+  border-bottom-right-radius: 15%;
+}
+
+.example-sidenav{
+  background-color:white;
+    width:25%;
+   position:fixed; 
+   margin-top: 6%;
 }
 
 a{
@@ -47,9 +61,25 @@ button{
 
 .example-spacer {
   flex: 1 1 auto;
+ padding-right: 5%;
 }
 
 .mat-sidenav-content{
     font-size: 200%;
     text-align: center;
+    background-color: white;
 }
+
+.mat-menu-item
+{
+  font-size: 90%;
+
+}
+
+
+
+.mat-drawer-backdrop.mat-drawer-shown {
+
+    background-color: white;
+}
+

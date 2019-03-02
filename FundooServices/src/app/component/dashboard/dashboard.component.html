@@ -1,5 +1,5 @@
 <div> 
-<mat-toolbar color="primary">
+<mat-toolbar color="white">
     
   <mat-toolbar-row>
   
@@ -7,10 +7,10 @@
       <button matTooltip="MainMenu" mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <img src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png" width="40" height="40" alt="" style="margin-inline-end: 5%">
+      <img src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png" width="50" height="50" alt="" style="margin-inline-end: 5%">
     </div>
   
-    <span class="example-spacer"></span>
+    <span class="example-spacer">FundooApp</span>
 
    
    <div  fxLayoutAlign="start center" fxFlex="1 1 88%">
@@ -23,27 +23,39 @@
    </div> 
      
       <button mat-icon-button matTooltip="Refresh"><mat-icon>refresh</mat-icon></button>
-       <button mat-icon-button matTooltip="settings"><mat-icon>settings</mat-icon></button>
+       <!-- <button mat-icon-button ></button> -->
+       
+      <button mat-button [matMenuTriggerFor]="menu" matTooltip="settings"><mat-icon>settings</mat-icon></button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Settings</button>
+        <button mat-menu-item>Help</button>
+        <button mat-menu-item>Send Feeback</button>
+      </mat-menu>
         <button mat-icon-button matTooltip="apps"><mat-icon>apps</mat-icon></button>
          <button mat-icon-button matTooltip="notification_important"><mat-icon>notification_important</mat-icon></button>
            <button mat-icon-button matTooltip="account_circle"><mat-icon>account_circle</mat-icon></button>
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-sidenav-container fxFlexFill>
-    <mat-sidenav #sidenav>
-      <mat-nav-list>
-        <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
-        <a href="#" mat-list-item>Menu Item 1</a>
-        <a href="#" mat-list-item>Menu Item 2</a>
-        <a href="#" mat-list-item>Menu Item 3</a>
-        <a href="#" mat-list-item>Menu Item 4</a>
-        <a href="#" mat-list-item>Menu Item 5</a>
-        <a href="#"mat-list-item>Menu Item 6</a>
-      </mat-nav-list>
+<mat-sidenav-container [hasBackdrop]="false" fxFlexFill>
+    <mat-sidenav #sidenav mode="push" style="min-width:50" class="example-sidenav">
+        <mat-action-list >
+            <button class= "hoverhighlight" mat-list-item routerLink="notes"> <mat-icon>lightbulb_outline</mat-icon> <i style="margin: 5%;"></i> Notes </button>
+            <button class= "hoverhighlight" mat-list-item> <mat-icon>notifications_none</mat-icon><i style="margin: 5%;"></i>Remainder</button>
+            <mat-divider ></mat-divider>
+            <h6 style="font-size:65%;" matSubheader >LABELS</h6>
+            
+            <button class= "hoverhighlight" mat-list-item (click)="EditLabelDialog()"><mat-icon>edit</mat-icon><i style="margin: 5%;"></i>Edit Labels </button>
+            <mat-divider></mat-divider>
+            <button class= "hoverhighlight" mat-list-item routerLink="archive" ><mat-icon>archive</mat-icon><i style="margin: 5%;"></i> Archive </button>
+            <button class= "hoverhighlight" mat-list-item routerLink="trash" ><mat-icon>delete</mat-icon> <i style="margin: 5%;"></i>Trash </button>             
+         </mat-action-list>
     </mat-sidenav>
-    <mat-sidenav-content fxFlexFill>Main content</mat-sidenav-content>
-  </mat-sidenav-container>>
+    
+    <mat-sidenav-content color="white" fxFlexFill>
+       <app-add-note color="white"></app-add-note> 
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 
 </div>
 

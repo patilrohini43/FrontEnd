@@ -9,6 +9,7 @@ import { VerifyEmailComponent } from './component/verify-email/verify-email.comp
 import { RestPasswordComponent } from './component/rest-password/rest-password.component';
 import { LoginVerifyComponent } from './login-verify/login-verify.component';
 import { DemoComponent } from './demo/demo.component';
+import { AddNoteComponent } from './component/add-note/add-note.component';
 
 
 
@@ -27,7 +28,16 @@ const routes: Routes = [
 },
 {
   path: 'dashboard', 
-  component:DashboardComponent
+  component:DashboardComponent,
+
+  children:[
+    {
+    
+      path: 'addnote', 
+      component:AddNoteComponent,
+    }
+
+  ]
 },
 {
   path: 'forgot', 
