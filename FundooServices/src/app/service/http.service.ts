@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Notedto } from '../model/createnote';
+
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +27,10 @@ putRequest(url,user): any {
   observe:'response'});
 }
 
-
-
+postRequest1(url,notedto:Notedto):  any {
+  return this.http.post(this.userUrl+url, notedto,{
+    headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
+  observe:'response'});
+}
 
 }

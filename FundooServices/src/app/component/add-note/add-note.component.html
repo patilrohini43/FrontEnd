@@ -1,10 +1,12 @@
 
 <div>
+
+
 <div class="example-container">
 <mat-card  (click)="show()" *ngIf="flag===false"  [class.mat-elevation-z6]="!isActive" [class.mat-elevation-z8]="isActive">
     <div fxLayout="row" fxFlex="70" fxLayoutAlign="space-between center" >
       <div class="abc">
-      <input matInput placeholder="Take a note..." [style.fontSize.px]=13>
+      <input matInput placeholder="Take a note..." [style.fontSize.px]=13 >
       </div>
       <div fxLayout="row" fxFlex="10" fxLayoutAlign="space-between center" >
       <button mat-icon-button matTooltip="New Note List"><mat-icon class="icon"  >check_box</mat-icon></button>
@@ -16,27 +18,31 @@
 </div>
 
 
-<div class="example-container">
+<div class="example-container2">
     <mat-card  *ngIf="flag===true" [class.mat-elevation-z6]="!isActive"
     [class.mat-elevation-z8]="isActive">
-    <div fxLayout="column" fxFlex="20" fxLayoutAlign="space-around">
-    <input matInput placeholder="Title.." [style.fontSize.px]=15>
-    <input matInput placeholder="Take a note..." [style.fontSize.px]=10 style="margin:0em; padding-top: 10px">
-    <div fxLayout="row" fxFlex="10" fxLayoutAlign="space-between center" >
-    <button mat-icon-button matTooltip="Remind me"> <mat-icon class="icon">add_alert</mat-icon></button>
-    <button mat-icon-button matTooltip="Collaborator"><mat-icon class="icon1" >person_add</mat-icon></button>
-    <button mat-icon-button matTooltip="Archive"><mat-icon class="icon1" >archive</mat-icon></button>
-    <button mat-icon-button matTooltip="rop_original"><mat-icon class="icon1" >crop_original</mat-icon></button> 
-     <button mat-icon-button matTooltip="Undo" ><mat-icon >undo</mat-icon></button>
-    <button mat-icon-button matTooltip="Redo" ><mat-icon>redo</mat-icon></button>
-    <button mat-icon-button matTooltip="more" ><mat-icon>more_vert</mat-icon></button>
+    <div fxLayout="column" fxFlex="30" fxLayoutAlign="space-around">
+      
+    <div class="test" id="test" placeholder="Title.." contenteditable="true" [style.fontSize.px]=15 ></div>
+    <div class="test" id="test" placeholder="Take a Note..." contenteditable="true" [style.fontSize.px]=15 ></div>
 
-    
+    <div fxLayout="row" fxFlex="30" fxLayoutAlign="space-between center" >
+     <div class="icons" fxLayout="row" fxFlex="10">
+    <button mat-icon-button matTooltip="Remind me"> <mat-icon style="font-size: 20px"><i style="margin: 5%;"></i>add_alert</mat-icon></button>
+    <button mat-icon-button matTooltip="Collaborator"><mat-icon style="font-size: 20px">person_add<i style="margin: 5%;"></i></mat-icon></button>
+    <button mat-icon-button matTooltip="Archive"><mat-icon style="font-size: 20px">archive</mat-icon></button>
+    <button mat-icon-button matTooltip="rop_original"><mat-icon style="font-size: 20px">crop_original</mat-icon></button> 
+     <button mat-icon-button matTooltip="Undo" ><mat-icon style="font-size: 20px">undo</mat-icon></button>
+    <button mat-icon-button matTooltip="Redo" ><mat-icon style="font-size: 20px">redo</mat-icon></button>
+    <button mat-icon-button matTooltip="more" ><mat-icon style="font-size: 20px">more_vert</mat-icon></button>
+    <div fxLayout="row" fxFlex="10" fxLayoutAlign="space-between center" >
+    <button mat-button class="buttonclose" [style.fontSize.px]=15 (click)="createNote()" >close<i style="margin-right:10px"></i></button>
+  </div>
+  </div>
     </div>
    </div>
   </mat-card>
 </div>
 
 
-    
 </div>
