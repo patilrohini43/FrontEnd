@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/service/http.service';
 import { MatSnackBar } from '@angular/material';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Note } from 'src/app/model/note';
 import { Notedto } from 'src/app/model/createnote';
 
@@ -14,9 +14,11 @@ import { Notedto } from 'src/app/model/createnote';
 export class AddNoteComponent implements OnInit {
  // note:Note=new Note();
  note:Notedto=new Notedto();
-  noteForm: FormGroup;
+ title= new FormControl('')
+  description=new FormControl('')
   isActive = false;
   flag=false;
+  data:any
   constructor(
 
     private router:Router,
@@ -27,8 +29,15 @@ export class AddNoteComponent implements OnInit {
 
   ) { }
 
+  
+  // noteForm = new FormGroup({
+  //   title: new FormControl(''),
+  //   description: new FormControl(''),
+  // });
+
   ngOnInit() {
   }
+  
 
   show() {
   
@@ -40,7 +49,12 @@ createNote()
   {
   
     // this.userService.loginUser(this.loginForm.value)
-     this.httpService.postRequest1('/user/note',this.note)
+    this.data={
+      "title":this.title.value,
+      "description":this.description.value
+    }
+    console.log(this.data);
+     this.httpService.postRequest1('/user/note',this.data)
          .subscribe(
              response  => {
          
@@ -54,7 +68,7 @@ createNote()
            });
                 //  this.router.navigate(['/dashboard']);
                   
-                 localStorage.setItem("token",response.body.token);
+                 //localStorage.setItem("token",response.body.token);
                }
              else 
  

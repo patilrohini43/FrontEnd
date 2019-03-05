@@ -19,18 +19,26 @@
 
 
 <div class="example-container2">
+  
     <mat-card  *ngIf="flag===true" [class.mat-elevation-z6]="!isActive"
     [class.mat-elevation-z8]="isActive">
-    <div fxLayout="column" fxFlex="30" fxLayoutAlign="space-around">
+    <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around">
       
-    <div class="test" id="test" placeholder="Title.." contenteditable="true" [style.fontSize.px]=15 ></div>
-    <div class="test" id="test" placeholder="Take a Note..." contenteditable="true" [style.fontSize.px]=15 ></div>
+    <!-- <div class="test" id="test" placeholder="Title.." [formControl]="title" contenteditable="true" [style.fontSize.px]=15 ></div>
+    <div class="test" id="test" placeholder="Take a Note..."  [formControl]="description" contenteditable="true" [style.fontSize.px]=15 ></div> -->
+  
+    <textarea matInput placeholder="Title.." [style.fontSize.px]=12 [formControl]="title"></textarea>
+    <textarea matInput placeholder="Take a Note..." [style.fontSize.px]=12  [formControl]="description"></textarea>
+    
+
 
     <div fxLayout="row" fxFlex="30" fxLayoutAlign="space-between center" >
      <div class="icons" fxLayout="row" fxFlex="10">
     <button mat-icon-button matTooltip="Remind me"> <mat-icon style="font-size: 20px"><i style="margin: 5%;"></i>add_alert</mat-icon></button>
     <button mat-icon-button matTooltip="Collaborator"><mat-icon style="font-size: 20px">person_add<i style="margin: 5%;"></i></mat-icon></button>
     <button mat-icon-button matTooltip="Archive"><mat-icon style="font-size: 20px">archive</mat-icon></button>
+    <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu">
+      <mat-icon style="font-size: 20px" class="mat-18 changeColor">color_lens</mat-icon></button>
     <button mat-icon-button matTooltip="rop_original"><mat-icon style="font-size: 20px">crop_original</mat-icon></button> 
      <button mat-icon-button matTooltip="Undo" ><mat-icon style="font-size: 20px">undo</mat-icon></button>
     <button mat-icon-button matTooltip="Redo" ><mat-icon style="font-size: 20px">redo</mat-icon></button>
@@ -42,6 +50,7 @@
     </div>
    </div>
   </mat-card>
+
 </div>
 
 
