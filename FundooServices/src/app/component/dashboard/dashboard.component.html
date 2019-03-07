@@ -42,7 +42,7 @@
 <mat-sidenav-container [hasBackdrop]="false" fxFlexFill>
     <mat-sidenav #sidenav mode="push" style="min-width:50" class="example-sidenav">
         <mat-action-list >
-            <button class= "hoverhighlight" mat-list-item routerLink="notes"> <mat-icon>lightbulb_outline</mat-icon> <i style="margin: 5%;"></i> Notes </button>
+            <button class= "hoverhighlight" mat-list-item routerLink="['addnote']"> <mat-icon>lightbulb_outline</mat-icon> <i style="margin: 5%;"></i> Notes </button>
             <button class= "hoverhighlight" mat-list-item> <mat-icon>notifications_none</mat-icon><i style="margin: 5%;"></i>Remainder</button>
             <mat-divider ></mat-divider>
             <h6 style="font-size:65%;" matSubheader >LABELS</h6>
@@ -55,7 +55,8 @@
     </mat-sidenav>
     
     <mat-sidenav-content color="white" fxFlexFill>
-       <app-add-note color="white"></app-add-note> 
+       <!-- <app-add-note color="white"></app-add-note>  -->
+       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 

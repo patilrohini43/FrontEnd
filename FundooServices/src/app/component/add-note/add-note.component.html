@@ -1,7 +1,4 @@
 
-<div>
-
-
 <div class="example-container">
 <mat-card  (click)="show()" *ngIf="flag===false"  [class.mat-elevation-z6]="!isActive" [class.mat-elevation-z8]="isActive">
     <div fxLayout="row" fxFlex="70" fxLayoutAlign="space-between center" >
@@ -21,14 +18,14 @@
 <div class="example-container2">
   
     <mat-card  *ngIf="flag===true" [class.mat-elevation-z6]="!isActive"
-    [class.mat-elevation-z8]="isActive">
+    [class.mat-elevation-z8]="isActive" [ngStyle]="{'backgroundColor': color}">
     <div fxLayout="column" fxFlex="40" fxLayoutAlign="space-around">
       
     <!-- <div class="test" id="test" placeholder="Title.." [formControl]="title" contenteditable="true" [style.fontSize.px]=15 ></div>
     <div class="test" id="test" placeholder="Take a Note..."  [formControl]="description" contenteditable="true" [style.fontSize.px]=15 ></div> -->
   
     <textarea matInput placeholder="Title.." [style.fontSize.px]=12 [formControl]="title"></textarea>
-    <textarea matInput placeholder="Take a Note..." [style.fontSize.px]=12  [formControl]="description"></textarea>
+    <textarea matInput matTextAreaAutoSize placeholder="Take a Note..." [style.fontSize.px]=12  [formControl]="description"></textarea>
     
 
 
@@ -42,7 +39,14 @@
     <button mat-icon-button matTooltip="rop_original"><mat-icon style="font-size: 20px">crop_original</mat-icon></button> 
      <button mat-icon-button matTooltip="Undo" ><mat-icon style="font-size: 20px">undo</mat-icon></button>
     <button mat-icon-button matTooltip="Redo" ><mat-icon style="font-size: 20px">redo</mat-icon></button>
-    <button mat-icon-button matTooltip="more" ><mat-icon style="font-size: 20px">more_vert</mat-icon></button>
+    <button mat-icon-button  [matMenuTriggerFor]="menu" matTooltip="more" ><mat-icon style="font-size: 20px">more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>Settings</button>
+        <button mat-menu-item>Help</button>
+        <button mat-menu-item>Send Feeback</button>
+      </mat-menu>
+
     <div fxLayout="row" fxFlex="10" fxLayoutAlign="space-between center" >
     <button mat-button class="buttonclose" [style.fontSize.px]=15 (click)="createNote()" >close<i style="margin-right:10px"></i></button>
   </div>
@@ -54,4 +58,17 @@
 </div>
 
 
-</div>
+
+<mat-menu #colorMenu="matMenu" class="colorMenu" [overlapTrigger]="false">
+    <ng-template matMenuContent let-note="note">
+    <div fxLayout="row wrap" fxLayoutAlign="end
+    center" fxFlex="90">
+    <div *ngFor="let color of colorCode">
+    <button mat-icon-button [ngStyle]="{'color': color.colorCode}" (click)="changeColor(color.colorCode)">
+    <mat-icon style="font-size: 40px" class="colorIcons">fiber_manual_record</mat-icon>
+    </button>
+    </div>
+    </div>
+    </ng-template>
+    </mat-menu>
+<app-note></app-note>

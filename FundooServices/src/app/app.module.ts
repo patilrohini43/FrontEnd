@@ -26,6 +26,8 @@ import { LoginVerifyComponent } from './login-verify/login-verify.component';
 import { DemoComponent } from './demo/demo.component';
 import { HttpService } from './service/http.service';
 import { AddNoteComponent } from './component/add-note/add-note.component';
+import { NoteComponent } from './component/note/note.component';
+
 
 
 
@@ -45,6 +47,8 @@ import { AddNoteComponent } from './component/add-note/add-note.component';
   LoginVerifyComponent,
   DemoComponent,
   AddNoteComponent,
+  NoteComponent,
+
  
 
    

@@ -10,6 +10,7 @@ import { RestPasswordComponent } from './component/rest-password/rest-password.c
 import { LoginVerifyComponent } from './login-verify/login-verify.component';
 import { DemoComponent } from './demo/demo.component';
 import { AddNoteComponent } from './component/add-note/add-note.component';
+import { NoteComponent } from './component/note/note.component';
 
 
 
@@ -31,11 +32,23 @@ const routes: Routes = [
   component:DashboardComponent,
 
   children:[
+
+    {
+    
+      path: '', 
+      component:AddNoteComponent,
+    },
     {
     
       path: 'addnote', 
       component:AddNoteComponent,
+    },
+    {
+    
+      path: 'notes', 
+      component:NoteComponent,
     }
+
 
   ]
 },

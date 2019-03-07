@@ -12,13 +12,31 @@ import { Notedto } from 'src/app/model/createnote';
   styleUrls: ['./add-note.component.scss']
 })
 export class AddNoteComponent implements OnInit {
- // note:Note=new Note();
+ 
  note:Notedto=new Notedto();
  title= new FormControl('')
   description=new FormControl('')
+
   isActive = false;
   flag=false;
   data:any
+  colorCode: Array<Object> = [
+    { name: "white", colorCode: "#fff" },
+    { name: "red", colorCode: "#fc8981" },
+    { name: "orange", colorCode: "#ffb834" },
+    { name: "yellow", colorCode: "#fff181" },
+    { name: "green", colorCode: "#c5fd98" },
+    { name: "teal", colorCode: "#96ffec" },
+    { name: "blue", colorCode: "#c4f0f7" },
+    { name: "darkblue", colorCode: "#a6cbf7" },
+    { name: "purple", colorCode: "#d9aff7" },
+    { name: "pink", colorCode: "#ffcee6" },
+    { name: "brown", colorCode: "#e9c7a9" },
+    { name: "gray", colorCode: "#e7e9ec" }
+    ]
+    color:string; 
+
+ 
   constructor(
 
     private router:Router,
@@ -30,10 +48,7 @@ export class AddNoteComponent implements OnInit {
   ) { }
 
   
-  // noteForm = new FormGroup({
-  //   title: new FormControl(''),
-  //   description: new FormControl(''),
-  // });
+
 
   ngOnInit() {
   }
@@ -44,6 +59,12 @@ export class AddNoteComponent implements OnInit {
     this.flag = ! this.flag;
   }
 
+  changeColor(color) {
+
+    this.color = color;
+    
+    }
+
 
 createNote()
   {
@@ -51,7 +72,8 @@ createNote()
     // this.userService.loginUser(this.loginForm.value)
     this.data={
       "title":this.title.value,
-      "description":this.description.value
+      "description":this.description.value,
+      "color":this.color
     }
     console.log(this.data);
      this.httpService.postRequest1('/user/note',this.data)

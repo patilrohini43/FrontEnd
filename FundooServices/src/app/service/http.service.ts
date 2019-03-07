@@ -23,12 +23,24 @@ getRequest(email:string):any{
 }
 
 putRequest(url,user): any {
-  return this.http.post(this.userUrl +url, user,{ 
+  return this.http.put(this.userUrl +url, user,{ 
   observe:'response'});
 }
 
 postRequest1(url,notedto:Notedto):  any {
   return this.http.post(this.userUrl+url, notedto,{
+    headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
+  observe:'response'});
+}
+
+getRequest1(url): any {
+  return this.http.get(this.userUrl+url,{
+    headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
+  observe:'response'});
+}
+
+putRequest1(url): any {
+  return this.http.get(this.userUrl+url,{
     headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
   observe:'response'});
 }
