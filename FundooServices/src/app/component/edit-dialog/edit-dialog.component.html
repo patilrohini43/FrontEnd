@@ -1,0 +1,73 @@
+<div class="dialog"  [ngStyle]="{'backgroundColor': data.color}">
+
+    <textarea matInput placeholder="Title.." [style.fontSize.px]=12 [formControl]="title" value={{data.title}}></textarea>
+    <textarea matInput matTextAreaAutoSize placeholder="Take a Note..." [formControl]="description" [style.fontSize.px]=12  value={{data.description}}></textarea>
+    
+ 
+      <!-- <div fxLayout="row" fxLayoutAlign="space-between center" > -->
+    
+
+<div fxLayout="row" fxLayoutAlign="space-around end"  mat-dialog-actions>
+
+    <div class="maticon">
+     <button mat-icon-button matTooltip="Remind me"> 
+       <mat-icon style="font-size: 20px">
+        
+        add_alert
+      </mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Collaborator">
+      <mat-icon style="font-size: 20px">
+        person_add
+       
+      </mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Archive">
+      <mat-icon style="font-size: 20px">
+        archive
+      </mat-icon>
+      </button>
+
+      <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu">
+        <mat-icon style="font-size: 20px" class="mat-18 changeColor" (click)="getId()">color_lens</mat-icon></button>
+
+    <!-- <button mat-icon-button [matMenuTriggerFor]="menucolor">
+        <mat-icon aria-label="Example icon-button with a heart icon">
+           palette
+        </mat-icon>
+     </button>
+     <mat-menu #menucolor="matMenu">
+      <mat-list>
+         <div *ngFor= "let colorx of colors">
+            <span *ngFor="let singlecolor of colorx">
+               <button mat-icon-button (click)="changeColor(singlecolor)">
+               <mat-icon [style.color]="singlecolor">fiber_manual_record</mat-icon>
+                
+               </button>
+            </span>
+      </div>
+      </mat-list>
+    </mat-menu>   -->
+
+  <button class="mat-button-wrapper" mat-button (click)="updateNote(data.noteId)">Close</button>
+
+</div>
+</div>
+</div>
+
+
+
+
+<mat-menu #colorMenu="matMenu" class="colorMenu" [overlapTrigger]="false">
+  <ng-template matMenuContent let-note="note">
+  <div fxLayout="row wrap" fxLayoutAlign="end
+  center" fxFlex="90">
+  <div *ngFor="let color of colorCode">
+  <button mat-icon-button [ngStyle]="{'color': color.colorCode}" (click)="changeColor(color.colorCode)">
+  <mat-icon style="font-size: 40px" class="colorIcons">fiber_manual_record</mat-icon>
+  </button>
+  </div>
+  </div>
+  </ng-template>
+  </mat-menu>
+<app-note></app-note>

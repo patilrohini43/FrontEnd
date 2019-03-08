@@ -39,10 +39,25 @@ getRequest1(url): any {
   observe:'response'});
 }
 
-putRequest1(url): any {
-  return this.http.get(this.userUrl+url,{
+
+putRequest1(url,notedto:Notedto):  any {
+  return this.http.put(this.userUrl+url, notedto,{
     headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
   observe:'response'});
 }
+
+
+delete(url): any {
+  return this.http.delete(this.userUrl+url,{
+    headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
+  observe:'response'});
+}
+
+putReq(url):  any {
+  return this.http.put(this.userUrl+url,{
+    headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
+  observe:'response'});
+}
+
 
 }

@@ -6,7 +6,6 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
 
-
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -44,6 +43,7 @@ import {
 } from '@angular/material';
 
 import { from } from 'rxjs';
+import { EditDialogComponent } from './component/edit-dialog/edit-dialog.component';
 
 
 @NgModule({
@@ -87,6 +87,9 @@ import { from } from 'rxjs';
       MatToolbarModule,
       MatTooltipModule,
       MatTreeModule,
+      ],
+      entryComponents:[
+        EditDialogComponent,
       ]
  
     

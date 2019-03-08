@@ -3,19 +3,19 @@
     <div class="example-container">
         <div  fxLayout="row wrap" fxLayoutAlign="space-between center">
        <mat-card [class.mat-elevation-z6]="!isActive"
-        [class.mat-elevation-z8]="isActive" [ngStyle]="{'backgroundColor': note.color}">
+        [class.mat-elevation-z8]="isActive" [ngStyle]="{'backgroundColor':note.color}">
     
     
         <div fxLayout="row" fxLayoutAlign="space-between center" >
-          <div class="title" [style.fontSize.px]=19> {{note.title}}</div>        
+          <div class="title" [style.fontSize.px]=15 (click)="openDialog(note)"> {{note.title}}</div>        
           <div class="pinIcon">
-          <button  mat-icon-button matTooltip="Pin/Unpin Note" ><img src="https://img.icons8.com/material-outlined/24/000000/pin.png">
+          <button  mat-icon-button matTooltip="Pin/Unpin Note" (click)="isPin(note)"><img src="https://img.icons8.com/material-outlined/24/000000/pin.png">
           </button>
         </div>
       </div>
         
         <!-- <div fxLayout="row" fxLayoutAlign="space-between center" > -->
-        <div class="description" [style.fontSize.px]=19> {{note.description}}</div> 
+        <div class="description" [style.fontSize.px]=15 (click)="openDialog(note)"> {{note.description}}</div> 
           
         <!-- </div> -->
         <div fxLayout="row"  fxFlex="150" fxLayoutAlign="space-between center">
@@ -27,7 +27,7 @@
          <button mat-icon-button matTooltip="rop_original"><mat-icon style="font-size: 20px">crop_original</mat-icon></button> 
          <button mat-icon-button matTooltip="more" mat-button [matMenuTriggerFor]="menu"><mat-icon style="font-size: 20px">more_vert</mat-icon></button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item >Delete Note</button>
+      <button mat-menu-item  (click)="delete(note)" >Delete Note</button>
       <button mat-menu-item>Add Label</button>
       <button mat-menu-item>Make a Copy</button>
       

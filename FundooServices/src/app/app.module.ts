@@ -27,6 +27,7 @@ import { DemoComponent } from './demo/demo.component';
 import { HttpService } from './service/http.service';
 import { AddNoteComponent } from './component/add-note/add-note.component';
 import { NoteComponent } from './component/note/note.component';
+import { EditDialogComponent } from './component/edit-dialog/edit-dialog.component';
 
 
 
@@ -48,6 +49,7 @@ import { NoteComponent } from './component/note/note.component';
   DemoComponent,
   AddNoteComponent,
   NoteComponent,
+  EditDialogComponent,
 
  
 

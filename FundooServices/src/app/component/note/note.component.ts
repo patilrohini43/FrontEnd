@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/service/http.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { A11yModule } from '@angular/cdk/a11y';
 import { Notedto } from 'src/app/model/createnote';
+import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 @Component({
   selector: 'app-note',
@@ -19,7 +20,7 @@ export class NoteComponent implements OnInit {
   id:any;
   data:any;
   note:Notedto=new Notedto();
-  no
+  
 
   colorCode: Array<Object> = [
     { name: "white", colorCode: "#fff" },
@@ -40,6 +41,7 @@ export class NoteComponent implements OnInit {
   constructor(
    private httpService:HttpService,
    private snackbar:MatSnackBar,
+   public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -85,7 +87,84 @@ export class NoteComponent implements OnInit {
      }
 
 
+     delete(card)
+     {
+       console.log(card.noteId)
+       this.httpService.delete('/user/note/'+card.noteId)
+       .subscribe(response =>{
 
-    
+        if(response.body.statuscode===401)
+        {
+          this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+            duration: 1000,
+     });
+        }
+        else{
+          this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+            duration: 1000,
+     });
+        }
+       },
+       (error) => {
+         console.log("error",error);
+      }  
+       )
+       
+     }
+
+
+
+     isPin(card)
+     {
+       console.log(card.noteId)
+       this.httpService.putReq('/user/note/Pin/'+card.noteId)
+       .subscribe(response =>{
+
+        if(response.body.statuscode===401)
+        {
+          this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+            duration: 1000,
+     });
+        }
+        else{
+          this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+            duration: 1000,
+     });
+        }
+       },
+       (error) => {
+         console.log("error",error);
+      }  
+       )
+       
+     }
+
+
+
+
+
+     openDialog(data): void {
+      const dialogRef = this.dialog.open( EditDialogComponent, {
+        width: '700px',
+        height:'200px',
+        data: {
+        id: data.id,
+        title: data.title,
+        description:data.description,
+        color:data.color,
+        noteId:data.noteId,
+    }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      
+      });
+    }
+  
+  
+
+
+
 
 }
