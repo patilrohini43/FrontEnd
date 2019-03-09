@@ -1,3 +1,5 @@
+
+
 <div class=".cardlayout" fxLayout="row wrap"  fxFlex="60" fxLayoutAlign=" center center" >
     <div *ngFor="let note of data">
     <div class="example-container">
@@ -21,7 +23,9 @@
         <div fxLayout="row"  fxFlex="150" fxLayoutAlign="space-between center">
            <button mat-icon-button matTooltip="Remind me"> <mat-icon style="font-size: 20px"><i style="margin: 5%;"></i>add_alert</mat-icon></button>
             <button mat-icon-button matTooltip="Collaborator"><mat-icon style="font-size: 20px">person_add<i style="margin: 5%;"></i></mat-icon></button>
+           
             <button mat-icon-button matTooltip="Archive"><mat-icon style="font-size: 20px">archive</mat-icon></button>
+            
             <button mat-icon-button matTooltip="Change color" mat-button [matMenuTriggerFor]="colorMenu" (click)="getID(note)">
                 <mat-icon style="font-size: 20px" class="mat-18 changeColor">color_lens</mat-icon></button>
          <button mat-icon-button matTooltip="rop_original"><mat-icon style="font-size: 20px">crop_original</mat-icon></button> 

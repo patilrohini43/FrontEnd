@@ -28,6 +28,10 @@ import { HttpService } from './service/http.service';
 import { AddNoteComponent } from './component/add-note/add-note.component';
 import { NoteComponent } from './component/note/note.component';
 import { EditDialogComponent } from './component/edit-dialog/edit-dialog.component';
+import { ArchiveComponent } from './component/archive/archive.component';
+import { UpdateServicesService } from './service/update-services.service';
+import { TrashComponent } from './component/trash/trash.component';
+
 
 
 
@@ -50,6 +54,8 @@ import { EditDialogComponent } from './component/edit-dialog/edit-dialog.compone
   AddNoteComponent,
   NoteComponent,
   EditDialogComponent,
+  ArchiveComponent,
+  TrashComponent,
 
  
 
@@ -72,7 +78,7 @@ import { EditDialogComponent } from './component/edit-dialog/edit-dialog.compone
 
     
   ], 
-  providers: [UserService,AlertmessageService,HttpService],
+  providers: [UserService,AlertmessageService,HttpService,UpdateServicesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

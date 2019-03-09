@@ -59,5 +59,16 @@ putReq(url):  any {
   observe:'response'});
 }
 
+private userUrl1 = 'http://localhost:8081/user/note/list';
+getNotes(archived, trashed):any
+{
+  return this.http.get(this.userUrl1+"?archived="+archived+"&trashed="+trashed,{
+
+    headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
+    observe:'response'
+  });
+}
+
+
 
 }

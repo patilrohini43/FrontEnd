@@ -69,7 +69,7 @@ export class AddNoteComponent implements OnInit {
 createNote()
   {
   
-    // this.userService.loginUser(this.loginForm.value)
+  // this.userService.loginUser(this.loginForm.value)
     this.data={
       "title":this.title.value,
       "description":this.description.value,

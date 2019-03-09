@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from 'src/app/service/http.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { A11yModule } from '@angular/cdk/a11y';
 import { Notedto } from 'src/app/model/createnote';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
+import { Note } from 'src/app/model/note';
 
 @Component({
   selector: 'app-note',
@@ -18,7 +19,8 @@ export class NoteComponent implements OnInit {
   pinValue= false;
   isActive = false;
   id:any;
-  data:any;
+  @Input() data:Note;
+
   note:Notedto=new Notedto();
   
 
@@ -36,8 +38,8 @@ export class NoteComponent implements OnInit {
     { name: "brown", colorCode: "#e9c7a9" },
     { name: "gray", colorCode: "#e7e9ec" }
     ]
-    color: string
-    carddata=this.data;
+  color: string
+  //carddata=this.data;
   constructor(
    private httpService:HttpService,
    private snackbar:MatSnackBar,
@@ -45,6 +47,7 @@ export class NoteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.data)
     this.getNote();
   }
 
@@ -64,9 +67,8 @@ export class NoteComponent implements OnInit {
 
     getNote()
   {
-     this.httpService.getRequest1('/user/note/list')
+     this.httpService.getRequest1('/user/note/list?archived=false&trashed=false')
          .subscribe(
-
           (response) => {console.log("success get notes",response)
           this.data = response['body']; 
        
@@ -137,6 +139,29 @@ export class NoteComponent implements OnInit {
       }  
        )
        
+     }
+
+     archiveNote()
+     {
+      this.httpService.getRequest1('/user/note/list?archived=true&trashed=false')
+      .subscribe(
+
+       (response) => {console.log("success get notes",response)
+       this.data = response['body']; 
+    
+       console.log("in response",this.data)
+        
+   if(response.body.statuscode===401){
+     this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+       duration: 1000,
+});
+
+   }
+       },
+         (error) => {console.log("error",error);}  
+        
+           
+          );
      }
 
 

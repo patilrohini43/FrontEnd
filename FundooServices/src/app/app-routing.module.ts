@@ -11,6 +11,7 @@ import { LoginVerifyComponent } from './login-verify/login-verify.component';
 import { DemoComponent } from './demo/demo.component';
 import { AddNoteComponent } from './component/add-note/add-note.component';
 import { NoteComponent } from './component/note/note.component';
+import { ArchiveComponent } from './component/archive/archive.component';
 
 
 
@@ -47,7 +48,13 @@ const routes: Routes = [
     
       path: 'notes', 
       component:NoteComponent,
+    },
+    {
+    
+      path: 'archive', 
+      component:ArchiveComponent,
     }
+
 
 
   ]
