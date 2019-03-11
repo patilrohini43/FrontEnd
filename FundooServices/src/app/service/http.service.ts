@@ -53,15 +53,23 @@ delete(url): any {
   observe:'response'});
 }
 
-putReq(url):  any {
+// PutData(url): any {
+//   return this.http.delete(this.userUrl+url,{
+//     headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
+//   observe:'response'});
+// }
+
+
+put(url):  any {
   return this.http.put(this.userUrl+url,{
     headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
   observe:'response'});
 }
 
 private userUrl1 = 'http://localhost:8081/user/note/list';
-getNotes(archived, trashed):any
+getNotes(archived, trashed):Observable<any>
 {
+  console.log(this.userUrl1+"?archived="+archived+"&trashed="+trashed);
   return this.http.get(this.userUrl1+"?archived="+archived+"&trashed="+trashed,{
 
     headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 

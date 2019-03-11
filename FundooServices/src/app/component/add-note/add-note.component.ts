@@ -20,6 +20,7 @@ export class AddNoteComponent implements OnInit {
   isActive = false;
   flag=false;
   data:any
+  
   colorCode: Array<Object> = [
     { name: "white", colorCode: "#fff" },
     { name: "red", colorCode: "#fc8981" },

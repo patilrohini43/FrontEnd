@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from 'src/app/service/http.service';
+import { UpdateServicesService } from 'src/app/service/update-services.service';
 
 @Component({
   selector: 'app-trash',
@@ -7,9 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrashComponent implements OnInit {
 
-  constructor() { }
+  private allnotes:any[];
+  constructor(
+    private httpService:HttpService,
+    private updateService:UpdateServicesService
+
+  ) {
+    this.updateService.changemessage(false,true);
+   }
 
   ngOnInit() {
+ this.updateService.currentnotes2.subscribe(
+  response=>{
+    this.allnotes=response['body']
   }
+
+)
+
+// this.httpService.getNotes(false,true).subscribe(
+//   response=>{
+//     this.allnotes=response.body
+//   }
+
+//  )
+
+}
+
 
 }

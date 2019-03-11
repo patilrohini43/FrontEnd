@@ -18,16 +18,23 @@ export class ArchiveComponent implements OnInit {
     private updateService:UpdateServicesService
 
   ) {
-    this.updateService.changemessage('true','false');
+    this.updateService.changemessage(true,false);
   }
-  private allnotes: Note[];
-  ngOnInit() {
-  this.updateService.currentnotes2.subscribe((response:any)=>{
-    this.allnotes=response['body'];
+  private allnotes:any[];
 
-    console.log("hi");
-    console.log(this.allnotes)
-  })
+  
+
+  ngOnInit() {
+
+  this.httpService.getNotes(true,false)
+  .subscribe(response=>{
+
+    this.allnotes=response['body']
+    
+
+  }
+  )
+   
   }
 
 //   archiveNote()

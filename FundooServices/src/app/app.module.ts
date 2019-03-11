@@ -31,6 +31,7 @@ import { EditDialogComponent } from './component/edit-dialog/edit-dialog.compone
 import { ArchiveComponent } from './component/archive/archive.component';
 import { UpdateServicesService } from './service/update-services.service';
 import { TrashComponent } from './component/trash/trash.component';
+import { AllnotesComponent } from './component/allnotes/allnotes.component';
 
 
 
@@ -56,6 +57,7 @@ import { TrashComponent } from './component/trash/trash.component';
   EditDialogComponent,
   ArchiveComponent,
   TrashComponent,
+  AllnotesComponent,
 
  
 

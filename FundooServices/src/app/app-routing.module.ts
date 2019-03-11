@@ -12,6 +12,8 @@ import { DemoComponent } from './demo/demo.component';
 import { AddNoteComponent } from './component/add-note/add-note.component';
 import { NoteComponent } from './component/note/note.component';
 import { ArchiveComponent } from './component/archive/archive.component';
+import { AllnotesComponent } from './component/allnotes/allnotes.component';
+import { TrashComponent } from './component/trash/trash.component';
 
 
 
@@ -45,7 +47,6 @@ const routes: Routes = [
       component:AddNoteComponent,
     },
     {
-    
       path: 'notes', 
       component:NoteComponent,
     },
@@ -53,7 +54,15 @@ const routes: Routes = [
     
       path: 'archive', 
       component:ArchiveComponent,
-    }
+    },
+    {
+      path: 'notes', 
+      component:AllnotesComponent,
+    },
+    {
+      path: 'trash', 
+      component:TrashComponent,
+    },
 
 
 

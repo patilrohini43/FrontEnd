@@ -2,7 +2,7 @@ export class Note{
     
 noteId:string;
 title:string;
-describtion:string;
+description:string;
 color:string;
 pin:boolean;
 trash:boolean;

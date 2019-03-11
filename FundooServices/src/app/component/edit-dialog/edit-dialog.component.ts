@@ -35,7 +35,7 @@ colorCode: Array<Object> = [
 data1:any
 title= new FormControl('')
 description=new FormControl('')
-
+noteId=new FormControl('')
   
   constructor(
     public dialogRef: MatDialogRef<EditDialogComponent>,
@@ -69,7 +69,7 @@ description=new FormControl('')
   this.data1={
     "title":this.title.value,
     "description":this.description.value,
-    "noteId":this.data.noteId,
+    'noteId':this.data.noteId,
     "color":this.data.color
   }
   console.log(this.data1)

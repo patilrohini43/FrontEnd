@@ -1,37 +1,39 @@
 
 
 <div class=".cardlayout" fxLayout="row wrap"  fxFlex="60" fxLayoutAlign=" center center" >
-    <div *ngFor="let note of data">
+    <div *ngFor="let data of data">  
     <div class="example-container">
         <div  fxLayout="row wrap" fxLayoutAlign="space-between center">
        <mat-card [class.mat-elevation-z6]="!isActive"
-        [class.mat-elevation-z8]="isActive" [ngStyle]="{'backgroundColor':note.color}">
+        [class.mat-elevation-z8]="isActive" [ngStyle]="{'backgroundColor':data.color}">
     
     
         <div fxLayout="row" fxLayoutAlign="space-between center" >
-          <div class="title" [style.fontSize.px]=15 (click)="openDialog(note)"> {{note.title}}</div>        
+          <div class="title" [style.fontSize.px]=15 (click)="openDialog(note)"> {{data.title}}</div>        
           <div class="pinIcon">
-          <button  mat-icon-button matTooltip="Pin/Unpin Note" (click)="isPin(note)"><img src="https://img.icons8.com/material-outlined/24/000000/pin.png">
+          <button  mat-icon-button matTooltip="Pin/Unpin Note" (click)="isPin(data)"><img src="https://img.icons8.com/material-outlined/24/000000/pin.png">
           </button>
         </div>
       </div>
         
         <!-- <div fxLayout="row" fxLayoutAlign="space-between center" > -->
-        <div class="description" [style.fontSize.px]=15 (click)="openDialog(note)"> {{note.description}}</div> 
+        <div class="description" [style.fontSize.px]=15 (click)="openDialog(data)"> {{data.description}}</div> 
           
         <!-- </div> -->
         <div fxLayout="row"  fxFlex="150" fxLayoutAlign="space-between center">
            <button mat-icon-button matTooltip="Remind me"> <mat-icon style="font-size: 20px"><i style="margin: 5%;"></i>add_alert</mat-icon></button>
             <button mat-icon-button matTooltip="Collaborator"><mat-icon style="font-size: 20px">person_add<i style="margin: 5%;"></i></mat-icon></button>
            
-            <button mat-icon-button matTooltip="Archive"><mat-icon style="font-size: 20px">archive</mat-icon></button>
+            <button mat-icon-button matTooltip="Archive" (click)="archiveNote(data)"><mat-icon style="font-size: 20px">archive</mat-icon></button>
             
-            <button mat-icon-button matTooltip="Change color" mat-button [matMenuTriggerFor]="colorMenu" (click)="getID(note)">
+            <button mat-icon-button matTooltip="Change color" mat-button [matMenuTriggerFor]="colorMenu" (click)="getID(data)">
                 <mat-icon style="font-size: 20px" class="mat-18 changeColor">color_lens</mat-icon></button>
          <button mat-icon-button matTooltip="rop_original"><mat-icon style="font-size: 20px">crop_original</mat-icon></button> 
          <button mat-icon-button matTooltip="more" mat-button [matMenuTriggerFor]="menu"><mat-icon style="font-size: 20px">more_vert</mat-icon></button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item  (click)="delete(note)" >Delete Note</button>
+      <button mat-menu-item  (click)="trashNote(data)" >Delete Note</button>
+     <button mat-menu-item  (click)="trashNote(data)" >Restore</button>
+      <button mat-menu-item  (click)="trashNote(data)" >Delete Note Permentaly</button>
       <button mat-menu-item>Add Label</button>
       <button mat-menu-item>Make a Copy</button>
       
@@ -41,8 +43,8 @@
       
       </mat-card>
      </div>
-    </div>
-    </div>
+   </div>
+ </div>
     </div>
     
    

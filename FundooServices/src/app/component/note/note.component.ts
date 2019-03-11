@@ -19,7 +19,7 @@ export class NoteComponent implements OnInit {
   pinValue= false;
   isActive = false;
   id:any;
-  @Input() data:Note;
+  @Input() data:any[];
 
   note:Notedto=new Notedto();
   
@@ -39,6 +39,8 @@ export class NoteComponent implements OnInit {
     { name: "gray", colorCode: "#e7e9ec" }
     ]
   color: string
+   archived:boolean=false
+  trashed:boolean=false
   //carddata=this.data;
   constructor(
    private httpService:HttpService,
@@ -47,8 +49,7 @@ export class NoteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.data)
-    this.getNote();
+   this.getNote();
   }
 
 
@@ -67,7 +68,7 @@ export class NoteComponent implements OnInit {
 
     getNote()
   {
-     this.httpService.getRequest1('/user/note/list?archived=false&trashed=false')
+     this.httpService.getNotes(this.archived,this.trashed)
          .subscribe(
           (response) => {console.log("success get notes",response)
           this.data = response['body']; 
@@ -119,7 +120,7 @@ export class NoteComponent implements OnInit {
      isPin(card)
      {
        console.log(card.noteId)
-       this.httpService.putReq('/user/note/Pin/'+card.noteId)
+       this.httpService.delete('/user/note/isPin/'+card.noteId)
        .subscribe(response =>{
 
         if(response.body.statuscode===401)
@@ -141,28 +142,81 @@ export class NoteComponent implements OnInit {
        
      }
 
-     archiveNote()
-     {
-      this.httpService.getRequest1('/user/note/list?archived=true&trashed=false')
-      .subscribe(
+//      archiveNote()
+//      {
+//       this.httpService.getRequest1('/user/note/list?archived=true&trashed=false')
+//       .subscribe(
 
-       (response) => {console.log("success get notes",response)
-       this.data = response['body']; 
+//        (response) => {console.log("success get notes",response)
+//        this.data = response['body']; 
     
-       console.log("in response",this.data)
+//        console.log("in response",this.data)
         
-   if(response.body.statuscode===401){
+//    if(response.body.statuscode===401){
+//      this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+//        duration: 1000,
+// });
+
+//    }
+//        },
+//          (error) => {console.log("error",error);}  
+        
+           
+//           );
+//      }
+
+
+archiveNote(card)
+{
+  console.log(card.noteId)
+  this.httpService.delete('/user/noted/'+card.noteId)
+  .subscribe(response =>{
+
+   if(response.body.statuscode===401)
+   {
      this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
        duration: 1000,
 });
-
    }
-       },
-         (error) => {console.log("error",error);}  
-        
-           
-          );
-     }
+   else{
+     this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+       duration: 1000,
+});
+   }
+  },
+  (error) => {
+    console.log("error",error);
+ }  
+  )
+  
+}
+
+
+
+trashNote(card)
+{
+  console.log(card.noteId)
+  this.httpService.delete('/user/note/isTrash/'+card.noteId)
+  .subscribe(response =>{
+
+   if(response.body.statuscode===401)
+   {
+     this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+       duration: 1000,
+});
+   }
+   else{
+     this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+       duration: 1000,
+});
+   }
+  },
+  (error) => {
+    console.log("error",error);
+ }  
+  )
+  
+}
 
 
 

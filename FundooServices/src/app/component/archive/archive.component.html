@@ -1,10 +1,14 @@
-<p>
-  archive works!
-</p>
 
-<div *ngFor="let note of allnotes">   
-  <app-note [data]=note></app-note>
-  <div>
-  
+<div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="25px grid">
+
+<!-- <div *ngFor="let notes of allnotes">   
+  <div *ngIf="notes.archived && !notes.trashed">
+   <app-note [data]=notes></app-note>
+  </div>
+
+  <div> -->
+
+    <app-note [data]="allnotes"></app-note>
+    </div>
         
       
