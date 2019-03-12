@@ -35,14 +35,19 @@
       </mat-menu>
         <button mat-icon-button matTooltip="apps"><mat-icon>apps</mat-icon></button>
          <button mat-icon-button matTooltip="notification_important"><mat-icon>notification_important</mat-icon></button>
-           <button mat-icon-button matTooltip="account_circle"><mat-icon>account_circle</mat-icon></button>
+           <button mat-icon-button  [matMenuTriggerFor]="menu1"  matTooltip="account_circle"><mat-icon>account_circle</mat-icon>
+          </button>
+          <mat-menu #menu1="matMenu">
+            <button mat-menu-item (click)="logOut()">LogOut</button>
+          </mat-menu>
+          
   </mat-toolbar-row>
 </mat-toolbar>
 
 <mat-sidenav-container [hasBackdrop]="false" fxFlexFill>
     <mat-sidenav #sidenav mode="push" style="min-width:50" class="example-sidenav">
         <mat-action-list >
-            <button class= "hoverhighlight" mat-list-item routerLink="['addnote']"> <mat-icon>lightbulb_outline</mat-icon> <i style="margin: 5%;"></i> Notes </button>
+            <button class= "hoverhighlight" mat-list-item routerLink="notes"> <mat-icon>lightbulb_outline</mat-icon> <i style="margin: 5%;"></i> Notes </button>
             <button class= "hoverhighlight" mat-list-item> <mat-icon>notifications_none</mat-icon><i style="margin: 5%;"></i>Remainder</button>
             <mat-divider ></mat-divider>
             <h6 style="font-size:65%;" matSubheader >LABELS</h6>

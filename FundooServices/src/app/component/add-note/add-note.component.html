@@ -23,8 +23,9 @@
     <!-- <div class="test" id="test" placeholder="Title.." [formControl]="title" contenteditable="true" [style.fontSize.px]=15 ></div>
     <div class="test" id="test" placeholder="Take a Note..."  [formControl]="description" contenteditable="true" [style.fontSize.px]=15 ></div> -->
   
-    <textarea matInput placeholder="Title.." [style.fontSize.px]=12 [formControl]="title"></textarea>
-    <textarea matInput matTextAreaAutoSize placeholder="Take a Note..." [style.fontSize.px]=12  [formControl]="description"></textarea>
+    <textarea matInput placeholder="Title.." [style.fontSize.px]=12 [formControl]="title" required></textarea>
+    
+    <textarea matInput matTextAreaAutoSize placeholder="Take a Note..." [style.fontSize.px]=12  [formControl]="description" required></textarea>
     
 
 

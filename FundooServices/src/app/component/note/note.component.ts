@@ -16,7 +16,7 @@ export class NoteComponent implements OnInit {
   archivevalue=false;
   archiveData: { "isArchived": boolean; "noteIdList": any[]; };
   cardArray:any;
-  pinValue= false;
+  pin= false;
   isActive = false;
   id:any;
   @Input() data:any[];
@@ -39,6 +39,7 @@ export class NoteComponent implements OnInit {
     { name: "gray", colorCode: "#e7e9ec" }
     ]
   color: string
+  card:any
    archived:boolean=false
   trashed:boolean=false
   //carddata=this.data;
@@ -114,13 +115,14 @@ export class NoteComponent implements OnInit {
        )
        
      }
-
-
+    
 
      isPin(card)
      {
+
+       this.pin=!this.pin
        console.log(card.noteId)
-       this.httpService.delete('/user/note/isPin/'+card.noteId)
+       this.httpService.putRequest1('/user/note/isPin/'+card.noteId+'?pin='+this.pin,this.card)
        .subscribe(response =>{
 
         if(response.body.statuscode===401)
@@ -169,7 +171,7 @@ export class NoteComponent implements OnInit {
 archiveNote(card)
 {
   console.log(card.noteId)
-  this.httpService.delete('/user/noted/'+card.noteId)
+  this.httpService.putRequest1('/user/noted/'+card.noteId,this.card)
   .subscribe(response =>{
 
    if(response.body.statuscode===401)
@@ -196,7 +198,7 @@ archiveNote(card)
 trashNote(card)
 {
   console.log(card.noteId)
-  this.httpService.delete('/user/note/isTrash/'+card.noteId)
+  this.httpService.putRequest1('/user/note/isTrash/'+card.noteId,this.card)
   .subscribe(response =>{
 
    if(response.body.statuscode===401)

@@ -56,7 +56,7 @@ const routes: Routes = [
       component:ArchiveComponent,
     },
     {
-      path: 'notes', 
+      path: 'notes1', 
       component:AllnotesComponent,
     },
     {

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router, ChildActivationEnd } from '@angular/router';
 import { HttpService } from 'src/app/service/http.service';
 import { MatSnackBar } from '@angular/material';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup,Validators, FormControl } from '@angular/forms';
 import { Note } from 'src/app/model/note';
 import { Notedto } from 'src/app/model/createnote';
+import { NoteComponent } from '../note/note.component';
 
 @Component({
   selector: 'app-add-note',
@@ -14,8 +15,8 @@ import { Notedto } from 'src/app/model/createnote';
 export class AddNoteComponent implements OnInit {
  
  note:Notedto=new Notedto();
- title= new FormControl('')
-  description=new FormControl('')
+ title= new FormControl('',[Validators.required])
+  description=new FormControl('',[Validators.required])
 
   isActive = false;
   flag=false;
@@ -48,7 +49,7 @@ export class AddNoteComponent implements OnInit {
 
   ) { }
 
-  
+  @ViewChild(NoteComponent) Child;
 
 
   ngOnInit() {
@@ -89,6 +90,8 @@ createNote()
                 this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
                   duration: 1000,
            });
+
+           this.Child.getNote();
                 //  this.router.navigate(['/dashboard']);
                   
                  //localStorage.setItem("token",response.body.token);

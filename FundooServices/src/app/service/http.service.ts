@@ -40,12 +40,18 @@ getRequest1(url): any {
 }
 
 
-putRequest1(url,notedto:Notedto):  any {
+putRequest1(url,notedto):  any {
   return this.http.put(this.userUrl+url, notedto,{
     headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
   observe:'response'});
 }
 
+
+putRequest2(url):  any {
+  return this.http.put(this.userUrl+url,{
+    headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
+  observe:'response'});
+}
 
 delete(url): any {
   return this.http.delete(this.userUrl+url,{
@@ -53,17 +59,12 @@ delete(url): any {
   observe:'response'});
 }
 
-// PutData(url): any {
-//   return this.http.delete(this.userUrl+url,{
-//     headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
-//   observe:'response'});
-// }
 
-
-put(url):  any {
-  return this.http.put(this.userUrl+url,{
+put(url,pin):  any {
+  return this.http.put(this.userUrl+url+"?pin="+pin,{
     headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
-  observe:'response'});
+     observe:'response'
+});
 }
 
 private userUrl1 = 'http://localhost:8081/user/note/list';
