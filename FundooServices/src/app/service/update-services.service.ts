@@ -27,7 +27,6 @@ export class UpdateServicesService {
       }
     );
 
-  
     }
 
     changemessage(archive: boolean, trash: boolean) {

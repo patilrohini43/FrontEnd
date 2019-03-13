@@ -37,11 +37,11 @@
          <button mat-icon-button matTooltip="rop_original"><mat-icon style="font-size: 20px">crop_original</mat-icon></button> 
          <button mat-icon-button matTooltip="more" mat-button [matMenuTriggerFor]="menu"><mat-icon style="font-size: 20px">more_vert</mat-icon></button>
     <mat-menu #menu="matMenu">
+      <div class="matmenu">
       <button mat-menu-item  (click)="trashNote(note)" >Delete Note</button>
-     <button mat-menu-item  (click)="trashNote(note)" >Restore</button>
-      <button mat-menu-item  (click)="delete(note)" >Delete Note Permentaly</button>
       <button mat-menu-item>Add Label</button>
       <button mat-menu-item>Make a Copy</button>
+    </div>
       
     </mat-menu> 
     

@@ -92,6 +92,7 @@ createNote()
            });
 
            this.Child.getNote();
+         
                 //  this.router.navigate(['/dashboard']);
                   
                  //localStorage.setItem("token",response.body.token);

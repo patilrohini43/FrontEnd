@@ -22,6 +22,7 @@ export class TrashComponent implements OnInit {
  this.updateService.currentnotes2.subscribe(
   response=>{
     this.allnotes=response['body']
+    console.log(this.allnotes)
   }
 
 )
@@ -29,9 +30,10 @@ export class TrashComponent implements OnInit {
 // this.httpService.getNotes(false,true).subscribe(
 //   response=>{
 //     this.allnotes=response.body
+//     console.log(this.allnotes)
 //   }
 
-//  )
+// )
 
 }
 

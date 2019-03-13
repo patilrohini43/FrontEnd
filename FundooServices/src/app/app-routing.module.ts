@@ -14,6 +14,7 @@ import { NoteComponent } from './component/note/note.component';
 import { ArchiveComponent } from './component/archive/archive.component';
 import { AllnotesComponent } from './component/allnotes/allnotes.component';
 import { TrashComponent } from './component/trash/trash.component';
+import { AuthguardGuard } from './service/authguard.guard';
 
 
 
@@ -29,8 +30,10 @@ const routes: Routes = [
 {
   path: 'login', 
   component:LoginComponent
-},
+}, 
+
 {
+  canActivate : [AuthguardGuard],
   path: 'dashboard', 
   component:DashboardComponent,
 

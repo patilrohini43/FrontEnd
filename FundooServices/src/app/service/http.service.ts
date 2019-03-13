@@ -78,6 +78,10 @@ getNotes(archived, trashed):Observable<any>
   });
 }
 
+public loggIn()
+{
+return !!localStorage.getItem("token");
 
+}
 
 }

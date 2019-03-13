@@ -12,7 +12,9 @@ export class AllnotesComponent implements OnInit {
   constructor(private httpService:HttpService,
     private snackbar:MatSnackBar) { }
 
-   @Input() allnotes:any[];
+    card:any
+
+    @Input() allnotes:any[];
     archived=false;
     trashed=false;
 
@@ -42,6 +44,65 @@ export class AllnotesComponent implements OnInit {
              );
              
      }
+
+  getID(card)
+  {
+   console.log(card.noteId);
+  }
+
+  delete(card)
+     {
+       console.log(card.noteId)
+       this.httpService.delete('/user/note/'+card.noteId)
+       .subscribe(response =>{
+
+        if(response.body.statuscode===401)
+        {
+          this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+            duration: 1000,
+     });
+        }
+        else{
+          this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+            duration: 1000,
+     });
+        }
+       },
+       (error) => {
+         console.log("error",error);
+      }  
+       )
+       
+     }
+
+
+
+trashNote(card)
+{
+  console.log(card.noteId)
+  this.httpService.putRequest1('/user/note/isTrash/'+card.noteId,this.card)
+  .subscribe(response =>{
+
+   if(response.body.statuscode===401)
+   {
+     this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+       duration: 1000,
+});
+   }
+   else{
+     this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+       duration: 1000,
+});
+   }
+  },
+  (error) => {
+    console.log("error",error);
+ }  
+  )
+  
+}
+
+
 
 
 }

@@ -18,7 +18,7 @@ export class ArchiveComponent implements OnInit {
     private updateService:UpdateServicesService
 
   ) {
-    this.updateService.changemessage(true,false);
+    //this.updateService.changemessage(true,false);
   }
   private allnotes:any[];
 
