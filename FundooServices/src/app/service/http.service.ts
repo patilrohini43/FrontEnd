@@ -78,6 +78,29 @@ getNotes(archived, trashed):Observable<any>
   });
 }
 
+getLabel(url):Observable<any>{
+
+console.log(this.userUrl);
+  return this.http.get(this.userUrl+url,{
+
+    headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
+    observe:'response'
+  });
+}
+
+postRequest2(url,noteId):  any {
+  return this.http.post(this.userUrl+url,{
+  observe:'response'});
+}
+
+
+
+addLabel(url,noteId,labelId):  any {
+  return this.http.post(this.userUrl+url+"?noteId="+noteId+"&labelId="+labelId ,{
+    headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
+  observe:'response'});
+}
+
 public loggIn()
 {
 return !!localStorage.getItem("token");

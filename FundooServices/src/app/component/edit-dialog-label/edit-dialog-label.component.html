@@ -1,0 +1,59 @@
+ <!-- <h1 mat-dialog-title>Edit Label</h1>
+ <div mat-dialog-content> 
+  <mat-form-field>
+    <input matInput placeholder="Create New Label"  class="example-right-align">
+    <button mat-icon-button (click)="menu.toggle()">
+        <mat-icon matPrefix>cancel</mat-icon>
+    </button>
+    <button class="done" mat-icon-button (click)="menu.toggle()">
+    <mat-icon matSuffix>done</mat-icon>
+    </button>
+  </mat-form-field>
+</div> 
+
+
+<mat-form-field>
+    <input matInput placeholder="Create New Label"  class="example-right-align">
+    <button mat-icon-button (click)="menu.toggle()">
+        <mat-icon matPrefix>cancel</mat-icon>
+    </button>
+    <button class="done" mat-icon-button (click)="menu.toggle()">
+    <mat-icon matSuffix>done</mat-icon>
+    </button>
+  </mat-form-field>
+
+
+ <div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Done</button>
+</div>  
+ -->
+
+<h1 mat-dialog-title>Edit Label</h1>
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input type="tel" matInput placeholder="Create New Label"  [formControl]="labelName">
+      <mat-icon matPrefix>cancel</mat-icon>
+      <mat-icon matSuffix>done</mat-icon>
+    </mat-form-field>
+
+
+  <div *ngFor="let labels of labelArray; let i = index" >
+  <div fxLayout="row">
+      <button mat-button (click)="deleteLabel(labels)">
+      <mat-icon [style.fontSize.px]=18>delete_outline</mat-icon>
+      </button>
+      <mat-form-field class="example-full-width">
+      <input type="text" matInput [style.fontSize.px]=11 value={{labels.labelName}} [formControl]="labelName">
+      </mat-form-field>
+      <button mat-button (click)="updateLabel(labels)">
+      <mat-icon [style.fontSize.px]=11>mode_edit_outline</mat-icon></button>
+
+      </div>
+  </div>
+</form>
+  <div>
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <button mat-button (click)=" addLabel()">Done</button>
+    </div> 
+  

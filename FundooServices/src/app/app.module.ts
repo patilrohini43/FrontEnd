@@ -32,6 +32,7 @@ import { ArchiveComponent } from './component/archive/archive.component';
 import { UpdateServicesService } from './service/update-services.service';
 import { TrashComponent } from './component/trash/trash.component';
 import { AllnotesComponent } from './component/allnotes/allnotes.component';
+import { EditDialogLabelComponent } from './component/edit-dialog-label/edit-dialog-label.component';
 
 
 
@@ -58,6 +59,7 @@ import { AllnotesComponent } from './component/allnotes/allnotes.component';
   ArchiveComponent,
   TrashComponent,
   AllnotesComponent,
+  EditDialogLabelComponent,
 
  
 

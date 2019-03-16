@@ -39,14 +39,45 @@
     <button mat-icon-button matTooltip="rop_original"><mat-icon style="font-size: 20px">crop_original</mat-icon></button> 
      <button mat-icon-button matTooltip="Undo" ><mat-icon style="font-size: 20px">undo</mat-icon></button>
     <button mat-icon-button matTooltip="Redo" ><mat-icon style="font-size: 20px">redo</mat-icon></button>
-    <button mat-icon-button  [matMenuTriggerFor]="menu" matTooltip="more" ><mat-icon style="font-size: 20px">more_vert</mat-icon>
+    <!-- <button mat-icon-button  [matMenuTriggerFor]="menu" matTooltip="more" ><mat-icon style="font-size: 20px">more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
       <div class="matmenu">
         <button mat-menu-item>Add Label</button>
+
+
+      
         <button mat-menu-item>Make Copy</button>
       </div>
-      </mat-menu>
+      </mat-menu> -->
+
+<button mat-icon-button  [matMenuTriggerFor]="menu" matTooltip="more" ><mat-icon style="font-size: 20px">more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+    <div class="matmenu">
+  <button mat-menu-item [matMenuTriggerFor]="label">Add Label</button>
+  <button mat-menu-item>Make a Copy</button>
+</div>
+</mat-menu>
+
+<mat-menu #label="matMenu">
+    <div class="input">
+  <button mat-menu-item >Label Note</button>
+  
+     <mat-form-field appearance="standard">
+    <mat-label>Enter Label Name</mat-label>
+    <input matInput placeholder="Placeholder" [formControl]="labelName" (click)="onEvent($event)">
+    <mat-icon matSuffix> </mat-icon>
+  </mat-form-field>
+
+<mat-checkbox>Check me!</mat-checkbox>
+
+
+ <button mat-menu-item (click)=addLabel()>create</button>
+
+</div>
+
+</mat-menu>
 
     <div fxLayout="row" fxFlex="10" fxLayoutAlign="space-between center" >
     <button mat-button class="buttonclose" [style.fontSize.px]=15 (click)="createNote()" >close<i style="margin-right:10px"></i></button>

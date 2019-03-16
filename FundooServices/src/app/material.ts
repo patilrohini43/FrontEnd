@@ -44,6 +44,7 @@ import {
 
 import { from } from 'rxjs';
 import { EditDialogComponent } from './component/edit-dialog/edit-dialog.component';
+import { EditDialogLabelComponent } from './component/edit-dialog-label/edit-dialog-label.component';
 
 
 @NgModule({
@@ -90,6 +91,7 @@ import { EditDialogComponent } from './component/edit-dialog/edit-dialog.compone
       ],
       entryComponents:[
         EditDialogComponent,
+        EditDialogLabelComponent
       ]
  
     

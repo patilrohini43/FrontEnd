@@ -5,6 +5,9 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { Notedto } from 'src/app/model/createnote';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { Note } from 'src/app/model/note';
+import { FormControl, Validators } from '@angular/forms';
+import { isLabeledStatement } from 'typescript';
+import { EditDialogLabelComponent } from '../edit-dialog-label/edit-dialog-label.component';
 
 @Component({
   selector: 'app-note',
@@ -19,6 +22,11 @@ export class NoteComponent implements OnInit {
   pin= false;
   isActive = false;
   id:any;
+  data1:any;
+  label:any;
+  labelIddata:any;
+  labelArray:any;
+  labelName=new FormControl('',[Validators.required])
   @Input() data:any[];
 
   note:Notedto=new Notedto();
@@ -40,6 +48,7 @@ export class NoteComponent implements OnInit {
     ]
   color: string
   card:any
+noteLabel:any;
    archived:boolean=false
   trashed:boolean=false
   //carddata=this.data;
@@ -51,6 +60,7 @@ export class NoteComponent implements OnInit {
 
   ngOnInit() {
    this.getNote();
+   this.getLabel();
   }
 
 
@@ -67,14 +77,22 @@ export class NoteComponent implements OnInit {
     }
 
 
+    getid(note){
+      console.log(note);
+      console.log(note.labelId);
+      this.labelIddata=note.labelId
+      
+    }
+
+
     getNote()
   {
      this.httpService.getNotes(this.archived,this.trashed)
          .subscribe(
           (response) => {console.log("success get notes",response)
           this.data = response['body']; 
-       
-          console.log("in response",this.data)
+            console.log("data-->",this.data);
+      
            
       if(response.body.statuscode===401){
         this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
@@ -144,28 +162,6 @@ export class NoteComponent implements OnInit {
        
      }
 
-//      archiveNote()
-//      {
-//       this.httpService.getRequest1('/user/note/list?archived=true&trashed=false')
-//       .subscribe(
-
-//        (response) => {console.log("success get notes",response)
-//        this.data = response['body']; 
-    
-//        console.log("in response",this.data)
-        
-//    if(response.body.statuscode===401){
-//      this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
-//        duration: 1000,
-// });
-
-//    }
-//        },
-//          (error) => {console.log("error",error);}  
-        
-           
-//           );
-//      }
 
 
 archiveNote(card)
@@ -221,9 +217,6 @@ trashNote(card)
 }
 
 
-
-
-
      openDialog(data): void {
       const dialogRef = this.dialog.open( EditDialogComponent, {
         width: '700px',
@@ -234,6 +227,7 @@ trashNote(card)
         description:data.description,
         color:data.color,
         noteId:data.noteId,
+
     }
       });
   
@@ -242,9 +236,97 @@ trashNote(card)
       
       });
     }
+
+
+
+
   
   
 
+    addLabel(note1)
+    {
+  
+  // this.httpService.postRequest2('/user/note/addLabelToNote?labelId=240&noteId=156')
+  console.log(note1);
+  console.log(note1.labelId);
+  console.log(note1.noteId)
+  this.httpService.postRequest2('/user/note/addLabelToNote?labelId='+this.labelIddata+'&noteId='+note1.noteId,this.card)
+     .subscribe(response=>{
+       console.log(response)
+       this.getNote();
+                  if(response.body.statusCode === 401){
+
+                  this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+                    duration: 1000,
+             });
+             this.getNote();
+          
+                 }
+               else 
+    
+                 {
+                    console.log(response.body.statusMessage)
+                   this.snackbar.open(response.body.statusMessage +'Invalid !!', 'End now', {
+                     duration: 1000,
+              });
+                 }
+                
+                
+             },
+               error => {
+             //    
+             console.log(error);
+            
+                
+               });
+               
+    }
+
+
+
+    getLabel()
+    {
+    
+     this.httpService.getLabel('/user/label/list')
+     .subscribe(response=>{
+       console.log(response);
+       this.labelArray=response['body'];
+       console.log(this.labelArray);
+      
+                 },
+                
+               error => {
+          
+             console.log(error);
+            
+               
+               });
+               
+    }
+
+
+//     addLabel(card)
+// {
+
+
+//   this.label={
+
+//     "labelName":this.labelName.value,
+//   }
+//   console.log(this.label)
+//  this.httpService.postRequest1('/user/note/createLabel/'+card.noteId,this.label)
+//  .subscribe(response=>{
+//    console.log(response)
+
+   
+   
+//  })
+// }
+
+
+  onEvent(event) {
+    event.stopPropagation();
+ }
 
 
 
