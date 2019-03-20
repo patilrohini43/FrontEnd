@@ -18,6 +18,8 @@ export class ArchiveComponent implements OnInit {
     private updateService:UpdateServicesService
 
   ) {
+
+    console.log("click on archive message")
     this.updateService.changemessage(true,false);
   }
   private allnotes:any[];
@@ -26,40 +28,26 @@ export class ArchiveComponent implements OnInit {
 
   ngOnInit() {
 
-  this.httpService.getNotes(true,false)
-  .subscribe(response=>{
+  // this.httpService.getNotes(true,false)
+  // .subscribe(response=>{
 
-    this.allnotes=response['body']
+  //   this.allnotes=response['body']
+
+    
     
 
-  }
+  // }
+  // )
+  this.updateService.currentNotes.subscribe(
+    response=>{
+
+      this.allnotes=response['body']
+      
+      console.log("getting notes",this.allnotes)
+    },
   )
-   
+
   }
-
-//   archiveNote()
-//   {
-  
-//    //this.httpService.getRequest1('/user/note/list?archived=true&trashed=false')
-//    this.httpService.getRequest1('/user/note/list?archived=true&trashed=false')
-//    .subscribe(
-
-//     (response) => {console.log("success archive get notes",response)
-//     this.archive = response['body']; 
- 
-//     console.log("in response",this.archive)
-     
-//   if(response.body.statuscode===401){
-//   this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
-//     duration: 1000,
-// });
-
-// }
-//     },
-//       (error) => {console.log("error",error);}  
-     
-        
-//        );
-//   }
+   
 
 }

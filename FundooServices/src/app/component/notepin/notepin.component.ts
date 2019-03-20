@@ -13,11 +13,11 @@ import { ArchiveComponent } from '../archive/archive.component';
 import { ChildActivationEnd } from '@angular/router';
 
 @Component({
-  selector: 'app-note',
-  templateUrl: './note.component.html',
-  styleUrls: ['./note.component.scss']
+  selector: 'app-notepin',
+  templateUrl: './notepin.component.html',
+  styleUrls: ['./notepin.component.scss']
 })
-export class NoteComponent implements OnInit {
+export class NotepinComponent implements OnInit {
   deleteData: { "isDeleted": boolean; "noteIdList": any[]; };
   archivevalue=false;
   archiveData: { "isArchived": boolean; "noteIdList": any[]; };

@@ -33,6 +33,8 @@ import { UpdateServicesService } from './service/update-services.service';
 import { TrashComponent } from './component/trash/trash.component';
 import { AllnotesComponent } from './component/allnotes/allnotes.component';
 import { EditDialogLabelComponent } from './component/edit-dialog-label/edit-dialog-label.component';
+import { PinComponent } from './component/pin/pin.component';
+import { NotepinComponent } from './component/notepin/notepin.component';
 
 
 
@@ -60,6 +62,8 @@ import { EditDialogLabelComponent } from './component/edit-dialog-label/edit-dia
   TrashComponent,
   AllnotesComponent,
   EditDialogLabelComponent,
+  PinComponent,
+  NotepinComponent,
 
  
 

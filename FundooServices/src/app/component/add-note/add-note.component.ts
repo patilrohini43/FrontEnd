@@ -39,7 +39,9 @@ export class AddNoteComponent implements OnInit {
     { name: "gray", colorCode: "#e7e9ec" }
     ]
     color:string; 
-
+    allnote:any[];
+    showPinned = false;
+    showUnpinned = false;
  
   constructor(
 
@@ -55,6 +57,13 @@ export class AddNoteComponent implements OnInit {
 
 
   ngOnInit() {
+    this.httpService.getNotes(false,false).subscribe(response=>{
+      console.log(response);
+      this.allnote=response['body'];
+      this.content_filter();
+      //his.fullNotes();
+    })
+   
   }
   
 
@@ -68,6 +77,27 @@ export class AddNoteComponent implements OnInit {
     this.color = color;
     
     }
+
+//  pined=new Array<Note>();
+// others=new Array<Note>();
+// fullNotes(){
+//   this.data.filter(note=>note.pin===true&&note.archive===false&& note.trash===false).map(note=>this.pined.push(note));
+// }
+
+
+
+    private content_filter() {
+      this.allnote.forEach(x => {
+        if (x.pin == true) {
+          this.showPinned = true;
+        }
+  
+        if (x.pin == false) {
+          this.showUnpinned = true;
+        }
+      })
+    }            
+  
 
 
 createNote()
@@ -116,6 +146,7 @@ createNote()
           
               
              });
+
              
   }
   getCard(card)

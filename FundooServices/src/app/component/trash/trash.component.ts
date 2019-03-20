@@ -19,7 +19,7 @@ export class TrashComponent implements OnInit {
    }
 
   ngOnInit() {
- this.updateService.currentnotes2.subscribe(
+ this.updateService.currentNotes.subscribe(
   response=>{
     this.allnotes=response['body']
     console.log(this.allnotes)

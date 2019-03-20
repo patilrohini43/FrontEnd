@@ -103,4 +103,27 @@
     </div>
     </ng-template>
     </mat-menu>
-<app-note></app-note>
+
+    <!-- <i>pinned</i>
+    <div *ngFor="let note of allnote">
+        <span *ngIf="note.pin">
+         <app-note [data]="note"></app-note>  -->
+     <!-- <mat-card></mat-card>
+        </span>
+      </div> 
+      <i>other</i>
+      <div *ngFor="let note of allnote">
+          <span *ngIf="!note.pin">
+             <app-note [data]="note"></app-note> -->
+              <!-- <mat-card>d</mat-card>
+          </span>
+        </div>  -->
+        <div>
+        <i>pinned</i>
+        <app-note [data]="allnote"></app-note> 
+      </div>
+
+      <div>
+          <i>other</i>
+              <app-notepin [data]="allnote"></app-notepin> 
+         </div>

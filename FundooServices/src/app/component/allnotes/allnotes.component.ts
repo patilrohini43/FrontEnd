@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from 'src/app/service/http.service';
 import { MatSnackBar } from '@angular/material';
+import { UpdateServicesService } from 'src/app/service/update-services.service';
 
 @Component({
   selector: 'app-allnotes',
@@ -10,6 +11,7 @@ import { MatSnackBar } from '@angular/material';
 export class AllnotesComponent implements OnInit {
 
   constructor(private httpService:HttpService,
+    private updateService:UpdateServicesService,
     private snackbar:MatSnackBar) { }
 
     card:any
@@ -61,6 +63,7 @@ export class AllnotesComponent implements OnInit {
           this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
             duration: 1000,
      });
+    // this.updateService.updateMessage();
         }
         else{
           this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
@@ -88,6 +91,7 @@ trashNote(card)
      this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
        duration: 1000,
 });
+//this.updateService.updateMessage();
    }
    else{
      this.snackbar.open(response.body.statusMessage +' !!', 'End now', {

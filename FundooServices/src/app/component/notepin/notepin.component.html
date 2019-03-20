@@ -1,9 +1,8 @@
 
-
 <div class=".cardlayout" fxLayout="row wrap"  fxFlex="60" fxLayoutAlign=" center center" >
     <div *ngFor="let note of data">  
       <div>
-    <div *ngIf="note.pin===true" class="example-container">
+    <div *ngIf="note.pin===false" class="example-container">
       
         <div  fxLayout="row wrap" fxLayoutAlign="space-between center">
        <mat-card [class.mat-elevation-z6]="!isActive"
@@ -100,6 +99,7 @@
  </div>
 </div>
     </div>
+
 
     
     
