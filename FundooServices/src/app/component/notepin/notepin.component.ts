@@ -25,6 +25,10 @@ export class NotepinComponent implements OnInit {
   pin= false;
   isActive = false;
   id:any;
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
   data1:any;
   label:any;
   labelIddata:any;
@@ -54,6 +58,7 @@ export class NotepinComponent implements OnInit {
 noteLabel:any;
    archived:boolean=false
   trashed:boolean=false
+
   //carddata=this.data;
   constructor(
    private httpService:HttpService,
@@ -162,6 +167,41 @@ noteLabel:any;
        
      }
     
+
+
+
+     removeLabel(label,note)
+     {
+       console.log(label.labelId)
+       console.log(note.noteId)
+       this.httpService.delete('/user/label/remove?labelId='+label.labelId+'&noteId='+note.noteId)
+       .subscribe(response =>{
+
+        if(response.body.statuscode===401)
+        {
+          this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+            duration: 1000,
+     });
+    // this.updateService.updateMessage();
+   
+        }
+        else{
+          this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+            duration: 1000,
+     });
+        }
+       },
+       (error) => {
+         console.log("error",error);
+      }  
+       )
+       
+     }
+    
+
+
+
+
 
      isPin(card)
      {

@@ -126,10 +126,11 @@ button{
     height: 180px;
     width: 600px;
     margin-left: 34px;
+    display: block;
 }
 
 .pinIcon{
-margin-bottom: 150px;
+margin-bottom: 170px;
 margin-right: -183px;
 
 }
@@ -165,9 +166,10 @@ font-size: 50%;
 }
 .mat-icon-button
 {
-  margin-top: 80px;
+  margin-top: 90px;
  margin-bottom: -10px;
- margin-left: -25px;
+ margin-left: -20px;
+ margin-right: 0.5px;
  
 }
 .mat-menu-panel {
@@ -200,7 +202,27 @@ margin-left: 100px;
   height: 200px;
 }
 .LabelName{
-  margin-top: 50px;
-    margin-left: -29px;
+ margin-top: 10px;
+   margin-left: -50px;
+
+}
+.mat-icon {
+  background-repeat: no-repeat;
+  display: inline-block;
+  fill: currentColor;
+  height: 17px;
+  width: 24px;
+  margin-left: 0px;
+  margin-right: 26px;
+}
+
+.hover{
+  display:none;
+}
+.mat-card:hover{
+
+  .hover{
+    display: block;
+  }
 
 }

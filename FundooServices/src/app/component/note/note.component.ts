@@ -11,6 +11,7 @@ import { EditDialogLabelComponent } from '../edit-dialog-label/edit-dialog-label
 import { UpdateServicesService } from 'src/app/service/update-services.service';
 import { ArchiveComponent } from '../archive/archive.component';
 import { ChildActivationEnd } from '@angular/router';
+import { NotepinComponent } from '../notepin/notepin.component';
 
 @Component({
   selector: 'app-note',
@@ -26,6 +27,10 @@ export class NoteComponent implements OnInit {
   isActive = false;
   id:any;
   data1:any;
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
   label:any;
   labelIddata:any;
   labelArray:any;
@@ -176,6 +181,7 @@ noteLabel:any;
           this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
             duration: 1000,
      });
+   
         }
         else{
           this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
@@ -208,8 +214,6 @@ archiveNote(card)
        duration: 1000,
 });
 
-
-
    }
    else{
      this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
@@ -221,11 +225,44 @@ archiveNote(card)
     console.log("error",error);
  }  ,
 
-this.updateService.updateMessage()
+//this.updateService.updateMessage()
   );
 
   
 }
+
+
+
+
+removeLabel(label,note)
+{
+  console.log(label.labelId)
+  console.log(note.noteId)
+  this.httpService.delete('/user/label/remove?labelId='+label.labelId+'&noteId='+note.noteId)
+  .subscribe(response =>{
+
+   if(response.body.statuscode===401)
+   {
+     this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+       duration: 1000,
+});
+// this.updateService.updateMessage();
+
+   }
+   else{
+     this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+       duration: 1000,
+});
+   }
+  },
+  (error) => {
+    console.log("error",error);
+ }  
+  )
+  
+}
+
+
 
 
 

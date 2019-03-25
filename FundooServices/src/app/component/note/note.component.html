@@ -3,12 +3,14 @@
 <div class=".cardlayout" fxLayout="row wrap"  fxFlex="60" fxLayoutAlign=" center center" >
     <div *ngFor="let note of data">  
       <div>
+    
     <div *ngIf="note.pin===true" class="example-container">
-      
+        <div *ngIf="note.archive===false">
         <div  fxLayout="row wrap" fxLayoutAlign="space-between center">
+      
        <mat-card [class.mat-elevation-z6]="!isActive"
         [class.mat-elevation-z8]="isActive" [ngStyle]="{'backgroundColor':note.color}">
-   
+       <div>
         <div fxLayout="row" fxLayoutAlign="space-between center" >
           <div class="title" [style.fontSize.px]=15 (click)="openDialog(note)"> {{note.title}}</div>        
           <div class="pinIcon">
@@ -22,17 +24,24 @@
           </button>
         </div>
       </div>
+    </div>
         
         <!-- <div fxLayout="row" fxLayoutAlign="space-between center" > -->
         <div class="description" [style.fontSize.px]=15 (click)="openDialog(note)"> {{note.description}}</div> 
         <div fxLayout="row wrap" fxLayoutAlign="center center" >
         <div class="LabelName">
-        <div *ngFor="let labels of note.label">  
+        <!-- <div *ngFor="let labels of note.label">  
           <mat-chip-list>
           <mat-chip>{{labels.labelName}}</mat-chip> 
         </mat-chip-list> 
-       </div> 
+       </div>  -->
+       <mat-chip *ngFor="let labels of note.label" [selectable]="selectable"
+       [removable]="removable" (removed)="removeLabel(labels,note)">
+   {{labels.labelName}}
+<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+</mat-chip>
       </div>
+      
       </div>
         <!-- </div> -->
    
@@ -94,9 +103,9 @@
       
       </mat-card>
      </div>
+ 
    </div>
-
-   
+   </div>
  </div>
 </div>
     </div>

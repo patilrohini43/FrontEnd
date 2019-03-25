@@ -86,122 +86,131 @@
 
 
 .example-container {
-    margin-top:auto;
-    margin-left: 30%;
-    margin-right: 30%;
-    margin-bottom: 2%;
-   // padding: 16px;
-  //  margin-bottom: 16px;
-  
-    width: 100px;
-    height:200px;
-  }
-  
-  .example-container {
-    margin-top: 3%;
-    margin-left: 100%;
-    margin-right: 30%;
-    width: 250px;
-  }
-  .title {
-    margin-top: -100px;
-  }
-  
-  .description{
-  display: flex;
-  margin-top: 40px;
-  margin-left: 4px;
-  }
-  button{
-    font-size: 110%;
-    min-width: min-content;
-    margin-left: 30%;
-    // margin-right: 25%;
-  }
-  .abc{
-      padding-right: 60px;
-      padding-bottom: 1px;
-  }
-  .mat-card {
-      height: 180px;
-      width: 600px;
-      margin-left: 34px;
-  }
-  
-  .pinIcon{
-  margin-bottom: 150px;
-  margin-right: -183px;
-  
-  }
-  
-  .titleicon{
-  
+  margin-top:auto;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-bottom: 2%;
+ // padding: 16px;
+//  margin-bottom: 16px;
+
+  width: 90px;
+  height:200px;
+}
+
+.example-container {
+  margin-top: 3%;
+  margin-left: 100%;
+  margin-right: 30%;
+  width: 250px;
+}
+.title {
+  margin-top: -100px;
+}
+
+.description{
+display: flex;
+margin-top: 40px;
+margin-left: 4px;
+}
+button{
+  font-size: 110%;
+  min-width: min-content;
+  margin-left: 30%;
+  // margin-right: 25%;
+}
+.abc{
     padding-right: 60px;
-    padding-bottom: 3px;
-  
-  }
-  .icons{
-    padding-right: 60px;
-  }
-  .buttonclose{
-  margin-left: 60px;
-   /// padding-right: 2px;
-  }
-  .test {
-    background: #f5f5f5;
-    padding: 5px;
-   
-  }
-  
-  .test[placeholder]:empty:before {
-    content: attr(placeholder);
-    color: #555; 
-  }
-  
-  .mat-menu-item
-  {
-  font-size: 50%;
-  
-  }
-  .mat-icon-button
-  {
-    margin-top: 80px;
-   margin-bottom: -10px;
-   margin-left: -25px;
-   
-  }
-  .mat-menu-panel {
-    height: 2px;
-    width: 5px;
-  }
-  
-  .matmenu{
-    height: 100px;
-    width: 10px;
-  }
-  
-  .mat-menu-item
-  {
-  
-  width: 40px;
-  //font-size: 10px;
-  }
-  
-  .cardlayout{
-  margin-left: 100px;
-  }
-  .matmenu{
-    height: 90px;
-    width: 10px;
-  }
-  
-  .input{
-    width:200px;
-    height: 200px;
-  }
-  .LabelName{
-    margin-top: 50px;
-      margin-left: -29px;
-  
-  }
-  
+    padding-bottom: 1px;
+}
+.mat-card {
+    height: 180px;
+    width: 600px;
+    margin-left: 34px;
+}
+
+.pinIcon{
+margin-bottom: 170px;
+margin-right: -183px;
+
+}
+
+.titleicon{
+
+  padding-right: 60px;
+  padding-bottom: 3px;
+
+}
+.icons{
+  padding-right: 60px;
+}
+.buttonclose{
+margin-left: 60px;
+ /// padding-right: 2px;
+}
+.test {
+  background: #f5f5f5;
+  padding: 5px;
+ 
+}
+
+.test[placeholder]:empty:before {
+  content: attr(placeholder);
+  color: #555; 
+}
+
+.mat-menu-item
+{
+font-size: 50%;
+
+}
+.mat-icon-button
+{
+  margin-top: 90px;
+ margin-bottom: -10px;
+ margin-left: -20px;
+ margin-right: 0.5px;
+ 
+}
+.mat-menu-panel {
+  height: 2px;
+  width: 5px;
+}
+
+.matmenu{
+  height: 100px;
+  width: 10px;
+}
+
+.mat-menu-item
+{
+
+width: 40px;
+//font-size: 10px;
+}
+
+.cardlayout{
+margin-left: 100px;
+}
+.matmenu{
+  height: 90px;
+  width: 10px;
+}
+
+.input{
+  width:200px;
+  height: 200px;
+}
+.LabelName{
+ margin-top: 10px;
+   margin-left: -10px;
+
+}
+.mat-icon {
+  background-repeat: no-repeat;
+  display: inline-block;
+  fill: currentColor;
+  height: 17px;
+  width: 24px;
+  margin-left: 0px;
+  margin-right: 26px;
+}

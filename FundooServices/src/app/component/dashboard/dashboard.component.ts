@@ -3,6 +3,7 @@ import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrie
 import { Router } from '@angular/router';
 import { EditDialogLabelComponent } from '../edit-dialog-label/edit-dialog-label.component';
 import { MatDialog } from '@angular/material';
+import { HttpService } from 'src/app/service/http.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,15 +11,17 @@ import { MatDialog } from '@angular/material';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
+labelArray:any;
   constructor(
     private router:Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private httpService:HttpService
 
   ) { }
 
 
   ngOnInit() {
+    this.getLabel();
   }
 
   logOut(){
@@ -39,6 +42,27 @@ export class DashboardComponent implements OnInit {
       console.log('The dialog was closed');
      // this.animal = result;
     });
+  }
+
+
+  getLabel()
+  {
+  
+   this.httpService.getLabel('/user/label/list')
+   .subscribe(response=>{
+     console.log(response);
+     this.labelArray=response['body'];
+     console.log(this.labelArray);
+    
+               },
+              
+             error => {
+        
+           console.log(error);
+          
+             
+             });
+             
   }
 
   
