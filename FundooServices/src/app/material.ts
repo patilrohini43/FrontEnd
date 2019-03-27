@@ -45,6 +45,7 @@ import {
 import { from } from 'rxjs';
 import { EditDialogComponent } from './component/edit-dialog/edit-dialog.component';
 import { EditDialogLabelComponent } from './component/edit-dialog-label/edit-dialog-label.component';
+import { ProfilepicComponent } from './component/profilepic/profilepic.component';
 
 
 @NgModule({
@@ -91,7 +92,8 @@ import { EditDialogLabelComponent } from './component/edit-dialog-label/edit-dia
       ],
       entryComponents:[
         EditDialogComponent,
-        EditDialogLabelComponent
+        EditDialogLabelComponent,
+        ProfilepicComponent
       ]
  
     

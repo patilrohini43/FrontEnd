@@ -88,6 +88,19 @@ console.log(this.userUrl);
   });
 }
 
+
+
+getLabel1(labelId:any):Observable<any>{
+
+  console.log(this.userUrl);
+
+    return this.http.get('http://localhost:8081/user/label/labelNote?labelId='+labelId,{
+  
+      headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
+      observe:'response'
+    });
+  }
+  
 postRequest2(url,noteId):  any {
   return this.http.post(this.userUrl+url,{
   observe:'response'});
@@ -105,6 +118,15 @@ public loggIn()
 {
 return !!localStorage.getItem("token");
 
+}
+
+public uploadProfileImage(url,file: File):any
+{
+  let formdata: FormData = new FormData();
+  formdata.append('File',file);
+  return this.http.put(this.userUrl+url,formdata,{
+    headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
+  observe:'response'});
 }
 
 }

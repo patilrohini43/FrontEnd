@@ -83,7 +83,8 @@ export class UpdateServicesService {
 
 private isArchive = false;
 private isTrash  = false;
-
+labelId:any;
+alllabelNote:any;
 private obtainNotes = new BehaviorSubject([]);
 
 currentNotes = this.obtainNotes.asObservable();
@@ -127,5 +128,16 @@ changemessage(archive: boolean, trash: boolean ){
       console.log(error);
     }
     );
+  }
+
+
+  labelNotes(label:LongRange)
+  {
+    this.labelId=label;
+    this.httpService.getLabel('/user/label/labelNote?labelId='+label)
+    .subscribe(response=>{
+      this.obtainNotes.next(response)
+      console.log(response);
+    })
   }
 }

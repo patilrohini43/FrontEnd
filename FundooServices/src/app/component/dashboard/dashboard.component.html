@@ -13,11 +13,11 @@
     </div>
   
     <span class="example-spacer">FundooApp</span>
-
-   
    <div  fxLayoutAlign="start center" fxFlex="1 1 88%">
       <mat-form-field class="example-full-width" appearance="outline">
+  
            <input matInput type="text" placeholder="Search">
+        
   <button mat-button matPrefix mat-icon-button>
     <mat-icon>search</mat-icon>
   </button>
@@ -35,11 +35,37 @@
       </mat-menu>
         <button mat-icon-button matTooltip="apps"><mat-icon>apps</mat-icon></button>
          <button mat-icon-button matTooltip="notification_important"><mat-icon>notification_important</mat-icon></button>
-           <button mat-icon-button  [matMenuTriggerFor]="menu1"  matTooltip="account_circle"><mat-icon>account_circle</mat-icon>
-          </button>
-          <mat-menu #menu1="matMenu">
-            <button mat-menu-item (click)="logOut()">LogOut</button>
-          </mat-menu>
+           <div [matMenuTriggerFor]="menu1"  matTooltip="account_circle"><img mat-card-avatar class="profile" src="http://localhost:8081/user/getProfile/{{profilePic}}"/>
+           </div>
+            
+            <!-- <mat-menu #menu1="matMenu">
+              <mat-card class="profiles">
+                <div class="profiebutton">
+                <button mat-menu-item (click)="logOut()">LogOut</button>
+              </div>
+          </mat-card>
+          </mat-menu> -->
+
+          <mat-menu #menu1="matMenu" class="menuborder">
+              <ng-template matMenuContent >
+              <mat-card class="profiles">
+                  <mat-card-header >
+                      <div mat-card-avatar class="profile1" (click)="ProfileSelect()" >
+                          <img mat-card-avatar class="profile1" src="http://localhost:8081/user/getProfile/{{profilePic}}"/>  
+                      </div>
+                      <!-- <mat-card-title>{</mat-card-title>
+                      <mat-card-subtitle>{{userinfo.email}}</mat-card-subtitle> -->
+                  </mat-card-header>
+                <mat-card-content>
+                   <div class="profilebutton">
+                  <button style="margin-left: 10px;" style="width:4px" mat-menu-item (click)="logOut()">LogOut</button>
+                </div>
+              </mat-card-content>
+              </mat-card>
+            </ng-template>
+           </mat-menu>
+       
+
           
   </mat-toolbar-row>
 </mat-toolbar>
@@ -52,7 +78,7 @@
             <mat-divider ></mat-divider>
             <h6 style="font-size:65%;" matSubheader >LABELS</h6>
             <div *ngFor="let label of labelArray">
-            <button class= "hoverhighlight" mat-list-item routerLink=" " ><mat-icon>label</mat-icon> <i style="margin: 5%;"></i>{{label.labelName}}</button>             
+            <button class= "hoverhighlight" mat-list-item routerLink="label/{{label.labelId}}" ><mat-icon>label</mat-icon> <i style="margin: 5%;"></i>{{label.labelName}}</button>             
           </div>
 
             <button class= "hoverhighlight" mat-list-item (click)=" openDialog()"><mat-icon>edit</mat-icon><i style="margin: 5%;"></i>Edit Labels </button>

@@ -122,10 +122,11 @@ button{
     padding-right: 60px;
     padding-bottom: 1px;
 }
-.mat-card {
+.mat-card { 
+    border-radius: 15px;
     height: 180px;
     width: 600px;
-    margin-left: 34px;
+    margin-left: 34px;  
     display: block;
 }
 

@@ -35,6 +35,9 @@ import { AllnotesComponent } from './component/allnotes/allnotes.component';
 import { EditDialogLabelComponent } from './component/edit-dialog-label/edit-dialog-label.component';
 import { PinComponent } from './component/pin/pin.component';
 import { NotepinComponent } from './component/notepin/notepin.component';
+import { ProfilepicComponent } from './component/profilepic/profilepic.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { LabelNoteComponent } from './component/label-note/label-note.component';
 
 
 
@@ -64,6 +67,8 @@ import { NotepinComponent } from './component/notepin/notepin.component';
   EditDialogLabelComponent,
   PinComponent,
   NotepinComponent,
+  ProfilepicComponent,
+  LabelNoteComponent,
 
  
 
@@ -76,6 +81,7 @@ import { NotepinComponent } from './component/notepin/notepin.component';
     AppRoutingModule,
     RouterModule,
     FormsModule,
+    ImageCropperModule,
     HttpModule,
     MaterialModule,
     BrowserAnimationsModule,

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { EditDialogLabelComponent } from '../edit-dialog-label/edit-dialog-label.component';
 import { MatDialog } from '@angular/material';
 import { HttpService } from 'src/app/service/http.service';
+import { ProfilepicComponent } from '../profilepic/profilepic.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +13,7 @@ import { HttpService } from 'src/app/service/http.service';
 })
 export class DashboardComponent implements OnInit {
 labelArray:any;
+profilePic:any;
   constructor(
     private router:Router,
     public dialog: MatDialog,
@@ -22,6 +24,8 @@ labelArray:any;
 
   ngOnInit() {
     this.getLabel();
+    this.getImage();
+  
   }
 
   logOut(){
@@ -29,6 +33,11 @@ labelArray:any;
     this.router.navigate(['/login']);
   }
 
+
+  getImage(){
+    this.profilePic=localStorage.getItem("token");
+    console.log(this.profilePic);
+  }
 
   
   openDialog(): void {
@@ -65,5 +74,31 @@ labelArray:any;
              
   }
 
+
   
+ ProfileSelect() {
+    const dialogRef = this.dialog.open(ProfilepicComponent,
+      {
+        width: '400px',
+        height:'500px'
+      });
+  
+      dialogRef.afterClosed().subscribe(
+        (x:any) =>
+        {
+          if(x!=null)
+          { 
+            console.log("hjkjhkjh",x.file)
+            this.httpService.uploadProfileImage('/user/profileupload',x.file).subscribe(
+            value =>
+            {
+              console.log(value);
+            }
+          );
+          }
+})
+  }
+
+
+
 }
