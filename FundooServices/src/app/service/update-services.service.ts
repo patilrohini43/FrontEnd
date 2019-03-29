@@ -121,20 +121,19 @@ changemessage(archive: boolean, trash: boolean ){
     response => {
 
       console.log(response);
-    //  this.storeData.next(response);
-;      this.obtainNotes.next(response);
+          this.obtainNotes.next(response);
     },
     error => {
       console.log(error);
     }
     );
   }
+labelName:any
 
-
-  labelNotes(label:LongRange)
+  labelNotes(label:any)
   {
     this.labelId=label;
-    this.httpService.getLabel('/user/label/labelNote?labelId='+label)
+    this.httpService.getLabel('/user/label/labelNote?labelId='+this.labelId)
     .subscribe(response=>{
       this.obtainNotes.next(response)
       console.log(response);

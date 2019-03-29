@@ -36,6 +36,7 @@ export class NotepinComponent implements OnInit {
   labelName=new FormControl('',[Validators.required])
   @Input() data:any[];
 
+ 
   note:Notedto=new Notedto();
   
 
@@ -145,7 +146,7 @@ noteLabel:any;
        console.log(card.noteId)
        this.httpService.delete('/user/note/'+card.noteId)
        .subscribe(response =>{
-
+        this.updateService.updateMessage();
         if(response.body.statuscode===401)
         {
           this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
@@ -210,7 +211,7 @@ noteLabel:any;
        console.log(card.noteId)
        this.httpService.putRequest1('/user/note/isPin/'+card.noteId+'?pin='+this.pin,this.card)
        .subscribe(response =>{
-
+       this.updateService.updateMessage();
         if(response.body.statuscode===401)
         {
           this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
@@ -274,7 +275,7 @@ trashNote(card)
   console.log(card.noteId)
   this.httpService.putRequest1('/user/note/isTrash/'+card.noteId,this.card)
   .subscribe(response =>{
-
+    this.updateService.updateMessage();
    if(response.body.statuscode===401)
    {
      this.snackbar.open(response.body.statusMessage +' !!', 'End now', {

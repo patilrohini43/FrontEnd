@@ -33,11 +33,12 @@ import { UpdateServicesService } from './service/update-services.service';
 import { TrashComponent } from './component/trash/trash.component';
 import { AllnotesComponent } from './component/allnotes/allnotes.component';
 import { EditDialogLabelComponent } from './component/edit-dialog-label/edit-dialog-label.component';
-import { PinComponent } from './component/pin/pin.component';
+
 import { NotepinComponent } from './component/notepin/notepin.component';
 import { ProfilepicComponent } from './component/profilepic/profilepic.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { LabelNoteComponent } from './component/label-note/label-note.component';
+import { IconsComponent } from './component/icons/icons.component';
 
 
 
@@ -65,10 +66,11 @@ import { LabelNoteComponent } from './component/label-note/label-note.component'
   TrashComponent,
   AllnotesComponent,
   EditDialogLabelComponent,
-  PinComponent,
+
   NotepinComponent,
   ProfilepicComponent,
   LabelNoteComponent,
+  IconsComponent,
 
  
 

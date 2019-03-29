@@ -207,3 +207,14 @@ margin-left: 100px;
     margin-left: -29px;
 
 }
+
+mat-icon{
+  display:none !important;
+}
+mat-card:hover{
+
+  mat-icon{
+    display: block !important;
+  }
+
+}

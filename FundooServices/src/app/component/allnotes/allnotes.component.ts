@@ -91,7 +91,7 @@ trashNote(card)
      this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
        duration: 1000,
 });
-//this.updateService.updateMessage();
+this.updateService.updateMessage();
    }
    else{
      this.snackbar.open(response.body.statusMessage +' !!', 'End now', {

@@ -15,8 +15,9 @@ import { ArchiveComponent } from './component/archive/archive.component';
 import { AllnotesComponent } from './component/allnotes/allnotes.component';
 import { TrashComponent } from './component/trash/trash.component';
 import { AuthguardGuard } from './service/authguard.guard';
-import { PinComponent } from './component/pin/pin.component';
+
 import { LabelNoteComponent } from './component/label-note/label-note.component';
+import { NotepinComponent } from './component/notepin/notepin.component';
 
 
 
@@ -68,13 +69,14 @@ const routes: Routes = [
       path: 'trash', 
       component:TrashComponent,
     },
+   
     {
-      path: 'pin', 
-      component:PinComponent,
+      path: 'label/:labelId', 
+      component:LabelNoteComponent,
     },
     {
-      path: 'label/:labelId:', 
-      component:LabelNoteComponent,
+      path: 'notepin', 
+      component:NotepinComponent,
     },
 
 

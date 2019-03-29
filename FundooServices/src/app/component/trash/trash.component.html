@@ -1,9 +1,43 @@
 
+          <!-- <app-note [data]="allnotes" ></app-note> -->
 
-<div class=".cardlayout" fxLayout="row wrap"  fxFlex="90" fxLayoutAlign=" center center" >
-
-    <!-- <app-note [data]="allnotes"></app-note> -->
-
-    <app-allnotes [allnotes]="allnotes" ></app-allnotes>
-    </div>
-        
+            <!-- <app-notepin [data]="allnotes" ></app-notepin> -->
+     
+            <div class=".cardlayout" fxLayout="row wrap"  fxFlex="60" fxLayoutAlign=" center center" >
+                    <div *ngFor="let note of trashNotes">  
+                        
+                    <div class="example-container">
+                        <div  fxLayout="row wrap" fxLayoutAlign="space-between center">
+                       <mat-card [class.mat-elevation-z6]="!isActive"
+                        [class.mat-elevation-z8]="isActive" [ngStyle]="{'backgroundColor':note.color}">
+                    
+                    
+                        <div fxLayout="row" fxLayoutAlign="space-between center" >
+                          <div class="title" [style.fontSize.px]=15 (click)="openDialog(note)"> {{note.title}}</div>        
+                          
+                      </div>
+                        
+                        <!-- <div fxLayout="row" fxLayoutAlign="space-between center" > -->
+                        <div class="description" [style.fontSize.px]=15 (click)="openDialog(note)"> {{note.description}}</div> 
+                          
+                        <!-- </div> -->
+                        <div fxLayout="row"  fxFlex="150" fxLayoutAlign="space-between center">
+                          
+                    <button mat-icon-button matTooltip="more" mat-button [matMenuTriggerFor]="menu"><mat-icon style="font-size: 20px">more_vert</mat-icon></button>
+                    <mat-menu #menu="matMenu">
+                      <div class="matmenu">
+                      <button mat-menu-item  (click)="delete(note)" >Delete Note</button>
+                      <button mat-menu-item  (click)="trashNote(note)" >Restore</button>
+                      <button mat-menu-item>Add Label</button>
+                      <button mat-menu-item>Make a Copy</button>
+                    </div>
+                      
+                    </mat-menu> 
+                    
+                    </div>
+                      
+                      </mat-card>
+                     </div>
+                   </div>
+                 </div>
+                    </div>

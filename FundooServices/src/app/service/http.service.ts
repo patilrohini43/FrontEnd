@@ -90,7 +90,7 @@ console.log(this.userUrl);
 
 
 
-getLabel1(labelId:any):Observable<any>{
+getLabel1(labelId):any{
 
   console.log(this.userUrl);
 

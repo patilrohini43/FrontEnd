@@ -7,6 +7,8 @@ import { Note } from 'src/app/model/note';
 import { Notedto } from 'src/app/model/createnote';
 import { NoteComponent } from '../note/note.component';
 import { createAdd, createLabel } from 'typescript';
+import { NotepinComponent } from '../notepin/notepin.component';
+import { UpdateServicesService } from 'src/app/service/update-services.service';
 
 @Component({
   selector: 'app-add-note',
@@ -48,13 +50,15 @@ export class AddNoteComponent implements OnInit {
     private router:Router,
     private httpService:HttpService,
     private snackbar:MatSnackBar,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private updateService:UpdateServicesService
 
 
   ) { }
 
-  @ViewChild(NoteComponent) Child;
+  //@ViewChild(NoteComponent) Child;
 
+  @ViewChild(NotepinComponent) Child;
 
   ngOnInit() {
     this.httpService.getNotes(false,false).subscribe(response=>{
@@ -63,6 +67,7 @@ export class AddNoteComponent implements OnInit {
       this.content_filter();
       //his.fullNotes();
     })
+    this.updateService.updateMessage
    
   }
   
@@ -123,8 +128,10 @@ createNote()
                   duration: 1000,
            });
 
-           this.Child.getNote();
-         
+         //  this.Child.getNote();
+           
+          this.updateService.updateMessage()
+           
                 //  this.router.navigate(['/dashboard']);
                   
                  //localStorage.setItem("token",response.body.token);

@@ -1,12 +1,156 @@
 
 
-<div class=".cardlayout" fxLayout="row wrap"  fxFlex="60" fxLayoutAlign=" center center" >
+    <div fxLayout="row wrap" fxFlex="80" fxFlexAlign="center" fxLayoutAlign="center center" style="margin-left: 150px;">
+      <div *ngFor="let note of data">  
+      <div fxLayout="row wrap" fxLayoutAlign="center stretch" fxLayoutGap="20px">
+        <div *ngIf="note.pin===true" class="example-container">
+          <div *ngIf="note.archive===false" >
+            
+            <div class="show">
+        <mat-card 
+          [class.mat-elevation-z8]="!isActive"
+          [class.mat-elevation-z8]="isActive" [ngStyle]="{'backgroundColor':note.color}">
+  
+    
+  
+  
+          <div>
+            <div fxLayout="row" fxLayoutAlign="space-between center" >
+              <div class="title" [style.fontSize.px]=15 (click)="openDialog(note)"> {{note.title}}</div>        
+              <div class="pinIcon">
+              <button  mat-icon-button matTooltip="Pin/Unpin Note" (click)="isPin(note)">
+                <div *ngIf="!note.pin">
+                <mat-icon style="font-size: 20px"><img src="http://icons.iconarchive.com/icons/icons8/ios7/24/Messaging-Pin-icon.png"></mat-icon>
+              </div>
+              <div *ngIf="note.pin">
+                <mat-icon style="font-size: 20px"><img src="http://icons.iconarchive.com/icons/icons8/windows-8/24/Programming-Pin-icon.png"></mat-icon>
+              </div>
+              </button>
+            </div>
+          </div>
+        </div>
+            
+          
+              <div fxLayout="row" fxLayoutAlign="space-between center" >
+              <div class="description" [style.fontSize.px]=15 (click)="openDialog(note)"> {{note.description}}</div> 
+              </div>
+  
+            
+              
+              <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+           <mat-chip *ngFor="let labels of note.label" [selectable]="selectable"
+           [removable]="removable" (removed)="removeLabel(labels,note)">
+       {{labels.labelName}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+          </div>
+      
+  
+  
+   
+  
+  <!-- 
+  <app-icons></app-icons> -->
+  
+  
+  <div class="matcardshow1">
+  <div class="matcardshow">
+        <div fxLayout="row" fxLayoutAlign="space-around end" style="margin-top:30px;">
+          <button mat-icon-button matTooltip="Remind me"> <mat-icon style="font-size: 20px"><i style="margin: 5%;"></i>add_alert</mat-icon></button>
+            <button mat-icon-button matTooltip="Collaborator"><mat-icon class="icon" style="font-size: 20px">person_add<i style="margin: 5%;"></i></mat-icon></button>
+           
+            <button mat-icon-button matTooltip="Archive" (click)="archiveNote(note)"><mat-icon style="font-size: 20px">archive</mat-icon></button>
+            
+            <button mat-icon-button matTooltip="Change color" mat-button [matMenuTriggerFor]="colorMenu" (click)="getID(note)">
+                <mat-icon style="font-size: 20px" class="mat-18 changeColor">color_lens</mat-icon></button>
+         <button mat-icon-button matTooltip="rop_original"><mat-icon style="font-size: 20px">crop_original</mat-icon></button> 
+         <button mat-icon-button matTooltip="more" mat-button [matMenuTriggerFor]="menu"><mat-icon style="font-size: 20px">more_vert</mat-icon></button>
+   
+  
+  
+  
+    <mat-menu #menu="matMenu">
+        <div class="matmenu">
+      <button mat-menu-item [matMenuTriggerFor]="label">Add Label</button>
+      <button mat-menu-item  (click)="trashNote(note)" >Delete Note</button>
+     <button mat-menu-item  (click)="trashNote(note)" >Restore</button>
+      <button mat-menu-item  (click)="delete(note)" >Delete Note Permentaly</button>
+      <button mat-menu-item>Make a Copy</button>
+    </div>
+    </mat-menu>
+    
+    <mat-menu #label="matMenu">
+        <div class="input">
+      <button mat-menu-item >Label Note</button>
+         <mat-form-field appearance="standard">
+        <mat-label>Enter Label Name</mat-label>
+        <input matInput placeholder="Placeholder" [formControl]="labelName" (click)="onEvent($event)">
+        <mat-icon matSuffix> </mat-icon>
+      </mat-form-field>
+    <div *ngFor="let note1 of labelArray">  
+    <mat-checkbox (click)="getid(note1)" (click)="onEvent($event)">{{note1.labelName}}</mat-checkbox>
+  </div> 
+  
+      <button mat-menu-item (click)= addLabel(note)>Create</button>
+   
+  
+    
+    </div>
+    
+    </mat-menu>
+  
+    
+  </div>
+  </div>  
+  </div>
+        </mat-card>
+      </div>
+        </div>
+        </div>
+    
+      </div>
+      </div>
+  </div>
+
+
+  
+      <mat-menu #colorMenu="matMenu" [overlapTrigger]="false">
+        <ng-template matMenuContent let-note="note">
+        <div fxLayout="row wrap" fxLayoutAlign="end
+        center" fxFlex="200">
+        <div *ngFor="let color of colorCode">
+        <button mat-icon-button [ngStyle]="{'color': color.colorCode}" (click)="changeColor(color.colorCode)">
+        <mat-icon style="font-size: 40px" class="colorIcons">fiber_manual_record</mat-icon>
+        </button>
+        </div>
+        </div>
+        </ng-template>
+        </mat-menu>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class=".cardlayout" fxLayout="row wrap" fxLayoutGap="10px" fxFlex="80" fxLayoutAlign=" center center" >
     <div *ngFor="let note of data">  
       <div>
     
     <div *ngIf="note.pin===true" class="example-container">
         <div *ngIf="note.archive===false">
-        <div  fxLayout="row wrap" fxLayoutAlign="space-between center">
+            <div *ngIf="note.trash===false">
+        <div  fxLayout="row wrap" fxLayoutAlign="space-between center" fxLayoutGap="40px">
       
        <mat-card [class.mat-elevation-z6]="!isActive"
         [class.mat-elevation-z8]="isActive" [ngStyle]="{'backgroundColor':note.color}">
@@ -26,27 +170,24 @@
       </div>
     </div>
         
-        <!-- <div fxLayout="row" fxLayoutAlign="space-between center" > -->
-        <div class="description" [style.fontSize.px]=15 (click)="openDialog(note)"> {{note.description}}</div> 
-        <div fxLayout="row wrap" fxLayoutAlign="center center" >
-        <div class="LabelName">
-        <!-- <div *ngFor="let labels of note.label">  
-          <mat-chip-list>
-          <mat-chip>{{labels.labelName}}</mat-chip> 
-        </mat-chip-list> 
-       </div>  -->
-       <mat-chip *ngFor="let labels of note.label" [selectable]="selectable"
+         <div fxLayout="row" fxLayoutAlign="space-between center" > -->
+       
+          <!-- <div class="description" [style.fontSize.px]=15 (click)="openDialog(note)"> {{note.description}}</div> 
+               <mat-chip *ngFor="let labels of note.label" [selectable]="selectable"
        [removable]="removable" (removed)="removeLabel(labels,note)">
    {{labels.labelName}}
 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
 </mat-chip>
-      </div>
       
-      </div>
-        <!-- </div> -->
+      
    
+        <!-- </div> -->
+<!--        
         <div fxLayout="row"  fxFlex="150" fxLayoutAlign="space-evenly center">
-           <button mat-icon-button matTooltip="Remind me"> <mat-icon style="font-size: 20px"><i style="margin: 5%;"></i>add_alert</mat-icon></button>
+
+       
+         
+          <button mat-icon-button matTooltip="Remind me"> <mat-icon style="font-size: 20px"><i style="margin: 5%;"></i>add_alert</mat-icon></button>
             <button mat-icon-button matTooltip="Collaborator"><mat-icon style="font-size: 20px">person_add<i style="margin: 5%;"></i></mat-icon></button>
            
             <button mat-icon-button matTooltip="Archive" (click)="archiveNote(note)"><mat-icon style="font-size: 20px">archive</mat-icon></button>
@@ -55,16 +196,8 @@
                 <mat-icon style="font-size: 20px" class="mat-18 changeColor">color_lens</mat-icon></button>
          <button mat-icon-button matTooltip="rop_original"><mat-icon style="font-size: 20px">crop_original</mat-icon></button> 
          <button mat-icon-button matTooltip="more" mat-button [matMenuTriggerFor]="menu"><mat-icon style="font-size: 20px">more_vert</mat-icon></button>
-    <!-- <mat-menu #menu="matMenu">
-      <div class="matmenu">
-      <button mat-menu-item  (click)="trashNote(note)" >Delete Note</button>
-     <button mat-menu-item  (click)="trashNote(note)" >Restore</button>
-      <button mat-menu-item  (click)="delete(note)" >Delete Note Permentaly</button>
-      <button mat-menu-item>Add Label</button>
-      <button mat-menu-item>Make a Copy</button>
-    </div>
-    
-    </mat-menu>  -->
+   
+  
 
 
     <mat-menu #menu="matMenu">
@@ -96,24 +229,25 @@
     </div>
     
     </mat-menu>
+  
     
-    
-
-    </div>
+  </div>
+      
       
       </mat-card>
      </div>
  
    </div>
    </div>
+   </div>
  </div>
 </div>
-    </div>
+    </div> --> 
 
     
     
    
-<mat-menu #colorMenu="matMenu" [overlapTrigger]="false">
+<!-- <mat-menu #colorMenu="matMenu" [overlapTrigger]="false">
     <ng-template matMenuContent let-note="note">
     <div fxLayout="row wrap" fxLayoutAlign="end
     center" fxFlex="200">
@@ -124,4 +258,4 @@
     </div>
     </div>
     </ng-template>
-    </mat-menu>
+    </mat-menu> -->

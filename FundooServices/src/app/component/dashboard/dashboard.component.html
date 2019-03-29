@@ -80,7 +80,7 @@
             <div *ngFor="let label of labelArray">
             <button class= "hoverhighlight" mat-list-item routerLink="label/{{label.labelId}}" ><mat-icon>label</mat-icon> <i style="margin: 5%;"></i>{{label.labelName}}</button>             
           </div>
-
+         
             <button class= "hoverhighlight" mat-list-item (click)=" openDialog()"><mat-icon>edit</mat-icon><i style="margin: 5%;"></i>Edit Labels </button>
             <mat-divider></mat-divider>
             <button class= "hoverhighlight" mat-list-item routerLink="archive" ><mat-icon>archive</mat-icon><i style="margin: 5%;"></i> Archive </button>

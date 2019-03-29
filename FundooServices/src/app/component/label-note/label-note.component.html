@@ -1,3 +1,11 @@
-<div *ngFor="let note of labelArray">
-<mat-card>dd</mat-card>
-</div>
+
+
+    <div>
+            <i>pinned</i>
+            <app-note [data]="labelArray"></app-note> 
+          </div>
+    
+          <div>
+              <i>other</i>
+                  <app-notepin [data]="labelArray"></app-notepin> 
+             </div>

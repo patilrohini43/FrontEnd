@@ -1,3 +1,4 @@
+
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { HttpService } from 'src/app/service/http.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
@@ -11,14 +12,15 @@ import { EditDialogLabelComponent } from '../edit-dialog-label/edit-dialog-label
 import { UpdateServicesService } from 'src/app/service/update-services.service';
 import { ArchiveComponent } from '../archive/archive.component';
 import { ChildActivationEnd } from '@angular/router';
-import { NotepinComponent } from '../notepin/notepin.component';
+
 
 @Component({
-  selector: 'app-note',
-  templateUrl: './note.component.html',
-  styleUrls: ['./note.component.scss']
+  selector: 'app-icons',
+  templateUrl: './icons.component.html',
+  styleUrls: ['./icons.component.scss']
 })
-export class NoteComponent implements OnInit {
+export class IconsComponent implements OnInit {
+
   deleteData: { "isDeleted": boolean; "noteIdList": any[]; };
   archivevalue=false;
   archiveData: { "isArchived": boolean; "noteIdList": any[]; };
@@ -26,11 +28,11 @@ export class NoteComponent implements OnInit {
   pin= false;
   isActive = false;
   id:any;
-  data1:any;
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
+  data1:any;
   label:any;
   labelIddata:any;
   labelArray:any;
@@ -59,6 +61,7 @@ export class NoteComponent implements OnInit {
 noteLabel:any;
    archived:boolean=false
   trashed:boolean=false
+
   //carddata=this.data;
   constructor(
    private httpService:HttpService,
@@ -145,7 +148,7 @@ noteLabel:any;
        console.log(card.noteId)
        this.httpService.delete('/user/note/'+card.noteId)
        .subscribe(response =>{
-        this.updateService.updateMessage();
+
         if(response.body.statuscode===401)
         {
           this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
@@ -168,6 +171,41 @@ noteLabel:any;
      }
     
 
+
+
+     removeLabel(label,note)
+     {
+       console.log(label.labelId)
+       console.log(note.noteId)
+       this.httpService.delete('/user/label/remove?labelId='+label.labelId+'&noteId='+note.noteId)
+       .subscribe(response =>{
+
+        if(response.body.statuscode===401)
+        {
+          this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+            duration: 1000,
+     });
+    // this.updateService.updateMessage();
+   
+        }
+        else{
+          this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+            duration: 1000,
+     });
+        }
+       },
+       (error) => {
+         console.log("error",error);
+      }  
+       )
+       
+     }
+    
+
+
+
+
+
      isPin(card)
      {
 
@@ -175,13 +213,12 @@ noteLabel:any;
        console.log(card.noteId)
        this.httpService.putRequest1('/user/note/isPin/'+card.noteId+'?pin='+this.pin,this.card)
        .subscribe(response =>{
-        this.updateService.updateMessage();
+
         if(response.body.statuscode===401)
         {
           this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
             duration: 1000,
      });
-   
         }
         else{
           this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
@@ -214,6 +251,8 @@ archiveNote(card)
        duration: 1000,
 });
 
+
+
    }
    else{
      this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
@@ -225,44 +264,11 @@ archiveNote(card)
     console.log("error",error);
  }  ,
 
-//this.updateService.updateMessage()
+this.updateService.updateMessage()
   );
 
   
 }
-
-
-
-
-removeLabel(label,note)
-{
-  console.log(label.labelId)
-  console.log(note.noteId)
-  this.httpService.delete('/user/label/remove?labelId='+label.labelId+'&noteId='+note.noteId)
-  .subscribe(response =>{
-    this.updateService.updateMessage();
-   if(response.body.statuscode===401)
-   {
-     this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
-       duration: 1000,
-});
-// this.updateService.updateMessage();
-
-   }
-   else{
-     this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
-       duration: 1000,
-});
-   }
-  },
-  (error) => {
-    console.log("error",error);
- }  
-  )
-  
-}
-
-
 
 
 
@@ -271,7 +277,7 @@ trashNote(card)
   console.log(card.noteId)
   this.httpService.putRequest1('/user/note/isTrash/'+card.noteId,this.card)
   .subscribe(response =>{
-    this.updateService.updateMessage();
+
    if(response.body.statuscode===401)
    {
      this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
@@ -406,7 +412,6 @@ trashNote(card)
   onEvent(event) {
     event.stopPropagation();
  }
-
 
 
 }

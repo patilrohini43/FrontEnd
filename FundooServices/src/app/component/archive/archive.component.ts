@@ -33,7 +33,7 @@ export class ArchiveComponent implements OnInit {
     console.log("click on archive message")
     this.updateService.changemessage(true,false);
   }
-  private allnotes:any[];
+   private allnotes:any[];
 
   
 
@@ -70,11 +70,11 @@ export class ArchiveComponent implements OnInit {
    labelIddata:any;
    labelArray:any;
    labelName=new FormControl('',[Validators.required])
-   @Input() data:any[];
+    data:any[];
  
    note:Notedto=new Notedto();
    
- 
+  
    colorCode: Array<Object> = [
      { name: "white", colorCode: "#fff" },
      { name: "red", colorCode: "#fc8981" },
