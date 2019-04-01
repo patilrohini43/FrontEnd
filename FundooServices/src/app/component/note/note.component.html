@@ -35,16 +35,30 @@
               <div class="description" [style.fontSize.px]=15 (click)="openDialog(note)"> {{note.description}}</div> 
               </div>
   
-            
-              
+             
               <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
-           <mat-chip *ngFor="let labels of note.label" [selectable]="selectable"
+           <mat-chip  [style.fontSize.px]=10 *ngFor="let labels of note.label"
            [removable]="removable" (removed)="removeLabel(labels,note)">
        {{labels.labelName}}
       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
       </mat-chip>
           </div>
-      
+
+
+
+        
+              <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                  <mat-chip [style.fontSize.px]=8  *ngIf="note.reminder!=reminder" [selectable]="selectable"
+                  [removable]="removable" (removed)="removeReminder(note)">
+                  {{note.reminder|date:'short'}}
+             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+             </mat-chip>
+                 </div> 
+
+                
+
+                    
+                
   
   
    
@@ -56,7 +70,37 @@
   <div class="matcardshow1">
   <div class="matcardshow">
         <div fxLayout="row" fxLayoutAlign="space-around end" style="margin-top:30px;">
-          <button mat-icon-button matTooltip="Remind me"> <mat-icon style="font-size: 20px"><i style="margin: 5%;"></i>add_alert</mat-icon></button>
+          <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="menu2"> <mat-icon style="font-size: 20px"><i style="margin: 5%;"></i>add_alert</mat-icon></button>
+
+       
+              <mat-menu #menu2="matMenu">
+                  <div fxLayout="column" fxLayoutAlign="end end" style="width:340px">
+              
+                   <h6 style="font-size:90%;" style="margin-right: 94px;" matSubheader>Reminder:</h6>
+          
+                <button mat-menu-item  (click)="laterToday(note)">Later Today    8.00Am</button>
+                <button mat-menu-item (click)="laterTomorrow(note)">Tomorrow</button>
+                  <button mat-menu-item>Next Week</button>
+                   <button mat-menu-item  [matMenuTriggerFor]="menualarm"><mat-icon>alarm</mat-icon>Pick Data and Time</button>
+
+
+                   <mat-menu #menualarm="matMenu">
+                      <div fxLayout="column" fxLayoutAlign="center center" style="width:340px" >
+                      <div class="matmenu">
+                           <mat-form-field>
+                              <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="dateNow">
+                              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                              <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field> 
+                        
+                    <button mat-menu-item (click)="setReminder(note)">Save</button>
+                  </div>
+                </div>
+                  </mat-menu>
+
+                  </div>
+              </mat-menu>
+              
             <button mat-icon-button matTooltip="Collaborator"><mat-icon class="icon" style="font-size: 20px">person_add<i style="margin: 5%;"></i></mat-icon></button>
            
             <button mat-icon-button matTooltip="Archive" (click)="archiveNote(note)"><mat-icon style="font-size: 20px">archive</mat-icon></button>
@@ -126,6 +170,8 @@
         </div>
         </ng-template>
         </mat-menu>
+
+
 
 
 

@@ -33,6 +33,12 @@ postRequest1(url,notedto:Notedto):  any {
   observe:'response'});
 }
 
+
+
+postReminder(url):  any {
+  return this.http.post(this.userUrl+url,{
+  observe:'response'});
+}
 getRequest1(url): any {
   return this.http.get(this.userUrl+url,{
     headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 

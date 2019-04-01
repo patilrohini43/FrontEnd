@@ -14,6 +14,7 @@ import { ProfilepicComponent } from '../profilepic/profilepic.component';
 export class DashboardComponent implements OnInit {
 labelArray:any;
 profilePic:any;
+userInfo:any[];
   constructor(
     private router:Router,
     public dialog: MatDialog,
@@ -25,6 +26,7 @@ profilePic:any;
   ngOnInit() {
     this.getLabel();
     this.getImage();
+    this.getUserInfo()
   
   }
 
@@ -97,6 +99,15 @@ profilePic:any;
           );
           }
 })
+  }
+
+  getUserInfo(){
+    this.httpService.getRequest1('/users').subscribe(response=>{
+      console.log(response);
+      this.userInfo=response['body'];
+      console.log("User Details=>",this.userInfo)
+
+    })
   }
 
 

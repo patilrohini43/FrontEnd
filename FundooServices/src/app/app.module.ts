@@ -46,6 +46,7 @@ import { IconsComponent } from './component/icons/icons.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

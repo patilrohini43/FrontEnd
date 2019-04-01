@@ -56,6 +56,8 @@ export class NotepinComponent implements OnInit {
     ]
   color: string
   card:any
+  dateNow : Date = new Date();
+  reminderValue:any;
 noteLabel:any;
    archived:boolean=false
   trashed:boolean=false
@@ -139,6 +141,59 @@ noteLabel:any;
              );
              
      }
+
+
+
+
+
+
+    setReminder(note)
+    {
+      
+      console.log("curremt time",this.dateNow)
+       this.reminderValue= this.dateNow.toISOString();
+      
+       console.log(this.reminderValue);
+      //   this.reminderValue=JSON.stringify(this.date.value);
+         console.log("Reminder Value",this.reminderValue)
+        
+         //console.log(this.reminder)
+         console.log(note.title)
+         
+         this.httpService.postReminder('/user/notes/'+note.noteId+'?time='+this.reminderValue).subscribe(
+           response=>{
+             this.updateService.updateMessage();
+             console.log(response);
+           }
+         )
+         //console.log(note.reminder);
+
+    }
+
+
+
+    removeReminder(note)
+    {
+      
+      console.log("curremt time",this.dateNow)
+       this.reminderValue= this.dateNow.toISOString();
+      
+       console.log(this.reminderValue);
+      //   this.reminderValue=JSON.stringify(this.date.value);
+         console.log("Reminder Value",this.reminderValue)
+        
+       //  console.log(this.reminder)
+         console.log(note.title)
+         
+         this.httpService.postReminder('/user/notes/remove/'+note.noteId+'?time='+this.reminderValue).subscribe(
+           response=>{
+             this.updateService.updateMessage();
+             console.log(response);
+           }
+         )
+         //console.log(note.reminder);
+
+    }
 
 
      delete(card)

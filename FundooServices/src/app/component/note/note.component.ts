@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { HttpService } from 'src/app/service/http.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { A11yModule } from '@angular/cdk/a11y';
@@ -16,7 +16,9 @@ import { NotepinComponent } from '../notepin/notepin.component';
 @Component({
   selector: 'app-note',
   templateUrl: './note.component.html',
-  styleUrls: ['./note.component.scss']
+  styleUrls: ['./note.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+ 
 })
 export class NoteComponent implements OnInit {
   deleteData: { "isDeleted": boolean; "noteIdList": any[]; };
@@ -26,6 +28,8 @@ export class NoteComponent implements OnInit {
   pin= false;
   isActive = false;
   id:any;
+  date=new FormControl()
+  dateNow : Date = new Date();
   data1:any;
   visible = true;
   selectable = true;
@@ -33,6 +37,7 @@ export class NoteComponent implements OnInit {
   addOnBlur = true;
   label:any;
   labelIddata:any;
+  reminderValue:any;
   labelArray:any;
   labelName=new FormControl('',[Validators.required])
   @Input() data:any[];
@@ -57,6 +62,9 @@ export class NoteComponent implements OnInit {
   color: string
   card:any
 noteLabel:any;
+data2:any;
+datap:any;
+
    archived:boolean=false
   trashed:boolean=false
   //carddata=this.data;
@@ -89,6 +97,7 @@ noteLabel:any;
   })
    this.getLabel();
    
+   
   }
 
 
@@ -102,15 +111,132 @@ noteLabel:any;
     getID(card)
     {
      console.log(card.noteId);
+     console.log(card.reminder)
     }
 
 
     getid(note){
       console.log(note);
       console.log(note.labelId);
+      console.log(note.reminder);
       this.labelIddata=note.labelId
       
     }
+
+    reminder:any
+
+    setReminder(note)
+    {
+      
+      console.log("curremt time",this.dateNow)
+       this.reminderValue= this.dateNow.toISOString();
+      
+       console.log(this.reminderValue);
+      //   this.reminderValue=JSON.stringify(this.date.value);
+         console.log("Reminder Value",this.reminderValue)
+        
+         console.log(this.reminder)
+         console.log(note.title)
+         
+         this.httpService.postReminder('/user/notes/'+note.noteId+'?time='+this.reminderValue).subscribe(
+           response=>{
+             this.updateService.updateMessage();
+             console.log(response);
+           }
+         )
+         //console.log(note.reminder);
+
+    }
+
+
+
+    removeReminder(note)
+    {
+      
+      console.log("curremt time",this.dateNow)
+       this.reminderValue= this.dateNow.toISOString();
+      
+       console.log(this.reminderValue);
+      //   this.reminderValue=JSON.stringify(this.date.value);
+         console.log("Reminder Value",this.reminderValue)
+        
+         console.log(this.reminder)
+         console.log(note.title)
+         
+         this.httpService.postReminder('/user/notes/remove/'+note.noteId+'?time='+this.reminderValue).subscribe(
+           response=>{
+             this.updateService.updateMessage();
+             console.log(response);
+           }
+         )
+         //console.log(note.reminder);
+
+    }
+
+    laterToday(note){
+      const newdate = new Date();
+      newdate.setHours(8);
+      newdate.setMinutes(0);
+      newdate.setSeconds(0);
+      console.log(newdate);
+      this.reminderValue = {
+      "reminder": [newdate],
+      // "noteIdList": [this.card.noteId]
+      
+      }
+
+      console.log("current date",newdate)
+      console.log("current1 date",newdate)
+     note.reminder=newdate;
+
+
+      this.httpService.postReminder('/user/notes/'+note.noteId+'?time='+newdate.toLocaleDateString()).subscribe(
+        response=>{
+          this.updateService.updateMessage();
+          console.log(response);
+        },
+  
+      
+    
+      (error) => { console.log("error", error); }
+      
+      )
+      }
+
+
+
+      laterTomorrow(note){
+        const newdate = new Date();
+        newdate.setHours(8);
+        newdate.setMinutes(0);
+        newdate.setSeconds(0);
+        console.log(newdate);
+        this.reminderValue = {
+        "reminder": [newdate],
+        // "noteIdList": [this.card.noteId]
+        
+        }
+  
+        console.log("current date",newdate)
+        console.log("current1 date",newdate)
+       note.reminder=newdate;
+  
+  
+        this.httpService.postReminder('/user/notes/'+note.noteId+'?time='+newdate.toLocaleDateString()).subscribe(
+          response=>{
+            this.updateService.updateMessage();
+            console.log(response);
+          },
+    
+        
+      
+        (error) => { console.log("error", error); }
+        
+        )
+        }
+
+
+  
 
 
 
