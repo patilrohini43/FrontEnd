@@ -44,7 +44,13 @@
       </mat-chip>
           </div>
 
-
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+            <div *ngFor="let collabusers of note.collabuser">
+                <button mat-mini-fab>
+              {{collabusers.username | slice:0:1}}
+            </button>
+          </div>
+           </div>
 
         
               <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
@@ -87,11 +93,14 @@
                    <mat-menu #menualarm="matMenu">
                       <div fxLayout="column" fxLayoutAlign="center center" style="width:340px" >
                       <div class="matmenu">
-                           <mat-form-field>
+                           <!-- <mat-form-field>
                               <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="dateNow">
                               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                               <mat-datepicker #picker></mat-datepicker>
-                            </mat-form-field> 
+                            </mat-form-field>  -->
+
+                            <input [owlDateTime]="dt1" [(ngModel)]="dateNow" [owlDateTimeTrigger]="dt1" placeholder="Date Time" >
+                            <owl-date-time #dt1></owl-date-time>
                         
                     <button mat-menu-item (click)="setReminder(note)">Save</button>
                   </div>
@@ -101,7 +110,7 @@
                   </div>
               </mat-menu>
               
-            <button mat-icon-button matTooltip="Collaborator"><mat-icon class="icon" style="font-size: 20px">person_add<i style="margin: 5%;"></i></mat-icon></button>
+            <button mat-icon-button matTooltip="Collaborator" (click)="collabratorDialog(note)"><mat-icon class="icon" style="font-size: 20px">person_add<i style="margin: 5%;"></i></mat-icon></button>
            
             <button mat-icon-button matTooltip="Archive" (click)="archiveNote(note)"><mat-icon style="font-size: 20px">archive</mat-icon></button>
             

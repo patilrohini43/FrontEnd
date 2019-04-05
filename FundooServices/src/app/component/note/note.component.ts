@@ -12,6 +12,7 @@ import { UpdateServicesService } from 'src/app/service/update-services.service';
 import { ArchiveComponent } from '../archive/archive.component';
 import { ChildActivationEnd } from '@angular/router';
 import { NotepinComponent } from '../notepin/notepin.component';
+import { CollabratorComponent } from '../collabrator/collabrator.component';
 
 @Component({
   selector: 'app-note',
@@ -36,11 +37,13 @@ export class NoteComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   label:any;
+  notedata:any;
+
   labelIddata:any;
   reminderValue:any;
   labelArray:any;
   labelName=new FormControl('',[Validators.required])
-  @Input() data:any[];
+  @Input() data:any;
 
   note:Notedto=new Notedto();
   
@@ -443,7 +446,21 @@ trashNote(card)
     }
 
 
-
+    collabratorDialog(data) {
+      const dialogRef = this.dialog.open(CollabratorComponent, {
+        width: '750px',
+        height:'390px',
+     
+        data: {
+          noteId:data.noteId,
+                
+      }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
 
   
   

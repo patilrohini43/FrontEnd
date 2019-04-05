@@ -135,4 +135,12 @@ public uploadProfileImage(url,file: File):any
   observe:'response'});
 }
 
+
+getUserInfo(url):  any {
+  return this.http.get(this.userUrl+url,{
+    headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
+  observe:'response'});
+}
+
+
 }

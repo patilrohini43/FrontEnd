@@ -39,9 +39,9 @@ import { ProfilepicComponent } from './component/profilepic/profilepic.component
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { LabelNoteComponent } from './component/label-note/label-note.component';
 import { IconsComponent } from './component/icons/icons.component';
-
-
-
+import { CollabratorComponent } from './component/collabrator/collabrator.component';
+//import { of } from 'rxjs/observable/of';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 
 
@@ -67,12 +67,12 @@ import { IconsComponent } from './component/icons/icons.component';
   TrashComponent,
   AllnotesComponent,
   EditDialogLabelComponent,
-
   NotepinComponent,
   ProfilepicComponent,
   LabelNoteComponent,
   IconsComponent,
-
+  CollabratorComponent,
+ 
  
 
    
@@ -90,11 +90,15 @@ import { IconsComponent } from './component/icons/icons.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatCardModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule
+  
    
 
     
-  ], 
+  ],
+   
   providers: [UserService,AlertmessageService,HttpService,UpdateServicesService],
   bootstrap: [AppComponent]
 })

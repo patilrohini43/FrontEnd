@@ -40,4 +40,6 @@ public resetPassWord(token:string,password:string,password1:string):any{
   return this.http.get(this.userUrl+'reset/'+token+"/?password="+password,{responseType:'text'});
 }
 
+
+
 }

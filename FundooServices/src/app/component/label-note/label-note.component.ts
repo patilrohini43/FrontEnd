@@ -119,8 +119,6 @@ private cardUuid: string;
 //   }
 
 
-
-
 //   getNote()
 // {
 //    this.httpService.getNotes(this.archived,this.trashed)

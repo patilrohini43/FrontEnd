@@ -1,6 +1,6 @@
 export class Note{
     
-noteId:string;
+noteId:number;
 title:string;
 description:string;
 color:string;
