@@ -19,12 +19,16 @@
 
 
 <div *ngFor="let info of data1">
-  <div fxLayout="row" fxLayoutAlign="center center" style=" margin-top: 10px;"> 
-      <mat-icon>account_circle</mat-icon>
+  <div fxLayout="row" fxLayoutAlign="center center" style=" margin-top: 10px;margin-right: 287px;"> 
+     <button mat-mini-fab> {{info.username | slice:0:1}}</button>
+     <div fxLayout="column" style="margin-right: 110px;">
       <div style="font-size:15px;font-weight: bold;">{{info.username}}</div>
         <div style="font-size:12px;"> {{info.email}}</div>
-       <div><mat-icon matSuffix style="margin-right:150px;" (click)=" removeCollbrator(info.email)">cancel</mat-icon></div> 
-  </div>
+      </div>
+
+       <button mat-button><mat-icon matSuffix  (click)=" removeCollbrator(info.email)">cancel</mat-icon>
+       </button>
+      </div>
 </div> 
 
 <div style="margin-top:15px;">
@@ -32,9 +36,9 @@
          
            <mat-icon matPrefix style="margin-right:10px;">person_add</mat-icon>
            
-            <input type="tel"  matInput placeholder="Person or Email Share With" style="margin-left:30px;font-size: 12px;" [formControl]="useremail">
+            <input type="tel"  matInput placeholder="Person or Email Share With" style="margin-left:300px;font-size: 12px;" [formControl]="useremail">
 
-          <button mat-button><mat-icon matSuffix style="margin-right:150px;" (click)="getUser()">done</mat-icon>
+          <button mat-button><mat-icon matSuffix  (click)="done(data.noteId)">done</mat-icon>
           </button>
         </div>
 </div>

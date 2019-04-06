@@ -11,6 +11,7 @@ import { EditDialogLabelComponent } from '../edit-dialog-label/edit-dialog-label
 import { UpdateServicesService } from 'src/app/service/update-services.service';
 import { ArchiveComponent } from '../archive/archive.component';
 import { ChildActivationEnd } from '@angular/router';
+import { CollabratorComponent } from '../collabrator/collabrator.component';
 
 @Component({
   selector: 'app-notepin',
@@ -146,6 +147,21 @@ noteLabel:any;
 
 
 
+     collabratorDialog(data) {
+      const dialogRef = this.dialog.open(CollabratorComponent, {
+        width: '750px',
+        height:'390px',
+     
+        data: {
+          noteId:data.noteId,
+                
+      }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
 
     setReminder(note)
     {
@@ -232,8 +248,8 @@ noteLabel:any;
        console.log(note.noteId)
        this.httpService.delete('/user/label/remove?labelId='+label.labelId+'&noteId='+note.noteId)
        .subscribe(response =>{
-
-        if(response.body.statuscode===401)
+        this.updateService.updateMessage();
+        if(response.body.statusCode===401)
         {
           this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
             duration: 1000,
@@ -267,7 +283,7 @@ noteLabel:any;
        this.httpService.putRequest1('/user/note/isPin/'+card.noteId+'?pin='+this.pin,this.card)
        .subscribe(response =>{
        this.updateService.updateMessage();
-        if(response.body.statuscode===401)
+        if(response.body.statusCode===401)
         {
           this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
             duration: 1000,

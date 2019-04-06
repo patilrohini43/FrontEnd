@@ -155,6 +155,13 @@
         </div>
     
 
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+          <div *ngFor="let collabusers of note.collabuser">
+              <button mat-mini-fab>
+            {{collabusers.username | slice:0:1}}
+          </button>
+        </div>
+         </div>
 
  
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
@@ -202,7 +209,7 @@
 
               </div>
           </mat-menu>
-          <button mat-icon-button matTooltip="Collaborator"><mat-icon class="icon" style="font-size: 20px">person_add<i style="margin: 5%;"></i></mat-icon></button>
+          <button mat-icon-button matTooltip="Collaborator" (click)="collabratorDialog(note)"><mat-icon class="icon" style="font-size: 20px">person_add<i style="margin: 5%;"></i></mat-icon></button>
          
           <button mat-icon-button matTooltip="Archive" (click)="archiveNote(note)"><mat-icon style="font-size: 20px">archive</mat-icon></button>
           

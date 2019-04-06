@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { HttpService } from 'src/app/service/http.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Notedto } from 'src/app/model/createnote';
+import { UpdateServicesService } from 'src/app/service/update-services.service';
 
 @Component({
   selector: 'app-collabrator',
@@ -19,6 +20,7 @@ note:any;
 data1:any;
 email:any;
 collab:any;
+resp:any;
 useremail=new FormControl('',[Validators.required])
 
   constructor(
@@ -26,9 +28,14 @@ useremail=new FormControl('',[Validators.required])
     @Inject(MAT_DIALOG_DATA) public data:Notedto,
     private httpService:HttpService,
     private snackbar:MatSnackBar,
+    private updateService:UpdateServicesService
   ) { }
 
   ngOnInit() {
+    this.updateService.currentNotes.subscribe(response=>{
+      this.resp=response['body'];
+      console.log(this.resp);
+    })
     this.getImage();
     this.getUserDetails();
     this.getUser();
@@ -40,29 +47,29 @@ useremail=new FormControl('',[Validators.required])
     console.log(this.profilePic);
   }
 
-  // getNote()
-  // {
-  //    this.httpService.getNotes(this.archived,this.trashed)
-  //        .subscribe(
-  //         (response) => {console.log("success get notes",response)
-  //         this.data = response['body']; 
-  //           console.log("data-->",this.data);
+  getNote()
+  {
+     this.httpService.getNotes(this.archived,this.trashed)
+         .subscribe(
+          (response) => {console.log("success get notes",response)
+          this.data = response['body']; 
+            console.log("data-->",this.data);
       
            
-  //     if(response.body.statuscode===401){
-  //       this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
-  //         duration: 1000,
-  //  });
+      if(response.body.statuscode===401){
+        this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+          duration: 1000,
+   });
    
 
-  //     }
-  //         },
-  //           (error) => {console.log("error",error);}  
+      }
+          },
+            (error) => {console.log("error",error);}  
            
               
-  //            );
+             );
              
-  //    }
+     }
 
 
      getUserDetails()
@@ -76,21 +83,17 @@ useremail=new FormControl('',[Validators.required])
 
    getUser()
    {
-     this.httpService.getUserInfo('/user/note/list/collab?email='+this.useremail.value+'&noteId='+this.data.noteId).subscribe(response=>{
+     this.httpService.getUserInfo('/user/note/list/collab?noteId='+this.data.noteId).subscribe(response=>{
        console.log(response);
        this.data1=response['body'];
        console.log("user Info",this.data)
-       if(response.body.statuscode===401){
+       this.updateService.updateMessage();
+       if(response.body.statusode===401){
         this.snackbar.open(response.statusMessage +' !!', 'End now', {
           duration: 500,
    });
   }
-  else{
-    this.snackbar.open(response.statusMessage +' !!', 'End now', {
-      duration: 500,
-});
 
-  }
   (error) => {console.log("error",error);}  
       
      })
@@ -105,12 +108,15 @@ console.log(this.data.noteId)
    addCollbrator(data){ 
   
      console.log(this.data1)
-     this.httpService.postRequest1('/user/collabrator/addCollab1?email='+this.email.value+'&noteId='+this.data.noteId,this.collab)
+     this.httpService.postRequest1('/user/collabrator/addCollab1?email='+this.useremail.value+'&noteId='+this.data.noteId,this.collab)
      .subscribe(response=>{
        console.log(response);
-       console.log(response.body.statuscode)
-      if(response.body.statuscode===401){
-        this.snackbar.open(response.statusMessage +' !!', 'End now', {
+       console.log('statscie',response.body.statusCode);
+
+       this.updateService.updateMessage();
+       console.log(response.body.statusCode)
+      if(response.body.statusCode===401){
+        this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
           duration: 500,
    });
    
@@ -123,6 +129,34 @@ console.log(this.data.noteId)
              );
 
    }
+  done(data){ 
+  
+    console.log(this.data1)
+    this.httpService.postRequest1('/user/collabrator/addCollab1?email='+this.useremail.value+'&noteId='+this.data.noteId,this.collab)
+    .subscribe(response=>{
+      
+      this.updateService.updateMessage();
+      
+     if(response.body.statusCode===401){
+       this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+         duration: 500,
+  });
+  
+
+     }
+     else{
+      this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+        duration: 500,
+ });
+     }
+         },
+           (error) => {console.log("error",error);}  
+          
+             
+            );
+
+  }
+
 
 
    removeCollbrator(email:any)
@@ -131,16 +165,17 @@ console.log(this.data.noteId)
     this.httpService.delete('/user/collabrator/removeCollabrator?email='+email+'&noteId='+this.data.noteId)
     .subscribe(response=>{
       console.log(response);
-      console.log(response.body.statuscode)
+      this.updateService.updateMessage();
+      console.log(response.body.statusCode)
      if(response.body.statuscode===401){
-       this.snackbar.open(response.statusMessage +' !!', 'End now', {
+       this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
          duration: 500,
   });
   
 
      }
      else{
-      this.snackbar.open(response.statusMessage +' !!', 'End now', {
+      this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
         duration: 500,
  });
 
