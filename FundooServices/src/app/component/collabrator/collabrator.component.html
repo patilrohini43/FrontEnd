@@ -31,12 +31,12 @@
       </div>
 </div> 
 
-<div style="margin-top:15px;">
-<div fxLayout="row" fxLayoutAlign="center center" >
+<div style="margin-top:15px;margin-left: -260px;">
+<div fxLayout="row" fxLayoutAlign="center center"  style="margin-left:300px;">
          
            <mat-icon matPrefix style="margin-right:10px;">person_add</mat-icon>
            
-            <input type="tel"  matInput placeholder="Person or Email Share With" style="margin-left:300px;font-size: 12px;" [formControl]="useremail">
+            <input type="tel"  matInput placeholder="Person or Email Share With" style="font-size: 12px;" [formControl]="useremail">
 
           <button mat-button><mat-icon matSuffix  (click)="done(data.noteId)">done</mat-icon>
           </button>

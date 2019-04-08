@@ -35,8 +35,8 @@
               <div class="description" [style.fontSize.px]=15 (click)="openDialog(note)"> {{note.description}}</div> 
               </div>
   
-             
-              <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+          
+               <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
            <mat-chip  [style.fontSize.px]=10 *ngFor="let labels of note.label"
            [removable]="removable" (removed)="removeLabel(labels,note)">
        {{labels.labelName}}
@@ -59,7 +59,7 @@
                   {{note.reminder|date:'short'}}
              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
              </mat-chip>
-                 </div> 
+                 </div>  
 
                 
 
@@ -75,7 +75,7 @@
   
   <div class="matcardshow1">
   <div class="matcardshow">
-        <div fxLayout="row" fxLayoutAlign="space-around end" style="margin-top:30px;">
+        <div fxLayout="row" fxLayoutAlign="space-around end"  style="margin-top:70px;">
           <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="menu2"> <mat-icon style="font-size: 20px"><i style="margin: 5%;"></i>add_alert</mat-icon></button>
 
        

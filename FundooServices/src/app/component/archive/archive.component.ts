@@ -39,13 +39,6 @@ export class ArchiveComponent implements OnInit {
 
   ngOnInit() {
 
-  // this.httpService.getNotes(true,false)
-  // .subscribe(response=>{
-
-  //   this.allnotes=response['body']
-
-  // }
-  // )
   this.updateService.currentNotes.subscribe(
     response=>{
 
@@ -94,14 +87,7 @@ export class ArchiveComponent implements OnInit {
  noteLabel:any;
     archived:boolean=false
    trashed:boolean=false
-   //carddata=this.data;
-  
- // pined=new Array<Note>();
- // others=new Array<Note>();
- // fullNotes(){
- //   this.data.filter(note=>note.pin===true&&note.archive===false&& note.trash===false).map(note=>this.pined.push(note));
- // }
- 
+
  
  
  
@@ -158,7 +144,7 @@ export class ArchiveComponent implements OnInit {
         console.log(card.noteId)
         this.httpService.delete('/user/note/'+card.noteId)
         .subscribe(response =>{
- 
+          this.updateService.updateMessage();
          if(response.body.statuscode===401)
          {
            this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
@@ -220,6 +206,7 @@ export class ArchiveComponent implements OnInit {
    this.httpService.putRequest1('/user/noted/'+card.noteId,this.card)
    .subscribe(response =>{
  
+    this.updateService.updateMessage();
     if(response.body.statuscode===401)
     {
       this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
@@ -252,7 +239,7 @@ export class ArchiveComponent implements OnInit {
    console.log(card.noteId)
    this.httpService.putRequest1('/user/note/isTrash/'+card.noteId,this.card)
    .subscribe(response =>{
- 
+    this.updateService.updateMessage();
     if(response.body.statuscode===401)
     {
       this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
@@ -271,32 +258,13 @@ export class ArchiveComponent implements OnInit {
    (error) => {
      console.log("error",error);
   }  ,
-  //this.updateService.updateMessage()
+
    )
    
  }
  
  
-    //   openDialog(data): void {
-    //    const dialogRef = this.dialog.open( EditDialogComponent, {
-    //      width: '700px',
-    //      height:'200px',
-    //      data: {
-    //      id: data.id,
-    //      title: data.title,
-    //      description:data.description,
-    //      color:data.color,
-    //      noteId:data.noteId,
- 
-    //  }
-    //    });
-   
-    //    dialogRef.afterClosed().subscribe(result => {
-    //      console.log('The dialog was closed');
-       
-    //    });
-    //  }
- 
+  
  
  
  
@@ -306,7 +274,7 @@ export class ArchiveComponent implements OnInit {
      addLabel(note1)
      {
    
-   // this.httpService.postRequest2('/user/note/addLabelToNote?labelId=240&noteId=156')
+   
    console.log(note1);
    console.log(note1.labelId);
    console.log(note1.noteId)
@@ -365,23 +333,6 @@ export class ArchiveComponent implements OnInit {
      }
  
  
- //     addLabel(card)
- // {
- 
- 
- //   this.label={
- 
- //     "labelName":this.labelName.value,
- //   }
- //   console.log(this.label)
- //  this.httpService.postRequest1('/user/note/createLabel/'+card.noteId,this.label)
- //  .subscribe(response=>{
- //    console.log(response)
- 
-    
-    
- //  })
- // }
  
  
    onEvent(event) {

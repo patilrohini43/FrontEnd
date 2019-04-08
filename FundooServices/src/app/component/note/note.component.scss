@@ -5,8 +5,10 @@
   //margin-bottom: 16px;
 }
 .mat-card{
-  height: 160px;
+  //height: 160px;
   width: 200px;
+  min-height: 160px;
+  max-height: 250px;
   border-radius: 15px;
   margin-top: 30px; 
 }
@@ -34,10 +36,6 @@
 .collab{
   border-radius: 15px;
 }
-
-
-
-
 
 
 
