@@ -129,9 +129,9 @@
 
 
 
-  <div fxLayout="row wrap" fxFlex="80"  fxLayoutAlign="space-around center"  style="margin-left: 150px;">
+  <div fxLayout="row wrap" fxFlex="80"  fxLayoutAlign="center center"  style="margin-left: 150px;">
     <div *ngFor="let note of allnotes">  
-        <div *ngIf="note.pin==true" class="example-container">
+      
             <div *ngIf="note.archive==true" class="example-container">
     <div fxLayout="row wrap" fxLayoutAlign="center stretch" fxLayoutGap="20px">
       
@@ -193,15 +193,7 @@
 
               
 
-                  
-              
-
-
- 
-
-<!-- 
-<app-icons></app-icons> -->
-
+            
 
 <div class="matcardshow1">
 <div class="matcardshow">
@@ -223,12 +215,7 @@
                  <mat-menu #menualarm="matMenu">
                     <div fxLayout="column" fxLayoutAlign="center center" style="width:340px" >
                     <div class="matmenu">
-                         <!-- <mat-form-field>
-                            <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="dateNow">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                          </mat-form-field>  -->
-
+                      
                           <input [owlDateTime]="dt1" [(ngModel)]="dateNow" [owlDateTimeTrigger]="dt1" placeholder="Date Time" >
                           <owl-date-time #dt1></owl-date-time>
                       
@@ -256,9 +243,7 @@
       <div class="matmenu">
     <button mat-menu-item [matMenuTriggerFor]="label">Add Label</button>
     <button mat-menu-item  (click)="trashNote(note)" >Delete Note</button>
-   <button mat-menu-item  (click)="trashNote(note)" >Restore</button>
-    <button mat-menu-item  (click)="delete(note)" >Delete Note Permentaly</button>
-    <button mat-menu-item>Make a Copy</button>
+
   </div>
   </mat-menu>
   
@@ -270,11 +255,12 @@
       <input matInput placeholder="Placeholder" [formControl]="labelName" (click)="onEvent($event)">
       <mat-icon matSuffix> </mat-icon>
     </mat-form-field>
-  <div *ngFor="let note1 of labelArray">  
-  <mat-checkbox (click)="getid(note1)" (click)="onEvent($event)">{{note1.labelName}}</mat-checkbox>
-</div> 
-
-    <button mat-menu-item (click)= addLabel(note)>Create</button>
+    <div *ngFor="let note1 of labelArray">  
+        <mat-checkbox (click)="getid(note1)" (click)= addLabel(note) (click)="onEvent($event)">{{note1.labelName}}</mat-checkbox>
+      </div> 
+      
+          <button mat-menu-item (click)="addLabel1()">Create</button>
+       
  
 
   
@@ -292,7 +278,7 @@
   
     </div>
     </div>
-</div>
+
 </div>
 </div>
 

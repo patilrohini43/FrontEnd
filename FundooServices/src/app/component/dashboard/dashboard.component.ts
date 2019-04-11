@@ -5,7 +5,10 @@ import { EditDialogLabelComponent } from '../edit-dialog-label/edit-dialog-label
 import { MatDialog } from '@angular/material';
 import { HttpService } from 'src/app/service/http.service';
 import { ProfilepicComponent } from '../profilepic/profilepic.component';
-
+import { applySourceSpanToExpressionIfNeeded } from '@angular/compiler/src/output/output_ast';
+import { UpdateServicesService } from 'src/app/service/update-services.service';
+import {ChangeDetectorRef,  OnDestroy} from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -13,14 +16,25 @@ import { ProfilepicComponent } from '../profilepic/profilepic.component';
 })
 export class DashboardComponent implements OnInit {
 labelArray:any;
+icon:any="view_stream";
 profilePic:any;
 userInfo:any[];
+mobileQuery: MediaQueryList;
+
+fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
+
+   fillerContent = Array.from({length: 5},);
+
+  private _mobileQueryListener: () => void;
   constructor(
     private router:Router,
     public dialog: MatDialog,
-    private httpService:HttpService
-
-  ) { }
+    private httpService:HttpService,
+    private view:UpdateServicesService,
+    changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) 
+  {this.mobileQuery = media.matchMedia('(max-width: 1000px)');
+  this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+  this.mobileQuery.addListener(this._mobileQueryListener); }
 
 
   ngOnInit() {
@@ -36,6 +50,19 @@ userInfo:any[];
   }
 
 
+  changeView()
+  {
+    if(this.icon ==='view_stream')
+    {
+      this.icon='dashboard';
+      this.view.changedata('column wrap')
+
+    }else{
+      this.icon='view_stream';
+      this.view.changedata('row wrap')
+    }
+  }
+
   getImage(){
     this.profilePic=localStorage.getItem("token");
     console.log(this.profilePic);
@@ -44,7 +71,7 @@ userInfo:any[];
   
   openDialog(): void {
     const dialogRef = this.dialog.open(EditDialogLabelComponent, {
-      width: '400px',
+      width: '500px',
       height:'500px'
       //data: {name: this.name, animal: this.animal}
     });
@@ -113,3 +140,29 @@ userInfo:any[];
 
 
 }
+
+
+
+
+
+
+
+
+
+// mobileQuery: MediaQueryList;
+
+//   fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
+
+//   fillerContent = Array.from({length: 5},);
+
+//   private _mobileQueryListener: () => void;
+
+//   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+//     this.mobileQuery = media.matchMedia('(max-width: 600px)');
+//     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+//     this.mobileQuery.addListener(this._mobileQueryListener);
+//   }
+
+//   ngOnDestroy(): void {
+//     this.mobileQuery.removeListener(this._mobileQueryListener);
+//   }

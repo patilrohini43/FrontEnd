@@ -95,6 +95,35 @@ noteLabel:any;
    
   }
 
+  laterToday(note){
+    const newdate = new Date();
+    newdate.setHours(8);
+    newdate.setMinutes(0);
+    newdate.setSeconds(0);
+    console.log(newdate);
+    this.reminderValue = {
+    "reminder": [newdate],
+    // "noteIdList": [this.card.noteId]
+    
+    }
+
+    console.log("current date",newdate)
+    console.log("current1 date",newdate)
+   note.reminder=newdate;
+
+
+    this.httpService.postReminder('/user/notes/'+note.noteId+'?time='+newdate.toISOString()).subscribe(
+      response=>{
+        this.updateService.updateMessage();
+        console.log(response);
+      },
+
+    
+  
+    (error) => { console.log("error", error); }
+    
+    )
+    }
 
   changeColor(color) {
 
@@ -313,7 +342,7 @@ archiveNote(card)
   console.log("hii")
   this.httpService.putRequest1('/user/noted/'+card.noteId,this.card)
   .subscribe(response =>{
-
+    this.updateService.updateMessage()
    if(response.body.statuscode===401)
    {
      this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
@@ -333,7 +362,7 @@ archiveNote(card)
     console.log("error",error);
  }  ,
 
-this.updateService.updateMessage()
+
   );
 
   
@@ -381,6 +410,9 @@ trashNote(card)
         description:data.description,
         color:data.color,
         noteId:data.noteId,
+        reminder:data.reminder,
+        label:data.label,
+        collabuser:data.collabuser
 
     }
       });

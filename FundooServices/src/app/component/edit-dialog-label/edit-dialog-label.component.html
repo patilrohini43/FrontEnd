@@ -30,7 +30,9 @@
  -->
 
 <h1 mat-dialog-title>Edit Label</h1>
+
 <form class="example-form">
+    <div fxLayout="column" fxLayoutAlign="center center" >
     <mat-form-field class="example-full-width">
       <input type="tel" matInput placeholder="Create New Label"  [formControl]="labelName">
       <mat-icon matPrefix>cancel</mat-icon>
@@ -51,7 +53,9 @@
 
       </div>
   </div>
+  </div>
 </form>
+<mat-divider></mat-divider>
   <div>
       <button mat-button (click)="onNoClick()">Cancel</button>
       <button mat-button (click)=" addLabel()">Done</button>

@@ -29,6 +29,7 @@ export class NoteComponent implements OnInit {
   pin= false;
   isActive = false;
   id:any;
+  rem:any;
   date=new FormControl()
   dateNow : Date = new Date();
   data1:any;
@@ -38,6 +39,7 @@ export class NoteComponent implements OnInit {
   addOnBlur = true;
   label:any;
   notedata:any;
+  message:string="row wrap";
 
   labelIddata:any;
   reminderValue:any;
@@ -62,8 +64,8 @@ export class NoteComponent implements OnInit {
     { name: "brown", colorCode: "#e9c7a9" },
     { name: "gray", colorCode: "#e7e9ec" }
     ]
-  color: string
-  card:any
+color: string
+card:any
 noteLabel:any;
 data2:any;
 datap:any;
@@ -94,11 +96,17 @@ datap:any;
 
   ngOnInit() {
   // this.getNote();
+  this.updateService.currentMessage.subscribe(message=> {
+    this.message=message
+    console.log(this.message)
+  })
   this.updateService.currentNotes.subscribe(response=>{
     this.data=response['body'];
     console.log(this.data);
   })
    this.getLabel();
+
+   
    
    
   }
@@ -125,6 +133,32 @@ datap:any;
       this.labelIddata=note.labelId
       
     }
+
+
+
+    updateNote(note)
+    {
+       console.log("hello",this.color)
+        this.httpService.putRequest1('/user/note/update/color/'+note.noteId,this.color)
+        .subscribe(response =>{
+          console.log(response.body)
+          if(response.body.statusCode == 401){
+           this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+             duration: 1000,
+      });
+          
+          }
+        else 
+   
+          {
+             console.log(response.body.statusMessage)
+            this.snackbar.open(response.body.statusMessage +'Invalid !!', 'End now', {
+              duration: 1000,
+       });
+          }
+        })
+        
+       }
 
     reminder:any
 
@@ -193,7 +227,7 @@ datap:any;
      note.reminder=newdate;
 
 
-      this.httpService.postReminder('/user/notes/'+note.noteId+'?time='+newdate.toLocaleDateString()).subscribe(
+      this.httpService.postReminder('/user/notes/'+note.noteId+'?time='+newdate.toISOString()).subscribe(
         response=>{
           this.updateService.updateMessage();
           console.log(response);
@@ -435,6 +469,13 @@ trashNote(card)
         description:data.description,
         color:data.color,
         noteId:data.noteId,
+        reminder:data.reminder,
+        label:data.label,
+        collabuser:data.collabuser
+       
+
+        
+          
 
     }
       });
@@ -527,24 +568,25 @@ trashNote(card)
     }
 
 
-//     addLabel(card)
-// {
 
-
-//   this.label={
-
-//     "labelName":this.labelName.value,
-//   }
-//   console.log(this.label)
-//  this.httpService.postRequest1('/user/note/createLabel/'+card.noteId,this.label)
-//  .subscribe(response=>{
-//    console.log(response)
-
-   
-   
-//  })
-// }
-
+    addLabel1()
+    {
+      this.label={
+    
+        "labelName":this.labelName.value,
+      }
+      console.log(this.label)
+     this.httpService.postRequest1('/user/note/addLabel',this.label)
+     .subscribe(response=>{
+       console.log(response)
+       if(response.body.statusCode == 401){
+        this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+          duration: 1000,
+    });
+       }
+     })
+    }
+    
 
   onEvent(event) {
     event.stopPropagation();

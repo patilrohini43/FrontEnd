@@ -39,6 +39,8 @@ export class ArchiveComponent implements OnInit {
 
   ngOnInit() {
 
+    this.getLabel()
+
   this.updateService.currentNotes.subscribe(
     response=>{
 
@@ -58,6 +60,8 @@ export class ArchiveComponent implements OnInit {
    pin= false;
    isActive = false;
    id:any;
+   reminder:any
+   dateNow : Date = new Date();
    data1:any;
    label:any;
    labelIddata:any;
@@ -87,7 +91,7 @@ export class ArchiveComponent implements OnInit {
  noteLabel:any;
     archived:boolean=false
    trashed:boolean=false
-
+   reminderValue:any
  
  
  
@@ -281,13 +285,13 @@ export class ArchiveComponent implements OnInit {
    this.httpService.postRequest2('/user/note/addLabelToNote?labelId='+this.labelIddata+'&noteId='+note1.noteId,this.card)
       .subscribe(response=>{
         console.log(response)
-        this.getNote();
+        this.updateService.updateMessage()
                    if(response.body.statusCode === 401){
  
                    this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
                      duration: 1000,
               });
-              this.getNote();
+          
            
                   }
                 else 
@@ -309,8 +313,74 @@ export class ArchiveComponent implements OnInit {
                 });
                 
      }
+
+
+     addLabel1()
+     {
+       this.label={
+     
+         "labelName":this.labelName.value,
+       }
+       console.log(this.label)
+      this.httpService.postRequest1('/user/note/addLabel',this.label)
+      .subscribe(response=>{
+        console.log(response)
+        if(response.body.statusCode == 401){
+         this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+           duration: 1000,
+     });
+        }
+      })
+     }
+     
+ 
+     setReminder(note)
+     {
+       
+       console.log("curremt time",this.dateNow)
+        this.reminderValue= this.dateNow.toISOString();
+       
+        console.log(this.reminderValue);
+       //   this.reminderValue=JSON.stringify(this.date.value);
+          console.log("Reminder Value",this.reminderValue)
+         
+          console.log(this.reminder)
+          console.log(note.title)
+          
+          this.httpService.postReminder('/user/notes/'+note.noteId+'?time='+this.reminderValue).subscribe(
+            response=>{
+              this.updateService.updateMessage();
+              console.log(response);
+            }
+          )
+          //console.log(note.reminder);
+ 
+     }
  
  
+ 
+     removeReminder(note)
+     {
+       
+       console.log("curremt time",this.dateNow)
+        this.reminderValue= this.dateNow.toISOString();
+       
+        console.log(this.reminderValue);
+       //   this.reminderValue=JSON.stringify(this.date.value);
+          console.log("Reminder Value",this.reminderValue)
+         
+          console.log(this.reminder)
+          console.log(note.title)
+          
+          this.httpService.postReminder('/user/notes/remove/'+note.noteId+'?time='+this.reminderValue).subscribe(
+            response=>{
+              this.updateService.updateMessage();
+              console.log(response);
+            }
+          )
+          //console.log(note.reminder);
+ 
+     }
  
      getLabel()
      {

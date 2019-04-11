@@ -79,3 +79,9 @@ textarea {
   font-size: 12px;
     font-style: normal
 }
+
+@media(max-width:700px){
+  .example-container{
+    width: 340px;
+  }
+}

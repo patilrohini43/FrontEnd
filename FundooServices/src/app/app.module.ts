@@ -47,6 +47,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +73,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
   LabelNoteComponent,
   IconsComponent,
   CollabratorComponent,
+
  
  
 

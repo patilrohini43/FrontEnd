@@ -4,6 +4,7 @@ import { Notedto } from 'src/app/model/createnote';
 import { HttpService } from 'src/app/service/http.service';
 import { Note } from 'src/app/model/note';
 import { FormControl } from '@angular/forms';
+import { UpdateServicesService } from 'src/app/service/update-services.service';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -31,8 +32,14 @@ colorCode: Array<Object> = [
   { name: "gray", colorCode: "#e7e9ec" }
   ]
   color:string; 
-
+  resp:any;
+  visible = true;
+  selectable = true;
+  removable = true;
 data1:any
+archived:boolean=false
+  trashed:boolean=false
+labelArray:any
 title= new FormControl('')
 description=new FormControl('')
 noteId=new FormControl('')
@@ -41,7 +48,35 @@ noteId=new FormControl('')
     public dialogRef: MatDialogRef<EditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Notedto,
     private httpService:HttpService,
-    private snackbar:MatSnackBar) {}
+    private snackbar:MatSnackBar,
+    private updateService:UpdateServicesService) {
+
+    
+
+
+      this.updateService.changemessage(false,false);
+      this.updateService.currentNotes.subscribe(response=>{
+        console.log(response);
+        this.resp=response;
+      })
+     }
+  // pined=new Array<Note>();
+  // others=new Array<Note>();
+  // fullNotes(){
+  //   this.data.filter(note=>note.pin===true&&note.archive===false&& note.trash===false).map(note=>this.pined.push(note));
+  // }
+  
+  
+    ngOnInit() {
+    // this.getNote();
+    this.updateService.currentNotes.subscribe(response=>{
+      this.resp=response['body'];
+      console.log(this.data);
+    })
+    ;
+     
+     
+    }
 
 
   
@@ -95,6 +130,45 @@ noteId=new FormControl('')
      this.dialogRef.close();
     }
 
+
+
+    archiveNote(data)
+    {
+      //card.archive=true;
+   //   card.trash=false;
+      console.log("archive work start")
+    //  console.log(card.noteId)
+      console.log("hii")
+      this.httpService.putRequest1('/user/noted/'+data.noteId,this.data)
+      .subscribe(response =>{
+       this.updateService.updateMessage()
+       if(response.body.statuscode===401)
+       {
+         this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+           duration: 1000,
+    });
+    
+    
+    
+       }
+       else{
+         this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+           duration: 1000,
+    });
+       }
+      },
+      (error) => {
+        console.log("error",error);
+     }  ,
+    
+    
+      );
+    
+      
+    }
+    
+   
+  
 
 }
 

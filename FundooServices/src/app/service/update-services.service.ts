@@ -74,6 +74,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpService } from './http.service';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 
 @Injectable({
@@ -86,7 +87,8 @@ private isTrash  = false;
 labelId:any;
 alllabelNote:any;
 private obtainNotes = new BehaviorSubject([]);
-
+private messagesource=new BehaviorSubject("row wrap");
+currentMessage=this.messagesource.asObservable();
 currentNotes = this.obtainNotes.asObservable();
 
 storeData=this.obtainNotes.asObservable();
@@ -114,6 +116,14 @@ this.httpService.getNotes(this.isArchive,this.isTrash).subscribe(
       );
   }
 
+  changedata(message:string)
+  {
+    this.messagesource.next(message);
+  }
+
+
+
+  
 changemessage(archive: boolean, trash: boolean ){
   this.isArchive = archive;
   this.isTrash = trash;

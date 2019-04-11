@@ -83,13 +83,6 @@ export class AddNoteComponent implements OnInit {
     
     }
 
-//  pined=new Array<Note>();
-// others=new Array<Note>();
-// fullNotes(){
-//   this.data.filter(note=>note.pin===true&&note.archive===false&& note.trash===false).map(note=>this.pined.push(note));
-// }
-
-
 
     private content_filter() {
       this.allnote.forEach(x => {
@@ -122,15 +115,15 @@ createNote()
                console.log(response.body);
                console.log(response.body.statusMessage);
               // console.log(response.body.token);
-             
+                
+          this.updateService.updateMessage()
                 if(response.body.statusCode == 401){
                 this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
                   duration: 1000,
            });
 
          //  this.Child.getNote();
-           
-          this.updateService.updateMessage()
+        
            
                 //  this.router.navigate(['/dashboard']);
                   
