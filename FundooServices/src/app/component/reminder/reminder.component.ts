@@ -1,3 +1,4 @@
+
 import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { HttpService } from 'src/app/service/http.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
@@ -14,14 +15,15 @@ import { ChildActivationEnd } from '@angular/router';
 import { NotepinComponent } from '../notepin/notepin.component';
 import { CollabratorComponent } from '../collabrator/collabrator.component';
 
+
 @Component({
-  selector: 'app-note',
-  templateUrl: './note.component.html',
-  styleUrls: ['./note.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
- 
+  selector: 'app-reminder',
+  templateUrl: './reminder.component.html',
+  styleUrls: ['./reminder.component.scss']
 })
-export class NoteComponent implements OnInit {
+export class ReminderComponent implements OnInit {
+
+
   deleteData: { "isDeleted": boolean; "noteIdList": any[]; };
   archivevalue=false;
   archiveData: { "isArchived": boolean; "noteIdList": any[]; };
@@ -68,10 +70,9 @@ color: string
 card:any
 noteLabel:any;
 data2:any;
-today=new Date;
-tomorrowDate= new Date(this.today.getFullYear(), this.today.getMonth(), (this.today.getDate() + 1))
 datap:any;
 idNote:any;
+alldata:any
 @Input() Search:any;
 
    archived:boolean=false
@@ -109,6 +110,7 @@ idNote:any;
     console.log(this.data);
   })
    this.getLabel();
+   this.getNote();
 
    
    
@@ -296,8 +298,8 @@ idNote:any;
           (response) => {console.log("success get notes",response)
           this.data = response['body']; 
             console.log("data-->",this.data);
-      
-           
+      this.alldata=this.data.filter(item => item.reminder);
+           console.log("heeee..",this.alldata)
       if(response.body.statuscode===401){
         this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
           duration: 1000,
@@ -606,3 +608,6 @@ trashNote(card)
 
 
 }
+
+
+

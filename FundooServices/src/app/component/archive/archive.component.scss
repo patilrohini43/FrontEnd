@@ -238,12 +238,16 @@
   border-radius: 5px;
 }
 
-.matcardshow{  display:none !important;
+.matcardshow{ 
+  // display:none !important;
+   visibility: hidden;
+   
   }
  mat-card:hover{
   
   .matcardshow{
-      display: block !important;
+     // display: block !important;
+      visibility: visible;
     }
   
  }
@@ -258,3 +262,15 @@
   border-radius: 15px;
 }
 
+.pinIcon{ 
+  // display:none !important;
+   visibility: hidden;
+   
+  }
+ mat-card:hover{
+  
+  .pinIcon{
+     // display: block !important;
+      visibility: visible;
+    }
+ }

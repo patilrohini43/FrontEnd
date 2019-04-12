@@ -53,8 +53,10 @@ putRequest1(url,notedto):  any {
 }
 
 
+
+
 putRequest2(url):  any {
-  return this.http.put(this.userUrl+url,{
+  return this.http.post(this.userUrl+url,{
     headers:new HttpHeaders().set("jwt_token",localStorage.getItem("token")), 
   observe:'response'});
 }

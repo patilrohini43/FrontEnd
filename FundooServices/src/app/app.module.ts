@@ -42,6 +42,9 @@ import { IconsComponent } from './component/icons/icons.component';
 import { CollabratorComponent } from './component/collabrator/collabrator.component';
 //import { of } from 'rxjs/observable/of';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { SearchComponent } from './component/search/search.component';
+import { SearchPipe } from './pipe/search.pipe';
+import { ReminderComponent } from './component/reminder/reminder.component';
 
 
 
@@ -73,6 +76,9 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
   LabelNoteComponent,
   IconsComponent,
   CollabratorComponent,
+  SearchComponent,
+  SearchPipe,
+  ReminderComponent,
 
  
  

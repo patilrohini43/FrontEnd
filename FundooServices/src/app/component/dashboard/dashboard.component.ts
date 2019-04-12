@@ -9,6 +9,7 @@ import { applySourceSpanToExpressionIfNeeded } from '@angular/compiler/src/outpu
 import { UpdateServicesService } from 'src/app/service/update-services.service';
 import {ChangeDetectorRef,  OnDestroy} from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { PipeServiceService } from '../pipe-service.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -20,7 +21,7 @@ icon:any="view_stream";
 profilePic:any;
 userInfo:any[];
 mobileQuery: MediaQueryList;
-
+Search:any;
 fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
    fillerContent = Array.from({length: 5},);
@@ -31,6 +32,7 @@ fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
     public dialog: MatDialog,
     private httpService:HttpService,
     private view:UpdateServicesService,
+    private pipe:PipeServiceService,
     changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) 
   {this.mobileQuery = media.matchMedia('(max-width: 1000px)');
   this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -68,7 +70,10 @@ fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
     console.log(this.profilePic);
   }
 
-  
+  goSearch()
+  {
+    this.router.navigate(['dashboard/search'])
+  }
   openDialog(): void {
     const dialogRef = this.dialog.open(EditDialogLabelComponent, {
       width: '500px',
@@ -80,6 +85,11 @@ fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
       console.log('The dialog was closed');
      // this.animal = result;
     });
+  }
+
+
+  lookFor(){
+    this.pipe.changedata(this.Search)
   }
 
 

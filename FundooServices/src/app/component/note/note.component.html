@@ -1,7 +1,7 @@
 
 
     <div fxLayout={{message}} fxFlex="80" fxFlexAlign="center" fxLayoutAlign="center center" style="margin-left: 150px;">
-      <div *ngFor="let note of data">  
+      <div *ngFor="let note of data | search:Search; let i index">  
       <div fxLayout="row wrap" fxLayoutAlign="center stretch" fxLayoutGap="20px" >
         <div *ngIf="note.pin===true" class="example-container">
           <div *ngIf="note.archive===false" >
@@ -58,12 +58,41 @@
               <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
                   <mat-chip [style.fontSize.px]=8  *ngIf="note.reminder!=reminder" [selectable]="selectable"
                   [removable]="removable" (removed)="removeReminder(note)">
-                  {{note.reminder|date:'short'}}
+                 <div *ngIf=" ((today|date:'shortDate')===(note.reminder|date:'shortDate'))">
+                    Today {{note.reminder|date:'short'}}
+                 
              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-             </mat-chip>
+            </div>
+              </mat-chip>
                  </div>  
 
+
+                 <!-- <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                    <mat-chip [style.fontSize.px]=8  *ngIf="note.reminder!=reminder" [selectable]="selectable"
+                    [removable]="removable" (removed)="removeReminder(note)">
+                   <div *ngIf="(tomorrowDate|date:'shortDate')===(note.reminder|date:'shortDate')">
+                     Tomorrow, {{note.reminder|date:'short'}}
+                   
+               <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </div>
+                </mat-chip>
+                   </div>  
+   -->
+
+                   
+               <div *ngIf="((today|date:'shortDate')!=(note.reminder|date:'shortDate'))">
+                   <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                      <mat-chip [style.fontSize.px]=8  *ngIf="note.reminder!=reminder" [selectable]="selectable"
+                      [removable]="removable" (removed)="removeReminder(note)">
+                        {{note.reminder|date:'short'}}
+                       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              
+                  </mat-chip>
+                     </div>  
+                    </div>
                 
+
+                 
 
                     
                 
@@ -190,7 +219,7 @@
         center" fxFlex="200">
         <div *ngFor="let color of colorCode">
         <button mat-icon-button [ngStyle]="{'color': color.colorCode}" (click)="changeColor(color.colorCode)">
-        <mat-icon style="font-size: 40px" class="colorIcons" (click)="updateNote(note)">fiber_manual_record</mat-icon>
+        <mat-icon style="font-size: 40px" class="colorIcons" (click)="updateNote(color.colorCode)">fiber_manual_record</mat-icon>
         </button>
         </div>
         </div>
@@ -198,6 +227,8 @@
         </mat-menu>
 
 
+        <!-- <app-notepin>
+          </app-notepin> -->
 
 
 
@@ -205,8 +236,7 @@
 
 
 
-
-
+      
 
 
 

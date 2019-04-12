@@ -140,31 +140,32 @@
             <button mat-icon-button (click)="snav.toggle()">
             <mat-icon>menu</mat-icon>
             </button>
-            <div fxFlex="5" fxLayout.gt-xs="row" fxFlex.gt-xs="500px" fxHide.sm fxHide.xs >
+            <div fxFlex="5" fxLayout.gt-xs="row" fxFlex.gt-xs="500px" fxHide.sm fxHide.xs  fxFlexOffset=4>
             <img class="gb_ma gb_4d" alt="" aria-hidden="true" src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"  style="width:40px;height:40px">
             <h1 class="example-app-name" *ngIf="headerName==null">FundooApp</h1>
             <h1>{{headerName}}</h1>
             </div>
           </div>
           
-          <div fxFlex="70" fxFlexOffset=6> 
+          <div fxFlex="70" fxFlexOffset=10> 
           <mat-form-field appearance="outline" [style.fontSize.px]="2" class="search">
           <button mat-icon-button>
           <mat-icon>search</mat-icon>
           </button>
           <input fxFlex="90" type="input" [(ngModel)]="Search" matInput placeholder="Search" [style.fontSize.px]="18"
-          (keyup)="lookFor()" (click)="goSearch()" class="searchText" autocomplete="off">
+            (click)="goSearch()"  (keyup)="lookFor()"  autocomplete="off">
+          <!-- (keyup)="lookFor()" (click)="goSearch()" class="searchText"  -->
           </mat-form-field>
           </div>
             
 
-          <div fxFlex="10" class="settingbtn">
+          <div fxFlex="5" class="settingbtn">
 
               <button mat-icon-button matTooltip="apps" (click)="changeView()"><mat-icon>{{icon}}</mat-icon>
               </button>
       
               </div>
-              <div fxFlex="10">
+              <div fxFlex="5" fxFlexOffset=4>
               <button mat-button [matMenuTriggerFor]="menu" matTooltip="settings"><mat-icon>settings</mat-icon></button>
               <mat-menu #menu="matMenu">
                 <button mat-menu-item>Settings</button>
@@ -173,12 +174,12 @@
               </mat-menu>
               </div>
              
-              <div fxFlex="10">
+              <div fxFlex="5" fxFlexOffset=4>
               <button mat-icon-button matTooltip="notification_important"><mat-icon>notification_important</mat-icon></button>
             </div>
 
       
-            <div fxFlexOffset=4>
+            <div fxFlex="5" fxFlexOffset=5>
               <div [matMenuTriggerFor]="menu1"  matTooltip="account_circle"><img mat-card-avatar class="profile" src="http://localhost:8081/user/getProfile/{{profilePic}}"/>
               </div>
               </div>
@@ -237,8 +238,8 @@
                    [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" style="width:220px">
         <mat-action-list>
       
-            <button class= "hoverhighlight" mat-list-item routerLink="notes" (click)="headerName='Notes'"> <mat-icon>lightbulb_outline</mat-icon> <i style="margin: 5%;"></i> Notes </button>
-            <button class= "hoverhighlight" mat-list-item (click)="headerName='Reminder'"><mat-icon>notifications_none</mat-icon><i style="margin: 5%;"></i>Remainder</button>
+            <button class= "hoverhighlight" mat-list-item routerLink="/dashboard" routerLinkActive="active" (click)="headerName='Notes'"> <mat-icon>lightbulb_outline</mat-icon> <i style="margin: 5%;"></i> Notes </button>
+            <button class= "hoverhighlight" mat-list-item  routerLink="reminder" (click)="headerName='Reminder'"><mat-icon>notifications_none</mat-icon><i style="margin: 5%;"></i>Remainder</button>
             <mat-divider ></mat-divider>
             <h6 style="font-size:65%;" matSubheader >LABELS</h6>
             <div *ngFor="let label of labelArray">
@@ -255,7 +256,7 @@
   
       <mat-sidenav-content>
        
-          <router-outlet></router-outlet> 
+           <router-outlet></router-outlet> 
   
       </mat-sidenav-content>
     </mat-sidenav-container>

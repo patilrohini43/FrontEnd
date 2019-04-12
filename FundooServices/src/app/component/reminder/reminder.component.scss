@@ -1,0 +1,70 @@
+
+.example-container {
+    padding: 16px;
+    //margin-bottom: 16px;
+  }
+  .mat-card{
+    //height: 160px;
+    width: 200px;
+    min-height: 160px;
+    max-height: 250px;
+    border-radius: 15px;
+    margin-top: 30px; 
+  }
+  
+  .mat-chip{
+    border-radius: 5px;
+  }
+  
+  .matcardshow{ 
+    // display:none !important;
+     visibility: hidden;
+     
+    }
+   mat-card:hover{
+    
+    .matcardshow{
+       // display: block !important;
+        visibility: visible;
+      }
+   }
+  
+  
+   .pinIcon{ 
+    // display:none !important;
+     visibility: hidden;
+     
+    }
+   mat-card:hover{
+    
+    .pinIcon{
+       // display: block !important;
+        visibility: visible;
+      }
+   }
+  
+  
+  
+  
+  
+  
+  
+  .matcardshow1{
+    margin-top: 45px;
+    
+  }
+  .mat{
+    width: 320px;
+  }
+  .collab{
+    border-radius: 15px;
+  }
+  .cardwidth{
+    width: 600px;
+    min-height: 160px;
+    max-height: 250px;
+    border-radius: 15px;
+    margin-top: 30px; 
+  }
+  
+  

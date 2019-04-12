@@ -77,6 +77,11 @@ export class AddNoteComponent implements OnInit {
     this.flag = ! this.flag;
   }
 
+
+
+
+
+
   changeColor(color) {
 
     this.color = color;
@@ -116,6 +121,9 @@ createNote()
                console.log(response.body.statusMessage);
               // console.log(response.body.token);
                 
+        
+
+          this.flag=false;
           this.updateService.updateMessage()
                 if(response.body.statusCode == 401){
                 this.snackbar.open(response.body.statusMessage +' !!', 'End now', {

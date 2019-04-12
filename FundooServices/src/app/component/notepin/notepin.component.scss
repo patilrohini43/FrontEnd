@@ -248,13 +248,16 @@
 .mat-chip{
   border-radius: 10px;
 }
-
-.matcardshow{  display:none !important;
+.matcardshow{ 
+  // display:none !important;
+   visibility: hidden;
+   
   }
  mat-card:hover{
   
   .matcardshow{
-      display: block !important;
+     // display: block !important;
+      visibility: visible;
     }
   
  }
@@ -262,3 +265,16 @@
   margin-top: 45px;
   
 }
+
+.pinIcon{ 
+  // display:none !important;
+   visibility: hidden;
+   
+  }
+ mat-card:hover{
+  
+  .pinIcon{
+     // display: block !important;
+      visibility: visible;
+    }
+ }

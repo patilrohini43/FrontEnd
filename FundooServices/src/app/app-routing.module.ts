@@ -18,6 +18,8 @@ import { AuthguardGuard } from './service/authguard.guard';
 
 import { LabelNoteComponent } from './component/label-note/label-note.component';
 import { NotepinComponent } from './component/notepin/notepin.component';
+import { SearchComponent } from './component/search/search.component';
+import { ReminderComponent } from './component/reminder/reminder.component';
 
 
 
@@ -34,6 +36,7 @@ const routes: Routes = [
   path: 'login', 
   component:LoginComponent
 }, 
+
 
 {
   canActivate : [AuthguardGuard],
@@ -78,6 +81,15 @@ const routes: Routes = [
       path: 'notepin', 
       component:NotepinComponent,
     },
+    {
+      path: 'search', 
+      component:SearchComponent,
+    },
+    {
+      path: 'reminder', 
+      component:ReminderComponent,
+    },
+    
 
 
 
