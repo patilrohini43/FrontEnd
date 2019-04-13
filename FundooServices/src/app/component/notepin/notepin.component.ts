@@ -62,6 +62,8 @@ export class NotepinComponent implements OnInit {
 noteLabel:any;
    archived:boolean=false
   trashed:boolean=false
+  today=new Date;
+tomorrowDate= new Date(this.today.getFullYear(), this.today.getMonth(), (this.today.getDate() + 1))
 
   //carddata=this.data;
   constructor(

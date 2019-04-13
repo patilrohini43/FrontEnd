@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from 'src/app/service/http.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 
 import { AllNotes } from 'src/app/model/allNotes';
 
@@ -15,6 +15,7 @@ import { EditDialogLabelComponent } from '../edit-dialog-label/edit-dialog-label
 import { UpdateServicesService } from 'src/app/service/update-services.service';
 
 import { ChildActivationEnd } from '@angular/router';
+import { CollabratorComponent } from '../collabrator/collabrator.component';
 
 @Component({
   selector: 'app-archive',
@@ -26,7 +27,8 @@ export class ArchiveComponent implements OnInit {
   constructor(
     private httpService:HttpService,
     private snackbar:MatSnackBar,
-    private updateService:UpdateServicesService
+    private updateService:UpdateServicesService,
+    public dialog: MatDialog,
 
   ) {
 
@@ -92,8 +94,9 @@ export class ArchiveComponent implements OnInit {
     archived:boolean=false
    trashed:boolean=false
    reminderValue:any
- 
- 
+   visible = true;
+   selectable = true;
+   removable = true;
  
    changeColor(color) {
  
@@ -116,7 +119,21 @@ export class ArchiveComponent implements OnInit {
      }
  
  
- 
+     collabratorDialog(data) {
+      const dialogRef = this.dialog.open(CollabratorComponent, {
+        width: '750px',
+        height:'390px',
+     
+        data: {
+          noteId:data.noteId,
+                
+      }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
  
      getNote()
    {

@@ -4,7 +4,7 @@
         <mat-divider></mat-divider>
       </mat-list>
       
-<div fxLayout="row" fxLayoutAlign="center center" style=" margin-left: -450px; margin-top: 10px;"> 
+      <div fxLayout="row" fxLayoutAlign="start end"> 
     <div mat-card-avatar class="profile">
      <img mat-card-avatar class="profile1" src="http://localhost:8081/user/getProfile/{{profilePic}}"/> 
     </div>     
@@ -19,33 +19,37 @@
 
 
 <div *ngFor="let info of data1">
-  <div fxLayout="row" fxLayoutAlign="center center" style=" margin-top: 10px;margin-right: 287px;"> 
+  <div fxLayout="row" fxLayoutAlign="start end"> 
      <button mat-mini-fab> {{info.username | slice:0:1}}</button>
-     <div fxLayout="column" style="margin-right: 110px;">
+     <div fxLayout="column" style="margin-right: 110px;" fxFlex=50> 
       <div style="font-size:15px;font-weight: bold;">{{info.username}}</div>
         <div style="font-size:12px;"> {{info.email}}</div>
       </div>
-
-       <button mat-button><mat-icon matSuffix  (click)=" removeCollbrator(info.email)">cancel</mat-icon>
+         
+             <button mat-button ><mat-icon matSuffix  (click)=" removeCollbrator(info.email)">cancel</mat-icon>
        </button>
+      
+
       </div>
 </div> 
 
-<div style="margin-top:15px;margin-left: -260px;">
-<div fxLayout="row" fxLayoutAlign="center center"  style="margin-left:300px;">
+
+    <div fxLayout="row" fxLayoutAlign="start end"> 
          
            <mat-icon matPrefix style="margin-right:10px;">person_add</mat-icon>
            
             <input type="tel"  matInput placeholder="Person or Email Share With" style="font-size: 12px;" [formControl]="useremail">
 
-          <button mat-button><mat-icon matSuffix  (click)="done(data.noteId)">done</mat-icon>
+          <button mat-button style="    margin-right: 126px;"><mat-icon matSuffix  (click)="done(data.noteId)">done</mat-icon>
           </button>
         </div>
+
+
+
+<mat-toolbar style="background-color:rgb(231, 227, 227);color:white;margin-top: 80px;">
+
+<div fxLayout="row" fxLayoutAlign="space-around center" >
+  <button mat-button mat-dialog-close style="color:rgb(63, 55, 55);">Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="addCollbrator(data.noteId)" style="color:rgb(63, 55, 55);">Save</button>
 </div>
-
-  <div fxLayout="row" fxLayoutAlign="end end" style="margin-top:130px;" >
-  <button mat-button mat-dialog-close style="margin-left:450px;">Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="addCollbrator(data.noteId)">Save</button>
-  </div>
-
- 
+</mat-toolbar>

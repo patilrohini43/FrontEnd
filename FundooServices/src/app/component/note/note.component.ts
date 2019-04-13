@@ -40,14 +40,14 @@ export class NoteComponent implements OnInit {
   label:any;
   notedata:any;
   message:string="row wrap";
- 
+ note:any
   labelIddata:any;
   reminderValue:any;
   labelArray:any;
   labelName=new FormControl('',[Validators.required])
   @Input() data:any;
   @Input() searchValue:any;
-  note:Notedto=new Notedto();
+  //note:Notedto=new Notedto();
   
 
   colorCode: Array<Object> = [
@@ -254,34 +254,56 @@ idNote:any;
 
 
       laterTomorrow(note){
-        const newdate = new Date();
-        newdate.setHours(8);
-        newdate.setMinutes(0);
-        newdate.setSeconds(0);
-        console.log(newdate);
-        this.reminderValue = {
-        "reminder": [newdate],
-        // "noteIdList": [this.card.noteId]
+          try {
+          this.note.reminder=new Date(this.today.getFullYear(), this.today.getMonth(),
+          (this.today.getDate()+1 ), 8, 0, 0, 0)
+
+          this.httpService.postReminder('/user/notes/'+note.noteId+'?time='+this.tomorrowDate.toISOString()).subscribe(
+            response=>{
+              this.updateService.updateMessage();
+              console.log(response);
+            },
+          (error:any)=> {
+          console.log(error.error.statusMessage)
+          }
+          );
+          } catch (err) {
+          console.log(err)
+          }
+          
+          }
+
+
+
+      // laterTomorrow(note){
+      //   const newdate = new Date();
+      //   newdate.setHours(8);
+      //   newdate.setMinutes(0);
+      //   newdate.setSeconds(0);
+      //   console.log(newdate);
+      //   this.reminderValue = {
+      //   "reminder": [newdate],
+      //   // "noteIdList": [this.card.noteId]
         
-        }
+      //   }
   
-        console.log("current date",newdate)
-        console.log("current1 date",newdate)
-       note.reminder=newdate;
+      //   console.log("current date",newdate)
+      //   console.log("current1 date",newdate)
+      //  note.reminder=newdate;
   
   
-        this.httpService.postReminder('/user/notes/'+note.noteId+'?time='+newdate.toLocaleDateString()).subscribe(
-          response=>{
-            this.updateService.updateMessage();
-            console.log(response);
-          },
+      //   this.httpService.postReminder('/user/notes/'+note.noteId+'?time='+newdate.toISOString()).subscribe(
+      //     response=>{
+      //       this.updateService.updateMessage();
+      //       console.log(response);
+      //     },
     
         
       
-        (error) => { console.log("error", error); }
+      //   (error) => { console.log("error", error); }
         
-        )
-        }
+      //   )
+      //   }
 
 
   
@@ -606,3 +628,60 @@ trashNote(card)
 
 
 }
+
+
+
+
+
+
+
+// today(){
+//   try {
+//   this.note.reminder=new Date(this.todayDate.getFullYear(), this.todayDate.getMonth(),
+//   (this.todayDate.getDate() ), 20, 0, 0, 0)
+//   this.noteService.NoteUpdate(this.note).subscribe(
+//   (response:any)=>{
+//   console.log(response.statusMessage)
+//   },
+//   (error:any)=> {
+//   console.log(error.error.statusMessage)
+//   }
+//   );
+//   } catch (err) {
+//   console.log(err)
+//   }
+ 
+//  }
+//   tomorrow(){
+//   try {
+//   this.note.reminder=new Date(this.todayDate.getFullYear(), this.todayDate.getMonth(),
+//   (this.todayDate.getDate()+1 ), 8, 0, 0, 0)
+//   this.noteService.NoteUpdate(this.note).subscribe(
+//   (response:any)=>{
+//   console.log(response.statusMessage)
+//   },
+//   (error:any)=> {
+//   console.log(error.error.statusMessage)
+//   }
+//   );
+//   } catch (err) {
+//   console.log(err)
+//   }
+  
+//   }
+//   nextweek(){
+//   try {
+//   this.note.reminder=new Date(this.todayDate.getFullYear(), this.todayDate.getMonth(),
+//   (this.todayDate.getDate()+7 ), 8, 0, 0, 0)
+//   this.noteService.NoteUpdate(this.note).subscribe(
+//   (response:any)=>{
+//   console.log(response.statusMessage)
+//   },
+//   (error:any)=> {
+//   console.log(error.error.statusMessage)
+//   }
+//   );
+//   } catch (err) {
+//   console.log(err)
+//   }
+//   }
