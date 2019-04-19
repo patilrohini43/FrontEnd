@@ -81,7 +81,8 @@
                   </div>
 
                    
-               <div *ngIf="((today|date:'shortDate')!=(note.reminder|date:'shortDate'))">
+               <div *ngIf="((note.reminder|date:'shortDate')!= (tomorrowDate|date:'shortDate'))">
+                  <div *ngIf="((note.reminder|date:'shortDate')!= (today|date:'shortDate'))">
                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
                       <mat-chip [style.fontSize.px]=8  *ngIf="note.reminder!=reminder" [selectable]="selectable"
                       [removable]="removable" (removed)="removeReminder(note)">
@@ -91,9 +92,10 @@
                   </mat-chip>
                      </div>  
                     </div>
+               </div>
                 
 
-                 
+                    
 
                     
                 

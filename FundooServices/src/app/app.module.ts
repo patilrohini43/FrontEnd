@@ -46,7 +46,7 @@ import { SearchComponent } from './component/search/search.component';
 import { SearchPipe } from './pipe/search.pipe';
 import { ReminderComponent } from './component/reminder/reminder.component';
 
-
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 
 
 
@@ -79,8 +79,7 @@ import { ReminderComponent } from './component/reminder/reminder.component';
   SearchComponent,
   SearchPipe,
   ReminderComponent,
-
- 
+  
  
 
    
@@ -100,9 +99,9 @@ import { ReminderComponent } from './component/reminder/reminder.component';
     MatCardModule,
     FlexLayoutModule,
     OwlDateTimeModule, 
-    OwlNativeDateTimeModule
+    OwlNativeDateTimeModule,
   
-   
+    NgxLoadingModule.forRoot({})
 
     
   ],

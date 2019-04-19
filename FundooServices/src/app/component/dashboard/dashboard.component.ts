@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
 labelArray:any;
 icon:any="view_stream";
 profilePic:any;
+public loading = true;
 userInfo:any[];
 mobileQuery: MediaQueryList;
 Search:any;
@@ -26,7 +27,7 @@ fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
    fillerContent = Array.from({length: 5},);
 
-  private _mobileQueryListener: () => void;
+  private _mobileQueryListener: () => void; 
   constructor(
     private router:Router,
     public dialog: MatDialog,
@@ -67,6 +68,7 @@ fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
   getImage(){
     this.profilePic=localStorage.getItem("token");
+    this.view.updateMessage();
     console.log(this.profilePic);
   }
 
@@ -74,6 +76,12 @@ fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
   {
     this.router.navigate(['dashboard/search'])
   }
+
+
+
+
+
+
   openDialog(): void {
     const dialogRef = this.dialog.open(EditDialogLabelComponent, {
       width: '500px',

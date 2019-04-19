@@ -70,6 +70,8 @@ export class ArchiveComponent implements OnInit {
    labelArray:any;
    labelName=new FormControl('',[Validators.required])
     data:any[];
+    today=new Date;
+tomorrowDate= new Date(this.today.getFullYear(), this.today.getMonth(), (this.today.getDate() + 1))
  
    note:Notedto=new Notedto();
    
@@ -117,6 +119,62 @@ export class ArchiveComponent implements OnInit {
        this.labelIddata=note.labelId
        
      }
+
+
+
+
+    laterToday(note){
+      const newdate = new Date();
+      newdate.setHours(8);
+      newdate.setMinutes(0);
+      newdate.setSeconds(0);
+      console.log(newdate);
+      this.reminderValue = {
+      "reminder": [newdate],
+      // "noteIdList": [this.card.noteId]
+      
+      }
+
+      console.log("current date",newdate)
+      console.log("current1 date",newdate)
+     note.reminder=newdate;
+
+
+      this.httpService.postReminder('/user/notes/'+note.noteId+'?time='+newdate.toISOString()).subscribe(
+        response=>{
+          this.updateService.updateMessage();
+          console.log(response);
+        },
+  
+      
+    
+      (error) => { console.log("error", error); }
+      
+      )
+      }
+
+
+
+      laterTomorrow(note){
+          try {
+          note.reminder=new Date(this.today.getFullYear(), this.today.getMonth(),
+          (this.today.getDate()+1 ), 8, 0, 0, 0)
+    
+          this.httpService.postReminder('/user/notes/'+note.noteId+'?time='+note.reminder.toISOString()).subscribe(
+            response=>{
+              this.updateService.updateMessage();
+              console.log(response);
+            },
+          (error:any)=> {
+          console.log(error.error.statusMessage)
+          }
+          );
+          } catch (err) {
+          console.log(err)
+          }
+          
+          }
+
  
  
      collabratorDialog(data) {

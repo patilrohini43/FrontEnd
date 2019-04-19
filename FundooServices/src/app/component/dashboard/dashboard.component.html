@@ -178,6 +178,13 @@
               <button mat-icon-button matTooltip="notification_important"><mat-icon>notification_important</mat-icon></button>
             </div>
 
+<!-- 
+<button id="toggle-loading-button" (click)="loading = !loading">Toggle loading</button>
+
+
+
+<ngx-loading [show]="loading" [config]="{primaryColour: primaryColour, secondaryColour: secondaryColour, tertiaryColour: primaryColour, backdropBorderRadius: '3px'}"
+[template]="loadingTemplate"></ngx-loading> -->
       
             <div fxFlex="5" fxFlexOffset=5>
               <div [matMenuTriggerFor]="menu1"  matTooltip="account_circle"><img mat-card-avatar class="profile" src="http://localhost:8081/user/getProfile/{{profilePic}}"/>
@@ -198,8 +205,11 @@
                   
                       <mat-card-header >
                           <div mat-card-avatar class="profile1" (click)="ProfileSelect()" >
+                            <div class="imageprofile">
                               <img mat-card-avatar class="profile1" src="http://localhost:8081/user/getProfile/{{profilePic}}"/>  
-                          </div>
+                            </div>
+                            </div>
+                      
                  
                     
                           <div *ngFor="let user of userInfo">
@@ -211,9 +221,11 @@
             
                       </mat-card-header>
                     <mat-card-content>
-                       <div fxLayout="row" class="profilebutton" >
-                      <button color="primary" style="width:120px" mat-menu-item (click)="logOut()">LogOut</button>
-                      <button color="primary" mat-menu-item routerLink="/register" routerLinkActive="active">AddAccount</button>
+                       <div fxLayout="row" fxLayoutAlign="space-around" >
+                     
+
+                      <button mat-raised-button (click)="logOut()">Sign out</button>
+                      <button mat-raised-button routerLink="/register" routerLinkActive="active">Add accout</button>
                     </div>
                   </mat-card-content>
            

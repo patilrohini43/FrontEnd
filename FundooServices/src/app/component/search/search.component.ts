@@ -8,6 +8,7 @@ import { PipeServiceService } from '../pipe-service.service';
 })
 export class SearchComponent implements OnInit {
 
+ public loading = true;
   Search:any
   constructor(
 
@@ -19,9 +20,6 @@ export class SearchComponent implements OnInit {
     this.pipe.currentMessage.subscribe(message=>{
       this.Search=message;
     })
-  }
-
-
-
+    }
 
 }

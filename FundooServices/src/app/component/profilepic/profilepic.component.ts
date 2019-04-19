@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/service/http.service';
 import { MatDialogRef } from '@angular/material';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { UpdateServicesService } from 'src/app/service/update-services.service';
 
 @Component({
   selector: 'app-profilepic',
@@ -10,13 +11,19 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 })
 export class ProfilepicComponent implements OnInit {
 
-
+data:any;
   imageChangedEvent: any = '';
   croppedImage;
   constructor(private httpService:HttpService,
+    private updateService:UpdateServicesService,
     public dialogRef: MatDialogRef<ProfilepicComponent>) { }
 
   ngOnInit() {
+    this.updateService.currentNotes.subscribe(response=>{
+      this.data=response['body'];
+      console.log(this.data);
+    })
+
   }
   
   fileChangeEvent(event: any): void {

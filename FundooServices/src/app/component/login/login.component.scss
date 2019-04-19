@@ -16,7 +16,7 @@
     .example-card{
         width: 300px;
       background-color: rgb(255, 255, 255);
-      
+      height: 400px;
       padding: 12px;
       padding-top: 0.5px;
       padding-bottom: 0.5px;
@@ -120,4 +120,13 @@
           width: 1px;
           justify-content: space-between;
         }
+  }
+
+  .image{
+    background-image: url('/assets/login.jpg');
+    height:600px;
+
+   
+   
+    
   }

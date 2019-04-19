@@ -72,21 +72,21 @@
 
 
   <!-- <mat-menu #menu="matMenu">
-      <div class="matmenu">
-    <button mat-menu-item [matMenuTriggerFor]="label">Add Label</button>
-    <button mat-menu-item  (click)="trashNote(note)" >Delete Note</button>
-   <button mat-menu-item  (click)="trashNote(note)" >Restore</button>
-    <button mat-menu-item  (click)="delete(note)" >Delete Note Permentaly</button>
-    <button mat-menu-item>Make a Copy</button>
-  </div>
-  </mat-menu>
-  
-  <mat-menu #label="matMenu">
-      <div class="input">
-    <button mat-menu-item >Label Note</button>
-       <mat-form-field appearance="standard">
-      <mat-label>Enter Label Name</mat-label>
-      <input matInput placeholder="Placeholder" [formControl]="labelName" (click)="onEvent($event)">
+      <div class="matmenu"> uisng refresh
+    <button mat-menu-item [matMe uisng refreshnuTriggerFor]="label">Add Label</button>
+    <button mat-menu-item  (clic uisng refreshk)="trashNote(note)" >Delete Note</button>
+   <button mat-menu-item  (click uisng refresh)="trashNote(note)" >Restore</button>
+    <button mat-menu-item  (clic uisng refreshk)="delete(note)" >Delete Note Permentaly</button>
+    <button mat-menu-item>Make a uisng refresh Copy</button>
+  </div> uisng refresh
+  </mat-menu> uisng refresh
+   uisng refresh
+  <mat-menu #label="matMenu"> uisng refresh
+      <div class="input"> uisng refresh
+    <button mat-menu-item >Label uisng refresh Note</button>
+       <mat-form-field appearanc uisng refreshe="standard">
+      <mat-label>Enter Label Nam uisng refreshe</mat-label>
+      <input matInput placeholde uisng refreshr="Placeholder" [formControl]="labelName" (click)="onEvent($event)">
       <mat-icon matSuffix> </mat-icon>
     </mat-form-field>
   <div *ngFor="let note1 of labelArray">  
@@ -183,15 +183,45 @@
          </div>
 
       
-            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+            <mat-chip [style.fontSize.px]=8  *ngIf="note.reminder!=reminder" [selectable]="selectable"
+            [removable]="removable" (removed)="removeReminder(note)">
+           <div *ngIf=" ((today|date:'shortDate')===(note.reminder|date:'shortDate'))">
+              Today {{note.reminder|date:'short'}}
+           
+       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </div>
+        </mat-chip>
+           </div>  
+                    
+
+           <div *ngIf="(tomorrowDate|date:'shortDate')===(note.reminder|date:'shortDate')">
+             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+              <mat-chip [style.fontSize.px]=8  *ngIf="note.reminder!=reminder" [selectable]="selectable"
+              [removable]="removable" (removed)="removeReminder(note)">
+           
+               Tomorrow, {{note.reminder|date:'short'}}
+             
+         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        
+          </mat-chip>
+             </div>  
+            </div>
+
+             
+         <div *ngIf="((note.reminder|date:'shortDate')!= (tomorrowDate|date:'shortDate'))">
+            <div *ngIf="((note.reminder|date:'shortDate')!= (today|date:'shortDate'))">
+             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
                 <mat-chip [style.fontSize.px]=8  *ngIf="note.reminder!=reminder" [selectable]="selectable"
                 [removable]="removable" (removed)="removeReminder(note)">
-                {{note.reminder|date:'short'}}
-           <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-           </mat-chip>
+                  {{note.reminder|date:'short'}}
+                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        
+            </mat-chip>
                </div>  
-
-              
+              </div>
+         </div>
+          
 
             
 

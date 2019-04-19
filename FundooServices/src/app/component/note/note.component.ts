@@ -13,6 +13,7 @@ import { ArchiveComponent } from '../archive/archive.component';
 import { ChildActivationEnd } from '@angular/router';
 import { NotepinComponent } from '../notepin/notepin.component';
 import { CollabratorComponent } from '../collabrator/collabrator.component';
+import { consumeBinding } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-note',
@@ -153,6 +154,7 @@ idNote:any;
       
         .subscribe(response =>{
           console.log(response.body)
+          this.updateService.updateMessage();
           if(response.body.statusCode == 401){
            this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
              duration: 1000,
@@ -255,10 +257,11 @@ idNote:any;
 
       laterTomorrow(note){
           try {
-          this.note.reminder=new Date(this.today.getFullYear(), this.today.getMonth(),
+          note.reminder=new Date(this.today.getFullYear(), this.today.getMonth(),
           (this.today.getDate()+1 ), 8, 0, 0, 0)
-
-          this.httpService.postReminder('/user/notes/'+note.noteId+'?time='+this.tomorrowDate.toISOString()).subscribe(
+    console.log(note.reminder);
+    console.log(this.tomorrowDate)
+          this.httpService.postReminder('/user/notes/'+note.noteId+'?time='+note.reminder.toISOString()).subscribe(
             response=>{
               this.updateService.updateMessage();
               console.log(response);
@@ -274,36 +277,6 @@ idNote:any;
           }
 
 
-
-      // laterTomorrow(note){
-      //   const newdate = new Date();
-      //   newdate.setHours(8);
-      //   newdate.setMinutes(0);
-      //   newdate.setSeconds(0);
-      //   console.log(newdate);
-      //   this.reminderValue = {
-      //   "reminder": [newdate],
-      //   // "noteIdList": [this.card.noteId]
-        
-      //   }
-  
-      //   console.log("current date",newdate)
-      //   console.log("current1 date",newdate)
-      //  note.reminder=newdate;
-  
-  
-      //   this.httpService.postReminder('/user/notes/'+note.noteId+'?time='+newdate.toISOString()).subscribe(
-      //     response=>{
-      //       this.updateService.updateMessage();
-      //       console.log(response);
-      //     },
-    
-        
-      
-      //   (error) => { console.log("error", error); }
-        
-      //   )
-      //   }
 
 
   
@@ -633,55 +606,3 @@ trashNote(card)
 
 
 
-
-
-// today(){
-//   try {
-//   this.note.reminder=new Date(this.todayDate.getFullYear(), this.todayDate.getMonth(),
-//   (this.todayDate.getDate() ), 20, 0, 0, 0)
-//   this.noteService.NoteUpdate(this.note).subscribe(
-//   (response:any)=>{
-//   console.log(response.statusMessage)
-//   },
-//   (error:any)=> {
-//   console.log(error.error.statusMessage)
-//   }
-//   );
-//   } catch (err) {
-//   console.log(err)
-//   }
- 
-//  }
-//   tomorrow(){
-//   try {
-//   this.note.reminder=new Date(this.todayDate.getFullYear(), this.todayDate.getMonth(),
-//   (this.todayDate.getDate()+1 ), 8, 0, 0, 0)
-//   this.noteService.NoteUpdate(this.note).subscribe(
-//   (response:any)=>{
-//   console.log(response.statusMessage)
-//   },
-//   (error:any)=> {
-//   console.log(error.error.statusMessage)
-//   }
-//   );
-//   } catch (err) {
-//   console.log(err)
-//   }
-  
-//   }
-//   nextweek(){
-//   try {
-//   this.note.reminder=new Date(this.todayDate.getFullYear(), this.todayDate.getMonth(),
-//   (this.todayDate.getDate()+7 ), 8, 0, 0, 0)
-//   this.noteService.NoteUpdate(this.note).subscribe(
-//   (response:any)=>{
-//   console.log(response.statusMessage)
-//   },
-//   (error:any)=> {
-//   console.log(error.error.statusMessage)
-//   }
-//   );
-//   } catch (err) {
-//   console.log(err)
-//   }
-//   }

@@ -36,8 +36,8 @@ export class NotepinComponent implements OnInit {
   labelArray:any;
   labelName=new FormControl('',[Validators.required])
   @Input() data:any[];
-
- 
+  @Input() Search:any;
+  @Input() searchValue:any;
   note:Notedto=new Notedto();
   
 
@@ -60,11 +60,13 @@ export class NotepinComponent implements OnInit {
   dateNow : Date = new Date();
   reminderValue:any;
 noteLabel:any;
+idNote:any
+data2:any
    archived:boolean=false
   trashed:boolean=false
   today=new Date;
 tomorrowDate= new Date(this.today.getFullYear(), this.today.getMonth(), (this.today.getDate() + 1))
-
+message:any;
   //carddata=this.data;
   constructor(
    private httpService:HttpService,
@@ -89,6 +91,10 @@ tomorrowDate= new Date(this.today.getFullYear(), this.today.getMonth(), (this.to
 
   ngOnInit() {
   // this.getNote();
+  this.updateService.currentMessage.subscribe(message=> {
+    this.message=message
+    console.log(this.message)
+  })
   this.updateService.currentNotes.subscribe(response=>{
     this.data=response['body'];
     console.log(this.data);
@@ -127,6 +133,29 @@ tomorrowDate= new Date(this.today.getFullYear(), this.today.getMonth(), (this.to
     )
     }
 
+
+
+
+    laterTomorrow(note){
+      try {
+      note.reminder=new Date(this.today.getFullYear(), this.today.getMonth(),
+      (this.today.getDate()+1 ), 8, 0, 0, 0)
+
+      this.httpService.postReminder('/user/notes/'+note.noteId+'?time='+note.reminder.toISOString()).subscribe(
+        response=>{
+          this.updateService.updateMessage();
+          console.log(response);
+        },
+      (error:any)=> {
+      console.log(error.error.statusMessage)
+      }
+      );
+      } catch (err) {
+      console.log(err)
+      }
+      
+      }
+
   changeColor(color) {
 
     this.color = color;
@@ -137,6 +166,7 @@ tomorrowDate= new Date(this.today.getFullYear(), this.today.getMonth(), (this.to
     getID(card)
     {
      console.log(card.noteId);
+     this.idNote=card.noteId
     }
 
 
@@ -148,7 +178,36 @@ tomorrowDate= new Date(this.today.getFullYear(), this.today.getMonth(), (this.to
     }
 
 
-
+    updateNote(color)
+    {
+      console.log(this.idNote)
+      console.log("color",color)
+      this.data2 ={
+        
+        "color":color
+      }
+        this.httpService.putRequest1('/user/note/update/color/'+this.idNote,this.data2)
+      
+        .subscribe(response =>{
+          console.log(response.body)
+          this.updateService.updateMessage();
+          if(response.body.statusCode == 401){
+           this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
+             duration: 1000,
+      });
+          
+          }
+        else 
+   
+          {
+             console.log(response.body.statusMessage)
+            this.snackbar.open(response.body.statusMessage +'Invalid !!', 'End now', {
+              duration: 1000,
+       });
+          }
+        })
+        
+       }
 
     getNote()
   {
