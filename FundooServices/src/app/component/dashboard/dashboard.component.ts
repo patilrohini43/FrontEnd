@@ -76,7 +76,9 @@ fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
   {
     this.router.navigate(['dashboard/search'])
   }
-
+  lookFor(){
+    this.pipe.changedata(this.Search)
+  }
 
 
 
@@ -96,9 +98,7 @@ fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
   }
 
 
-  lookFor(){
-    this.pipe.changedata(this.Search)
-  }
+  
 
 
   getLabel()

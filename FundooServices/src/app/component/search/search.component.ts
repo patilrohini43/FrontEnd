@@ -19,7 +19,11 @@ export class SearchComponent implements OnInit {
 
     this.pipe.currentMessage.subscribe(message=>{
       this.Search=message;
+      console.log(this.Search)
     })
     }
+
+
+
 
 }
