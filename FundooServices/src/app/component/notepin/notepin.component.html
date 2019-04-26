@@ -111,7 +111,7 @@
     </mat-menu> --> 
 
     <div fxLayout="{{message}}" fxFlex="80" fxFlexAlign="center" fxLayoutAlign="center center" style="margin-left: 150px;">
-    <div *ngFor="let note of data | search:Search; let i index">  
+    <div *ngFor="let note of data">  
     <div fxLayout="row wrap" fxLayoutAlign="center stretch" fxLayoutGap="20px">
       <div *ngIf="note.pin===false" class="example-container">
         <div *ngIf="note.archive===false" >

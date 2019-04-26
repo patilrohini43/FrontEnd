@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
 
     this.pipe.currentMessage.subscribe(message=>{
-      this.Search=message;
+      this.Search=message['body'];
       console.log(this.Search)
     })
     }

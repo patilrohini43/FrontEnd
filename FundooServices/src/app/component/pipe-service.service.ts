@@ -24,7 +24,7 @@ changedata(message:string)
   this.httpService.getRequest1('/user/note/search?query='+message).subscribe(
     response=>{
       console.log(response)
-      this.message.next(message)
+      this.message.next(response)
     }
   )
   

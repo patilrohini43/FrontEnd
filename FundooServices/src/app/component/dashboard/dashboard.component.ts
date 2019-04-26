@@ -22,7 +22,7 @@ profilePic:any;
 public loading = true;
 userInfo:any[];
 mobileQuery: MediaQueryList;
-Search:any;
+Search:string='';
 fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
    fillerContent = Array.from({length: 5},);
@@ -76,11 +76,23 @@ fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
   {
     this.router.navigate(['dashboard/search'])
   }
-  lookFor(){
+
+
+  onSearchChange(event){
+
+    console.log("Event",event)
+    this.Search=event
+    console.log("Search",this.Search)
     this.pipe.changedata(this.Search)
   }
 
 
+  //  onSearchChange(searchValue : string ) {  
+  //   console.log(searchValue);}
+
+  // onKey(event: any) { // without type info
+  //   this.Search += event.target.value + ' | ';
+  // }
 
 
 

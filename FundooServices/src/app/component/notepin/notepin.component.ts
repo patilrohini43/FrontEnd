@@ -36,8 +36,8 @@ export class NotepinComponent implements OnInit {
   labelArray:any;
   labelName=new FormControl('',[Validators.required])
   @Input() data:any[];
-  @Input() Search:any;
-  @Input() searchValue:any;
+  // @Input() Search:any;
+   //@Input() searchValue:any;
   note:Notedto=new Notedto();
   
 
