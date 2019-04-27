@@ -33,14 +33,6 @@ export class TrashComponent implements OnInit {
 
 )
 
-// this.httpService.getNotes(false,true).subscribe(
-//   response=>{
-//     this.trashNotes=response.body
-//     console.log("trash note",this.trashNotes)
-//   }
-
-// )
-
 }
 
 
@@ -72,12 +64,18 @@ getNote()
    console.log(card.noteId);
   }
 
+
+
+
   delete(card)
      {
        console.log(card.noteId)
+
+       console.log("hIIIi")
        this.httpService.delete('/user/note/'+card.noteId)
        .subscribe(response =>{
         this.updateService.updateMessage();
+        console.log("hello")
         if(response.body.statuscode===401)
         {
           this.snackbar.open(response.body.statusMessage +' !!', 'End now', {

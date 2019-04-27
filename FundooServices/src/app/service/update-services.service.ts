@@ -110,6 +110,8 @@ this.httpService.getNotes(this.isArchive,this.isTrash).subscribe(
       this.httpService.getNotes(this.isArchive,this.isTrash).subscribe(
         response=>
         {
+
+          console.log("update messgae",response)
           this.obtainNotes.next(response);
         }
 
