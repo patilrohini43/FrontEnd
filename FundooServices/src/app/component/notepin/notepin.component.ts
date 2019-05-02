@@ -403,7 +403,7 @@ archiveNote(card)
   console.log("hii")
   this.httpService.putRequest1('/user/noted/'+card.noteId,this.card)
   .subscribe(response =>{
-    this.updateService.updateMessage()
+   // this.updateService.updateMessage()
    if(response.body.statuscode===401)
    {
      this.snackbar.open(response.body.statusMessage +' !!', 'End now', {

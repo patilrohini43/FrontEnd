@@ -1,4 +1,4 @@
-
+<!-- 
 <div fxLayout={{message}} fxFlex="80" fxFlexAlign="center" fxLayoutAlign="center center" style="margin-left: 150px;">
     <div *ngFor="let note of alldata | search:Search; let i index">  
     <div fxLayout="row wrap" fxLayoutAlign="center stretch" fxLayoutGap="20px" >
@@ -199,4 +199,12 @@
       </mat-menu>
 
 
-    
+     -->
+
+
+
+   <app-note [data]="alldata"></app-note>
+   <app-notepin [data]="alldata"></app-notepin>
+ 
+
+

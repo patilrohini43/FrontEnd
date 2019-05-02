@@ -9,25 +9,28 @@
   </div>
     </div> --> 
    
-<!-- 
- <app-note [data]="allnotes"></app-note> -->
- <!-- <div *ngFor="let notes of allnotes">   
-    <div *ngIf="notes.archive===true">
- <app-note [data]=notes>
-  </app-note>
-</div>
-</div>
-    </div>
-         -->
+
+  <!-- <app-note  *ngIf="let notes of archive"  [data]="notes"></app-note>  -->
+
+
+<!--      
+ <app-note [data]="allnotes">
+  </app-note> -->
+
+         
    
 
 
+ <!-- <div *ngFor="let note of allnotes">  
+   
+   
+ 
+ 
 
+ </div>   -->
 
-
-
-  <div fxLayout="row wrap" fxFlex="80"  fxLayoutAlign="center center"  style="margin-left: 150px;">
-    <div *ngFor="let note of allnotes">  
+ <div fxLayout="row wrap" fxFlex="80"  fxLayoutAlign="center center"  style="margin-left: 150px;">
+    <div *ngFor="let note of allnotes1">  
       
             <div *ngIf="note.archive==true" class="example-container">
     <div fxLayout="row wrap" fxLayoutAlign="center stretch" fxLayoutGap="20px">
@@ -222,6 +225,4 @@
       </div>
       </div>
       </ng-template>
-      </mat-menu>
-
-
+      </mat-menu>  

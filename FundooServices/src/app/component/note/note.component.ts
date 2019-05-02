@@ -74,6 +74,7 @@ tomorrowDate= new Date(this.today.getFullYear(), this.today.getMonth(), (this.to
 datap:any;
 idNote:any;
 @Input() Search:any;
+@Input() carddata:any;
 
    archived:boolean=false
   trashed:boolean=false
@@ -90,6 +91,7 @@ idNote:any;
     this.updateService.currentNotes.subscribe(response=>{
       console.log(response);
       this.data=response;
+  
     })
    }
 // pined=new Array<Note>();

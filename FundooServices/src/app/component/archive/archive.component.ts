@@ -33,11 +33,19 @@ export class ArchiveComponent implements OnInit {
   ) {
 
     console.log("click on archive message")
-    this.updateService.changemessage(true,false);
+   this.updateService.changemessage(true,false);
   }
    private allnotes:any[];
-
+   private alldata:any[];
   
+allnotes1=new Array<Note>();
+alldata1=new  Array<Note>();
+
+// pined=new Array<Note>();
+// others=new Array<Note>();
+// fullNotes(){
+//   this.data.filter(note=>note.pin===true&&note.archive===false&& note.trash===false).map(note=>this.pined.push(note));
+// }
 
   ngOnInit() {
 
@@ -46,12 +54,17 @@ export class ArchiveComponent implements OnInit {
   this.updateService.currentNotes.subscribe(
     response=>{
 
-      this.allnotes=response['body']
-      
-      console.log("getting notes",this.allnotes)
+      this.allnotes1=response['body'];
+      console.log("getting notes",this.allnotes1) 
+      //this.alldata1=this.allnotes1.filter(note=>note.archive)
+    //  this.allnotes1.filter(note=>note.archive==true).map(note=>this.alldata1.push(note));
+
+       
+    // console.log(this.alldata1)
+     // console.log("getting notes",this.alldata1)
     },
   )
-
+//this.getNote();
    }
 
 
@@ -198,10 +211,11 @@ tomorrowDate= new Date(this.today.getFullYear(), this.today.getMonth(), (this.to
       this.httpService.getNotes(this.archived,this.trashed)
           .subscribe(
            (response) => {console.log("success get notes",response)
-           this.data = response['body']; 
-             console.log("data-->",this.data);
-       
+           this.allnotes1 = response['body']; 
+             console.log("data-->",this.allnotes1);
             
+            this.alldata1= this.allnotes1.filter(note=>note.archive===true);
+console.log(this.alldata1)
        if(response.body.statuscode===401){
          this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
            duration: 1000,
