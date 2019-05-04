@@ -7,5 +7,6 @@ color:string;
 pin:boolean;
 trash:boolean;
 archive:boolean;
+reminder:any;
 
 }

@@ -1,29 +1,19 @@
-import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from 'src/app/service/http.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
-import { A11yModule } from '@angular/cdk/a11y';
-import { Notedto } from 'src/app/model/createnote';
-import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
-import { Note } from 'src/app/model/note';
-import { FormControl, Validators } from '@angular/forms';
-import { isLabeledStatement } from 'typescript';
-import { EditDialogLabelComponent } from '../edit-dialog-label/edit-dialog-label.component';
 import { UpdateServicesService } from 'src/app/service/update-services.service';
-import { ArchiveComponent } from '../archive/archive.component';
-import { ChildActivationEnd } from '@angular/router';
-import { NotepinComponent } from '../notepin/notepin.component';
+import { FormControl, Validators } from '@angular/forms';
 import { CollabratorComponent } from '../collabrator/collabrator.component';
-import { consumeBinding } from '@angular/core/src/render3/instructions';
+import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 @Component({
-  selector: 'app-note',
-  templateUrl: './note.component.html',
-  styleUrls: ['./note.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
- 
+  selector: 'app-note-bar',
+  templateUrl: './note-bar.component.html',
+  styleUrls: ['./note-bar.component.scss']
 })
-export class NoteComponent implements OnInit {
-  deleteData: { "isDeleted": boolean; "noteIdList": any[]; };
+export class NoteBarComponent implements OnInit {
+@Input() data:any;
+deleteData: { "isDeleted": boolean; "noteIdList": any[]; };
   archivevalue=false;
   archiveData: { "isArchived": boolean; "noteIdList": any[]; };
   cardArray:any;
@@ -46,8 +36,8 @@ export class NoteComponent implements OnInit {
   reminderValue:any;
   labelArray:any;
   labelName=new FormControl('',[Validators.required])
-  @Input() data:any;
-  @Input() searchValue:any;
+ 
+
   //note:Notedto=new Notedto();
   
 
@@ -74,51 +64,29 @@ tomorrowDate= new Date(this.today.getFullYear(), this.today.getMonth(), (this.to
 datap:any;
 idNote:any;
 pind:any;
-@Input() Search:any;
-@Input() carddata:any;
+archivenotes:any;
 
-   archived:boolean=false
+
+   archived:boolean=true
   trashed:boolean=false
-  //carddata=this.data;
   constructor(
-   private httpService:HttpService,
-   private snackbar:MatSnackBar,
-   public dialog: MatDialog,
-   private updateService:UpdateServicesService
-  ) {
-
-
-    this.updateService.changemessage(false,false);
-    // this.updateService.currentNotes.subscribe(response=>{
-    //   console.log(response);
-    //   this.data=response;
-  
-    // })
-   }
-// pined=new Array<Note>();
-// others=new Array<Note>();
-// fullNotes(){
-//   this.data.filter(note=>note.pin===true&&note.archive===false&& note.trash===false).map(note=>this.pined.push(note));
-// }
-
+    private httpService:HttpService,
+    private snackbar:MatSnackBar,
+    public dialog: MatDialog,
+    private updateService:UpdateServicesService
+  ) { 
+    this.updateService.changemessage(true,false);
+  }
 
   ngOnInit() {
-  // this.getNote();
-  this.updateService.currentMessage.subscribe(message=> {
-    this.message=message
-    console.log(this.message)
-  })
-  this.updateService.currentNotes.subscribe(response=>{
-    this.data=response['body'];
-  //  this.pind=this.data.filter(note=>note.reminder)
+    this.updateService.currentNotes.subscribe(response=>{
 
-  //  console.log(this.pind);
-  })
-   this.getLabel();
-
-   
-   
-   
+      this.data=response['body'];
+      console.log("data=>",this.data)
+    ////  this.archivenotes=this.data.filter(item=>item.archive===true)
+console.log(this.archivenotes)
+    })
+this.getNote()
   }
 
 
@@ -297,6 +265,7 @@ pind:any;
           this.data = response['body']; 
             console.log("data-->",this.data);
       
+
            
       if(response.body.statuscode===401){
         this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
@@ -382,6 +351,7 @@ archiveNote(card)
   this.httpService.putRequest1('/user/noted/'+card.noteId,this.card)
   .subscribe(response =>{
 
+    this.updateService.updateMessage();
    if(response.body.statuscode===401)
    {
      this.snackbar.open(response.body.statusMessage +' !!', 'End now', {
@@ -606,8 +576,3 @@ trashNote(card)
 
 
 }
-
-
-
-
-

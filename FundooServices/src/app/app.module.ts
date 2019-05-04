@@ -47,6 +47,7 @@ import { SearchPipe } from './pipe/search.pipe';
 import { ReminderComponent } from './component/reminder/reminder.component';
 
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+import { NoteBarComponent } from './component/note-bar/note-bar.component';
 
 
 
@@ -79,6 +80,7 @@ import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
   SearchComponent,
   SearchPipe,
   ReminderComponent,
+  NoteBarComponent,
   
  
 

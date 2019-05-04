@@ -20,6 +20,7 @@ import { LabelNoteComponent } from './component/label-note/label-note.component'
 import { NotepinComponent } from './component/notepin/notepin.component';
 import { SearchComponent } from './component/search/search.component';
 import { ReminderComponent } from './component/reminder/reminder.component';
+import { NoteBarComponent } from './component/note-bar/note-bar.component';
 
 
 
@@ -35,6 +36,10 @@ const routes: Routes = [
 {
   path: 'login', 
   component:LoginComponent
+}, 
+{
+  path: 'notesss', 
+  component:NoteBarComponent
 }, 
 
 
